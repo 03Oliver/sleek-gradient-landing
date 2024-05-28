@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Text, VStack, Link, Box } from "@chakra-ui/react";
 import { FaLinkedin } from "react-icons/fa";
+import { FaYouTube } from "react-icons/fa";
 import { keyframes } from "@emotion/react";
 
 const typing = keyframes`
@@ -34,6 +35,9 @@ const Index = () => {
         </Box>
         <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
           <Box as={FaLinkedin} size="48px" />
+        </Link>
+        <Link href="https://www.youtube.com/@collectivevc" isExternal>
+          <Box as={FaYouTube} size="48px" />
         </Link>
       </VStack>
     </Container>
