@@ -14,7 +14,7 @@ const blink = keyframes`
 
 const Index = () => {
   const [text, setText] = useState("");
-  const fullText = "collective.vc\nloading ... \n... reinventing ourselves.";
+  const fullText = "collective.vc ... loading ... ... reinventing ourselves";
 
   useEffect(() => {
     let index = 0;
