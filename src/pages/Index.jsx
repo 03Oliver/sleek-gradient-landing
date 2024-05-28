@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Container, VStack, Link, Box } from "@chakra-ui/react";
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
 import { keyframes } from "@emotion/react";
@@ -15,16 +15,16 @@ const blink = keyframes`
 const Index = () => {
   const [text, setText] = useState("");
   const fullText = "collective.vc ... loading ... ... reinventing ourselves";
+  const indexRef = useRef(0);
 
   useEffect(() => {
-    let index = 0;
     const interval = setInterval(() => {
-      setText((prev) => prev + fullText[index]);
-      index++;
-      if (index >= fullText.length) clearInterval(interval);  // Fix index condition
+      setText(fullText.substring(0, indexRef.current + 1));
+      indexRef.current++;
+      if (indexRef.current === fullText.length) clearInterval(interval);
     }, 100);
     return () => clearInterval(interval);
-  }, []);
+  }, [fullText]);
 
   return (
     <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif">
