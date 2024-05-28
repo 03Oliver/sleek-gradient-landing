@@ -27,7 +27,7 @@ const Index = () => {
   }, [fullText]);
 
   return (
-    <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif">
+    <Container centerContent maxW="600vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif">
       <VStack spacing={8} textAlign="center">
         <Box as="pre" fontSize="2xl" whiteSpace="pre-wrap" overflow="hidden" borderRight="2px solid" animation={`${typing} 4s steps(${fullText.length}), ${blink} 0.75s step-end infinite`}>
           {text}
