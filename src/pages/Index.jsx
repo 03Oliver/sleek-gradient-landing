@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Container, Text, VStack, Link, Box } from "@chakra-ui/react";
-import { FaLinkedin } from "react-icons/fa";
-import { FaYouTube } from "react-icons/fa";
+import { Container, VStack, Link, Box } from "@chakra-ui/react";
+import { FaLinkedin, FaYoutube } from "react-icons/fa";
 import { keyframes } from "@emotion/react";
 
 const typing = keyframes`
@@ -22,7 +21,7 @@ const Index = () => {
     const interval = setInterval(() => {
       setText((prev) => prev + fullText[index]);
       index++;
-      if (index === fullText.length) clearInterval(interval);
+      if (index >= fullText.length) clearInterval(interval);  // Fix index condition
     }, 100);
     return () => clearInterval(interval);
   }, []);
@@ -37,7 +36,7 @@ const Index = () => {
           <Box as={FaLinkedin} size="48px" />
         </Link>
         <Link href="https://www.youtube.com/@collectivevc" isExternal>
-          <Box as={FaYouTube} size="48px" />
+          <Box as={FaYoutube} size="48px" />
         </Link>
       </VStack>
     </Container>
