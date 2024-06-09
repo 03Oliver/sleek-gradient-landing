@@ -14,7 +14,7 @@ const blink = keyframes`
 
 const Index = () => {
   const [text, setText] = useState("");
-  const fullText = "collective.vc ... reinventing ourselves";
+  const fullText = "collective.vc";
   const indexRef = useRef(0);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Index = () => {
           <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
           <Box as={FaWhatsapp} size="48px" />
         </Link>
-        
+
       </VStack>
     </Container>
   );
