@@ -32,17 +32,23 @@ const Index = () => {
         <Box as="pre" fontSize="2xl" whiteSpace="nowrap" overflow="hidden" borderRight="2px solid" animation={`${typing} 4s steps(${fullText.length}), ${blink} 0.75s step-end infinite`}>
           {text}
         </Box>
+
         <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
           <Box as={FaLinkedin} size="48px" />
         </Link>
+        
         <Link href="https://www.youtube.com/@collectivevc" isExternal>
           <Box as={FaYoutube} size="48px" />
         </Link>
+        
         <Link href="https://collectivevc.substack.com" isExternal>
           <Box as={FaEnvelope} size="48px" />
+          </Link>
+
           <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
           <Box as={FaWhatsapp} size="48px" />
         </Link>
+        
       </VStack>
     </Container>
   );
