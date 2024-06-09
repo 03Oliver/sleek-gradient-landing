@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Container, VStack, Link, Box } from "@chakra-ui/react";
-import { FaLinkedin, FaYoutube } from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { keyframes } from "@emotion/react";
 
 const typing = keyframes`
@@ -14,7 +14,7 @@ const blink = keyframes`
 
 const Index = () => {
   const [text, setText] = useState("");
-  const fullText = "collective.vc ... loading ... ... reinventing ourselves";
+  const fullText = "collective.vc ... reinventing ourselves";
   const indexRef = useRef(0);
 
   useEffect(() => {
@@ -37,6 +37,11 @@ const Index = () => {
         </Link>
         <Link href="https://www.youtube.com/@collectivevc" isExternal>
           <Box as={FaYoutube} size="48px" />
+        </Link>
+        <Link href="https://collectivevc.substack.com" isExternal>
+          <Box as={FaEnvelope} size="48px" />
+          <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
+          <Box as={FaWhatsapp} size="48px" />
         </Link>
       </VStack>
     </Container>
