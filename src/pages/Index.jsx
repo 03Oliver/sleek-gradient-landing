@@ -28,11 +28,12 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif">
-      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} textAlign="center">
+      <Box textAlign="center" mb={8}>
         <Box as="pre" fontSize="2xl" whiteSpace="nowrap" overflow="hidden" borderRight="2px solid" animation={`${typing} 4s steps(${fullText.length}), ${blink} 0.75s step-end infinite`}>
           {text}
         </Box>
-
+      </Box>
+      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} textAlign="center">
         <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
           <Box as={FaLinkedin} size="48px" />
         </Link>
