@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Container, VStack, Link, Box } from "@chakra-ui/react";
+import { Container, SimpleGrid, Link, Box } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { keyframes } from "@emotion/react";
 
@@ -28,7 +28,7 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif">
-      <VStack spacing={8} textAlign="center">
+      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} textAlign="center">
         <Box as="pre" fontSize="2xl" whiteSpace="nowrap" overflow="hidden" borderRight="2px solid" animation={`${typing} 4s steps(${fullText.length}), ${blink} 0.75s step-end infinite`}>
           {text}
         </Box>
@@ -36,20 +36,19 @@ const Index = () => {
         <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
           <Box as={FaLinkedin} size="48px" />
         </Link>
-        
+
         <Link href="https://www.youtube.com/@collectivevc" isExternal>
           <Box as={FaYoutube} size="48px" />
         </Link>
-        
+
         <Link href="https://collectivevc.substack.com" isExternal>
           <Box as={FaEnvelope} size="48px" />
-          </Link>
-
-          <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
-          <Box as={FaWhatsapp} size="48px" />
         </Link>
 
-      </VStack>
+        <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
+          <Box as={FaWhatsapp} size="48px" />
+        </Link>
+      </SimpleGrid>
     </Container>
   );
 };
