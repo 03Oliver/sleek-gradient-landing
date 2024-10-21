@@ -48,13 +48,13 @@ const Index = () => {
   };
 
   return (
-    <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden">
-      <Box textAlign="center" mb={4}>
-        <Flex alignItems="center" justifyContent="center">
+    <Container centerContent maxW="100vw" minHeight="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden" py={8}>
+      <Box textAlign="center" mb={8}>
+        <Flex alignItems="center" justifyContent="center" mb={4}>
           <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
           <Box 
             as="pre" 
-            fontSize="4xl" 
+            fontSize={["2xl", "3xl", "4xl"]} 
             fontWeight="bold" 
             whiteSpace="nowrap" 
             overflow="hidden" 
@@ -66,9 +66,9 @@ const Index = () => {
         </Flex>
       </Box>
       
-      <Box mb={4} textAlign="center" maxW="600px" height="60px" display="flex" alignItems="center" justifyContent="center" fontFamily="Roboto, sans-serif">
+      <Box mb={8} textAlign="center" maxW="600px" minHeight={["80px", "60px"]} display="flex" alignItems="center" justifyContent="center" fontFamily="Roboto, sans-serif" px={4}>
         <Text 
-          fontSize="lg" 
+          fontSize={["md", "lg"]} 
           fontFamily="Roboto, sans-serif"
           whiteSpace="normal"
           overflow="hidden"
@@ -92,7 +92,7 @@ const Index = () => {
         </Text>
       </Box>
 
-      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} textAlign="center">
+      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} textAlign="center">
         <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
           <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
@@ -102,6 +102,10 @@ const Index = () => {
         </Link>
 
         <Link href="https://collectivevc.substack.com" isExternal>
+          <Box as={FaNewspaper} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+        </Link>
+
+        <Link href="mailto:oliverbonallack@gmail.com" isExternal>
           <Box as={FaEnvelope} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
 
