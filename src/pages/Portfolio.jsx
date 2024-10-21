@@ -56,7 +56,8 @@ const Portfolio = () => {
           <Text fontSize="md">
             <Link href="https://element-2.co.uk/" isExternal color="blue.300">element 2 hydrogen</Link> // {" "}
             <Link href="https://www.sustainableventures.co.uk/" isExternal color="blue.300">sustainable ventures sa7</Link> // {" "}
-            <Link href="https://stratiphy.io" isExternal color="blue.300">stratiphy</Link>
+            <Link href="https://stratiphy.io" isExternal color="blue.300">stratiphy</Link> // {" "}
+            <Link href="https://meetotis.com/" isExternal color="blue.300">otis.ai</Link>
           </Text>
           
           <Text fontSize="lg" mt={4}>2. syndicate deals</Text>
