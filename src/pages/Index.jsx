@@ -33,9 +33,9 @@ const Index = () => {
         </Box>
       </Box>
       
-      <Box mb={12} textAlign="center">
+      <Box mb={12} textAlign="center" maxW="600px">
         <Text fontSize="lg">
-          {/* Space for additional text */}
+          Collective.VC is an early-stage climate syndicate and media organisation working towards capital deployment for the benefit of humanity.
         </Text>
       </Box>
 
