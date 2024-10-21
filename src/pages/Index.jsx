@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image } from "@chakra-ui/react";
-import { FaLinkedin, FaYoutube, FaWhatsapp, FaEnvelope } from "react-icons/fa";
-import { SiSubstack } from "react-icons/si";
+import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 
 const typing = keyframes`
   from { width: 0 }
@@ -93,7 +92,7 @@ const Index = () => {
         </Text>
       </Box>
 
-      <SimpleGrid columns={{ base: 2, md: 5 }} spacing={4} textAlign="center">
+      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} textAlign="center">
         <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
           <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
@@ -103,10 +102,6 @@ const Index = () => {
         </Link>
 
         <Link href="https://collectivevc.substack.com" isExternal>
-          <Box as={SiSubstack} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
-        </Link>
-
-        <Link href="mailto:oliverbonallack@gmail.com" isExternal>
           <Box as={FaEnvelope} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
 
