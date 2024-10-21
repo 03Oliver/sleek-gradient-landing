@@ -46,7 +46,7 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden">
-      <Box textAlign="center" mb={12}>
+      <Box textAlign="center" mb={6}>
         <Box 
           as="pre" 
           fontSize="4xl" 
@@ -60,7 +60,7 @@ const Index = () => {
         </Box>
       </Box>
       
-      <Box mb={12} textAlign="center" maxW="600px" height="100px" display="flex" alignItems="center" justifyContent="center">
+      <Box mb={6} textAlign="center" maxW="600px" height="80px" display="flex" alignItems="center" justifyContent="center">
         <Text 
           fontSize="lg" 
           fontFamily="Roboto, sans-serif"
@@ -82,21 +82,21 @@ const Index = () => {
         </Text>
       </Box>
 
-      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} textAlign="center">
+      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6} textAlign="center">
         <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
-          <Box as={FaLinkedin} size="48px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          <Box as={FaLinkedin} size="40px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
 
         <Link href="https://www.youtube.com/@collectivevc" isExternal>
-          <Box as={FaYoutube} size="48px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          <Box as={FaYoutube} size="40px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
 
         <Link href="https://collectivevc.substack.com" isExternal>
-          <Box as={FaEnvelope} size="48px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          <Box as={FaEnvelope} size="40px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
 
         <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
-          <Box as={FaWhatsapp} size="48px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          <Box as={FaWhatsapp} size="40px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
       </SimpleGrid>
     </Container>
