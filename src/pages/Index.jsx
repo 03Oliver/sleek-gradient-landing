@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Container, SimpleGrid, Link, Box, Text, keyframes } from "@chakra-ui/react";
+import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 
 const typing = keyframes`
@@ -46,21 +46,24 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden">
-      <Box textAlign="center" mb={6}>
-        <Box 
-          as="pre" 
-          fontSize="4xl" 
-          fontWeight="bold" 
-          whiteSpace="nowrap" 
-          overflow="hidden" 
-          borderRight={isTypingComplete ? "none" : "2px solid"}
-          animation={isTypingComplete ? `${typing} 4s steps(${fullHeaderText.length})` : `${typing} 4s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
-        >
-          {headerText}
-        </Box>
+      <Box textAlign="center" mb={4}>
+        <Flex alignItems="center" justifyContent="center">
+          <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
+          <Box 
+            as="pre" 
+            fontSize="4xl" 
+            fontWeight="bold" 
+            whiteSpace="nowrap" 
+            overflow="hidden" 
+            borderRight={isTypingComplete ? "none" : "2px solid"}
+            animation={isTypingComplete ? `${typing} 4s steps(${fullHeaderText.length})` : `${typing} 4s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+          >
+            {headerText}
+          </Box>
+        </Flex>
       </Box>
       
-      <Box mb={6} textAlign="center" maxW="600px" height="80px" display="flex" alignItems="center" justifyContent="center" fontFamily="Roboto, sans-serif">
+      <Box mb={4} textAlign="center" maxW="600px" height="60px" display="flex" alignItems="center" justifyContent="center" fontFamily="Roboto, sans-serif">
         <Text 
           fontSize="lg" 
           fontFamily="Roboto, sans-serif"
@@ -82,21 +85,21 @@ const Index = () => {
         </Text>
       </Box>
 
-      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6} textAlign="center">
+      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} textAlign="center">
         <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
-          <Box as={FaLinkedin} size="40px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
 
         <Link href="https://www.youtube.com/@collectivevc" isExternal>
-          <Box as={FaYoutube} size="40px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          <Box as={FaYoutube} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
 
         <Link href="https://collectivevc.substack.com" isExternal>
-          <Box as={FaEnvelope} size="40px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          <Box as={FaEnvelope} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
 
         <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
-          <Box as={FaWhatsapp} size="40px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          <Box as={FaWhatsapp} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
         </Link>
       </SimpleGrid>
     </Container>
