@@ -1,11 +1,28 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>collective.vc</title>
+    <!-- Calendly badge widget styles -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
     <script src="/src/main.jsx" type="module"></script>
+    
+    <!-- Calendly badge widget scripts -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <script type="text/javascript">
+      window.onload = function() { 
+        Calendly.initBadgeWidget({ 
+          url: 'https://calendly.com/oliverbonallack/30min', 
+          text: 'Schedule time with me', 
+          color: '#ffffff', 
+          textColor: '#000000', 
+          branding: undefined 
+        }); 
+      }
+    </script>
   </body>
 </html>
