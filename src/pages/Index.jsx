@@ -15,7 +15,7 @@ const Index = () => {
   const [headerText, setHeaderText] = useState("");
   const [bodyText, setBodyText] = useState("");
   const fullHeaderText = "collective.vc";
-  const fullBodyText = "an early-stage climate syndicate and media organisation led by Oliver Bonallack, working towards capital deployment for the benefit of humanity.";
+  const fullBodyText = "an early-stage climate-syndicate & media organisation led by Oliver Bonallack, working towards capital deployment for the benefit of humanity.";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
