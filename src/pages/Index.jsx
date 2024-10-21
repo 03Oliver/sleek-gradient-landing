@@ -12,30 +12,64 @@ const blink = keyframes`
 `;
 
 const Index = () => {
-  const [text, setText] = useState("");
-  const fullText = "collective.vc";
-  const indexRef = useRef(0);
+  const [headerText, setHeaderText] = useState("");
+  const [bodyText, setBodyText] = useState("");
+  const fullHeaderText = "collective.vc";
+  const fullBodyText = "Collective.VC is an early-stage climate syndicate and media organisation working towards capital deployment for the benefit of humanity.";
+  const headerIndexRef = useRef(0);
+  const bodyIndexRef = useRef(0);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setText(fullText.substring(0, indexRef.current + 1));
-      indexRef.current++;
-      if (indexRef.current === fullText.length) clearInterval(interval);
+    const headerInterval = setInterval(() => {
+      setHeaderText(fullHeaderText.substring(0, headerIndexRef.current + 1));
+      headerIndexRef.current++;
+      if (headerIndexRef.current === fullHeaderText.length) {
+        clearInterval(headerInterval);
+        startBodyTyping();
+      }
     }, 100);
-    return () => clearInterval(interval);
-  }, [fullText]);
+
+    return () => clearInterval(headerInterval);
+  }, []);
+
+  const startBodyTyping = () => {
+    const bodyInterval = setInterval(() => {
+      setBodyText(fullBodyText.substring(0, bodyIndexRef.current + 1));
+      bodyIndexRef.current++;
+      if (bodyIndexRef.current === fullBodyText.length) {
+        clearInterval(bodyInterval);
+        setIsTypingComplete(true);
+      }
+    }, 50);
+  };
 
   return (
     <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden">
       <Box textAlign="center" mb={12}>
-        <Box as="pre" fontSize="4xl" fontWeight="bold" whiteSpace="nowrap" overflow="hidden" borderRight="2px solid" animation={`${typing} 4s steps(${fullText.length}), ${blink} 0.75s step-end infinite`}>
-          {text}
+        <Box 
+          as="pre" 
+          fontSize="4xl" 
+          fontWeight="bold" 
+          whiteSpace="nowrap" 
+          overflow="hidden" 
+          borderRight={isTypingComplete ? "none" : "2px solid"}
+          animation={isTypingComplete ? `${typing} 4s steps(${fullHeaderText.length})` : `${typing} 4s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+        >
+          {headerText}
         </Box>
       </Box>
       
       <Box mb={12} textAlign="center" maxW="600px">
-        <Text fontSize="lg" fontFamily="Roboto, sans-serif">
-          Collective.VC is an early-stage climate syndicate and media organisation working towards capital deployment for the benefit of humanity.
+        <Text 
+          fontSize="lg" 
+          fontFamily="Roboto, sans-serif"
+          whiteSpace="pre-wrap"
+          overflow="hidden"
+          borderRight={isTypingComplete ? "none" : "2px solid"}
+          animation={isTypingComplete ? `${typing} 8s steps(${fullBodyText.length})` : `${typing} 8s steps(${fullBodyText.length}), ${blink} 0.75s step-end infinite`}
+        >
+          {bodyText}
         </Text>
       </Box>
 
