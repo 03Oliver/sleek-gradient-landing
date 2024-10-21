@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
+import { Link as RouterLink } from "react-router-dom";
 
 const typing = keyframes`
   from { width: 0 }
@@ -17,7 +18,8 @@ const Index = () => {
   const fullHeaderText = "collective.vc";
   const fullBodyText = "an early-stage climate-syndicate & media organisation led by ";
   const oliverText = "Oliver Bonallack";
-  const remainingText = ", working towards capital deployment for the benefit of humanity.";
+  const remainingText = ", working towards capital deployment for the benefit of humanity: ";
+  const portfolioText = "portfolio";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -30,14 +32,14 @@ const Index = () => {
         clearInterval(headerInterval);
         startBodyTyping();
       }
-    }, 50); // Reduced from 100 to 50 for faster animation
+    }, 50);
 
     return () => clearInterval(headerInterval);
   }, []);
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText;
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText;
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
@@ -49,7 +51,7 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden">
-      <VStack spacing={6} width="100%"> {/* Increased spacing by 10% */}
+      <VStack spacing={6} width="100%">
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
@@ -89,11 +91,14 @@ const Index = () => {
             <Link href="https://www.linkedin.com/in/bonallack" isExternal color="blue.300">
               {bodyText.substring(fullBodyText.length, fullBodyText.length + oliverText.length)}
             </Link>
-            {bodyText.substring(fullBodyText.length + oliverText.length)}
+            {bodyText.substring(fullBodyText.length + oliverText.length, fullBodyText.length + oliverText.length + remainingText.length)}
+            <RouterLink to="/portfolio" style={{ color: '#63B3ED' }}>
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length)}
+            </RouterLink>
           </Text>
         </Box>
 
-        <SimpleGrid columns={{ base: 2, md: 4 }} spacing={5} textAlign="center"> {/* Increased spacing */}
+        <SimpleGrid columns={{ base: 2, md: 4 }} spacing={5} textAlign="center">
           <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
             <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
           </Link>
