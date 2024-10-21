@@ -4,7 +4,7 @@ import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "reac
 
 const typing = keyframes`
   from { width: 0 }
-  to { width: 100%; }
+  to { width: 100% }
 `;
 
 const blink = keyframes`
@@ -60,14 +60,23 @@ const Index = () => {
         </Box>
       </Box>
       
-      <Box mb={12} textAlign="center" maxW="600px">
+      <Box mb={12} textAlign="center" maxW="600px" height="100px" display="flex" alignItems="center" justifyContent="center">
         <Text 
           fontSize="lg" 
           fontFamily="Roboto, sans-serif"
-          whiteSpace="pre-wrap"
+          whiteSpace="normal"
           overflow="hidden"
-          borderRight={isTypingComplete ? "none" : "2px solid"}
-          animation={isTypingComplete ? `${typing} 8s steps(${fullBodyText.length})` : `${typing} 8s steps(${fullBodyText.length}), ${blink} 0.75s step-end infinite`}
+          position="relative"
+          _after={{
+            content: '""',
+            position: "absolute",
+            right: 0,
+            top: 0,
+            height: "100%",
+            width: isTypingComplete ? "0" : "2px",
+            backgroundColor: "white",
+            animation: isTypingComplete ? "none" : `${blink} 0.75s step-end infinite`
+          }}
         >
           {bodyText}
         </Text>
