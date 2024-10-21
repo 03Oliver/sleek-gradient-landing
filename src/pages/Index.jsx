@@ -15,7 +15,9 @@ const Index = () => {
   const [headerText, setHeaderText] = useState("");
   const [bodyText, setBodyText] = useState("");
   const fullHeaderText = "collective.vc";
-  const fullBodyText = "an early-stage climate-syndicate & media organisation led by Oliver Bonallack, working towards capital deployment for the benefit of humanity.";
+  const fullBodyText = "an early-stage climate-syndicate & media organisation led by ";
+  const oliverText = "Oliver Bonallack";
+  const remainingText = ", working towards capital deployment for the benefit of humanity.";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -35,9 +37,10 @@ const Index = () => {
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      setBodyText(fullBodyText.substring(0, bodyIndexRef.current + 1));
+      const currentText = fullBodyText + oliverText + remainingText;
+      setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
-      if (bodyIndexRef.current === fullBodyText.length) {
+      if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
       }
@@ -81,7 +84,11 @@ const Index = () => {
             animation: isTypingComplete ? "none" : `${blink} 0.75s step-end infinite`
           }}
         >
-          {bodyText}
+          {bodyText.substring(0, fullBodyText.length)}
+          <Link href="https://www.linkedin.com/in/bonallack" isExternal color="blue.300">
+            {bodyText.substring(fullBodyText.length, fullBodyText.length + oliverText.length)}
+          </Link>
+          {bodyText.substring(fullBodyText.length + oliverText.length)}
         </Text>
       </Box>
 
