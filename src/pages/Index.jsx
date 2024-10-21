@@ -55,17 +55,19 @@ const Index = () => {
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Box 
-              as="pre" 
-              fontSize="4xl" 
-              fontWeight="bold" 
-              whiteSpace="nowrap" 
-              overflow="hidden" 
-              borderRight={isTypingComplete ? "none" : "2px solid"}
-              animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
-            >
-              {headerText}
-            </Box>
+            <Link href="https://www.collective.vc" isExternal _hover={{ textDecoration: 'none' }}>
+              <Box 
+                as="pre" 
+                fontSize="4xl" 
+                fontWeight="bold" 
+                whiteSpace="nowrap" 
+                overflow="hidden" 
+                borderRight={isTypingComplete ? "none" : "2px solid"}
+                animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+              >
+                {headerText}
+              </Box>
+            </Link>
           </Flex>
         </Box>
         
