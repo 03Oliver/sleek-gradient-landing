@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Container, SimpleGrid, Link, Box, keyframes } from "@chakra-ui/react";
+import { Container, SimpleGrid, Link, Box, Text, keyframes } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 
 const typing = keyframes`
@@ -27,11 +27,18 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden">
-      <Box textAlign="center" mb={8}>
-        <Box as="pre" fontSize="2xl" whiteSpace="nowrap" overflow="hidden" borderRight="2px solid" animation={`${typing} 4s steps(${fullText.length}), ${blink} 0.75s step-end infinite`}>
+      <Box textAlign="center" mb={12}>
+        <Box as="pre" fontSize="4xl" fontWeight="bold" whiteSpace="nowrap" overflow="hidden" borderRight="2px solid" animation={`${typing} 4s steps(${fullText.length}), ${blink} 0.75s step-end infinite`}>
           {text}
         </Box>
       </Box>
+      
+      <Box mb={12} textAlign="center">
+        <Text fontSize="lg">
+          {/* Space for additional text */}
+        </Text>
+      </Box>
+
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} textAlign="center">
         <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
           <Box as={FaLinkedin} size="48px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
