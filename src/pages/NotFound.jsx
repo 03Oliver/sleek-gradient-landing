@@ -1,11 +1,6 @@
 import React from "react";
-import { Box, VStack, Text, keyframes, Link } from "@chakra-ui/react";
+import { Box, VStack, Text, Link } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-
-const rotate = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
 
 const NotFound = () => {
   return (
@@ -18,16 +13,9 @@ const NotFound = () => {
       color="white"
     >
       <VStack spacing={6}>
-        <Text
-          fontSize="6xl"
-          animation={`${rotate} 2s linear infinite`}
-          display="inline-block"
-        >
-          💀
-        </Text>
-        <Text fontSize="2xl">404 - Page Not Found</Text>
+        <Text fontSize="2xl">404 - not found</Text>
         <Link as={RouterLink} to="/" color="blue.300" fontSize="xl">
-          Return Home
+          return home
         </Link>
       </VStack>
     </Box>

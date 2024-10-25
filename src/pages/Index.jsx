@@ -19,7 +19,7 @@ const Index = () => {
   const fullBodyText = "an early-stage climate-syndicate & media organisation led by ";
   const oliverText = "Oliver Bonallack";
   const remainingText = ", working towards capital deployment for the benefit of humanity: ";
-  const portfolioText = "portfolio";
+  const portfolioText = "portfolio // disclaimer";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -32,7 +32,7 @@ const Index = () => {
         clearInterval(headerInterval);
         startBodyTyping();
       }
-    }, 50);
+    }, 40); // Faster typing speed (was 50)
 
     return () => clearInterval(headerInterval);
   }, []);
@@ -46,7 +46,7 @@ const Index = () => {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
       }
-    }, 50);
+    }, 40); // Faster typing speed (was 50)
   };
 
   return (
@@ -55,7 +55,7 @@ const Index = () => {
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Link href="https://www.collective.vc" isExternal _hover={{ textDecoration: 'none' }}>
+            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
               <Box 
                 as="pre" 
                 fontSize="4xl" 
@@ -95,7 +95,11 @@ const Index = () => {
             </Link>
             {bodyText.substring(fullBodyText.length + oliverText.length, fullBodyText.length + oliverText.length + remainingText.length)}
             <RouterLink to="/portfolio" style={{ color: '#63B3ED' }}>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length)}
+              portfolio
+            </RouterLink>
+            {" // "}
+            <RouterLink to="/disclaimer" style={{ color: '#63B3ED' }}>
+              disclaimer
             </RouterLink>
           </Text>
         </Box>
