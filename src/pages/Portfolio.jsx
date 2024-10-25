@@ -63,6 +63,10 @@ const Portfolio = () => {
           
           <Text fontSize="lg" mt={4}>2. syndicate deals</Text>
           <Text fontSize="md">coming very soon</Text>
+
+          <Link as={RouterLink} to="/" color="blue.300" mt={8}>
+            return home
+          </Link>
         </VStack>
       </VStack>
     </Container>
