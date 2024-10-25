@@ -4,7 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 const Disclaimer = () => {
   return (
     <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
-      <VStack spacing={8} width="100%" maxW="800px" px={4}>
+      <VStack spacing={8} width="100%" maxW="800px" px={4} flex="1">
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
@@ -38,6 +38,9 @@ const Disclaimer = () => {
           </Text>
         </VStack>
       </VStack>
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
+        built lightweight with minimalism in mind
+      </Box>
     </Container>
   );
 };

@@ -32,7 +32,7 @@ const Portfolio = () => {
 
   return (
     <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
-      <VStack spacing={6} width="100%">
+      <VStack spacing={6} width="100%" flex="1">
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
@@ -74,6 +74,9 @@ const Portfolio = () => {
           </Text>
         </VStack>
       </VStack>
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
+        built lightweight with minimalism in mind
+      </Box>
     </Container>
   );
 };
