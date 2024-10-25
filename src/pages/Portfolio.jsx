@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Container, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 const typing = keyframes`
   from { width: 0 }
@@ -35,7 +36,7 @@ const Portfolio = () => {
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Link href="https://www.collective.vc" isExternal _hover={{ textDecoration: 'none' }}>
+            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
               <Box 
                 as="pre" 
                 fontSize="4xl" 
