@@ -23,7 +23,6 @@ const Index = () => {
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [showSlash, setShowSlash] = useState(false);
 
   useEffect(() => {
     const headerInterval = setInterval(() => {
@@ -39,16 +38,15 @@ const Index = () => {
   }, []);
 
   const startBodyTyping = () => {
-    const currentText = fullBodyText + oliverText + remainingText + portfolioText + "disclaimer";
     const bodyInterval = setInterval(() => {
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText + " // disclaimer";
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
-        setTimeout(() => setShowSlash(true), 200);
       }
-    }, 40);
+    }, 40); // Changed from 50 to 40 to make it 1.25x faster
   };
 
   return (
@@ -99,9 +97,9 @@ const Index = () => {
             <RouterLink to="/portfolio" style={{ color: '#63B3ED' }}>
               {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
             </RouterLink>
-            {showSlash && " // "}
+            {" // "}
             <RouterLink to="/disclaimer" style={{ color: '#63B3ED' }}>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + 3)}
             </RouterLink>
           </Text>
         </Box>
