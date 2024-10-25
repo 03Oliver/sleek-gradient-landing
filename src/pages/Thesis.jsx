@@ -15,7 +15,7 @@ const Thesis = () => {
   const [headerText, setHeaderText] = useState("");
   const [bodyText, setBodyText] = useState("");
   const fullHeaderText = "collective.vc";
-  const fullBodyText = "looking to deploy into imaginative, compelling and scalable tech and human opportunities in:";
+  const fullBodyText = "humans are market animals. within a prediction-prevention-disruption framework of mitigation and adaptation, we seek out imaginative, compelling and scalable opportunities with a climate angle in:";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
