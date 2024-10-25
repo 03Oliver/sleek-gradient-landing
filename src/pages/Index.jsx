@@ -39,14 +39,14 @@ const Index = () => {
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText + portfolioText;
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText + " // disclaimer";
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
       }
-    }, 50);
+    }, 40); // Changed from 50 to 40 to make it 1.25x faster
   };
 
   return (
@@ -95,7 +95,11 @@ const Index = () => {
             </Link>
             {bodyText.substring(fullBodyText.length + oliverText.length, fullBodyText.length + oliverText.length + remainingText.length)}
             <RouterLink to="/portfolio" style={{ color: '#63B3ED' }}>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length)}
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
+            </RouterLink>
+            {" // "}
+            <RouterLink to="/disclaimer" style={{ color: '#63B3ED' }}>
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + 3)}
             </RouterLink>
           </Text>
         </Box>

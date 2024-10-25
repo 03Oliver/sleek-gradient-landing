@@ -10,14 +10,8 @@ const blink = keyframes`
   50% { border-color: transparent }
 `;
 
-const Portfolio = () => {
+const Disclaimer = () => {
   const [headerText, setHeaderText] = useState("");
-  const [companyLinks, setCompanyLinks] = useState({
-    element2: "",
-    sustainable: "",
-    stratiphy: "",
-    otis: ""
-  });
   const fullHeaderText = "collective.vc";
   const headerIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -28,43 +22,12 @@ const Portfolio = () => {
       headerIndexRef.current++;
       if (headerIndexRef.current === fullHeaderText.length) {
         clearInterval(headerInterval);
-        startCompanyTyping();
+        setIsTypingComplete(true);
       }
     }, 50);
 
     return () => clearInterval(headerInterval);
   }, []);
-
-  const startCompanyTyping = () => {
-    let currentIndex = 0;
-    const companies = {
-      element2: "element 2 hydrogen",
-      sustainable: "sustainable ventures sa7",
-      stratiphy: "stratiphy",
-      otis: "otis.ai"
-    };
-    
-    const interval = setInterval(() => {
-      const companyKeys = Object.keys(companies);
-      if (currentIndex >= Object.keys(companies).length * 20) {
-        clearInterval(interval);
-        setIsTypingComplete(true);
-        return;
-      }
-      
-      const currentCompany = Math.floor(currentIndex / 20);
-      const companyKey = companyKeys[currentCompany];
-      const text = companies[companyKey];
-      const progress = currentIndex % 20;
-      
-      setCompanyLinks(prev => ({
-        ...prev,
-        [companyKey]: text.substring(0, progress)
-      }));
-      
-      currentIndex++;
-    }, 50);
-  };
 
   return (
     <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
@@ -88,21 +51,22 @@ const Portfolio = () => {
           </Flex>
         </Box>
         
-        <VStack spacing={6} alignItems="center" width="100%" maxW="600px" px={4} textAlign="center">
-          <Text fontSize="lg">1. oliver's personal investments & deals </Text>
-          <Text fontSize="md">
-            <Link href="https://element-2.co.uk/" isExternal color="blue.300">{companyLinks.element2}</Link> // {" "}
-            <Link href="https://www.sustainableventures.co.uk/" isExternal color="blue.300">{companyLinks.sustainable}</Link> // {" "}
-            <Link href="https://stratiphy.io" isExternal color="blue.300">{companyLinks.stratiphy}</Link> // {" "}
-            <Link href="https://meetotis.com/" isExternal color="blue.300">{companyLinks.otis}</Link>
+        <VStack spacing={6} alignItems="center" width="100%" maxW="800px" px={4} textAlign="left">
+          <Text fontSize="md" lineHeight="tall">
+            This website is intended for informational purposes only and should not be seen as an invitation to invest or as a financial promotion. You should not rely on any information provided here. The content is not intended to offer, nor should it be interpreted as, any form of advice.
           </Text>
           
-          <Text fontSize="lg" mt={4}>2. syndicate deals</Text>
-          <Text fontSize="md">coming very soon</Text>
+          <Text fontSize="md" lineHeight="tall">
+            Please note that startup, special-purpose-vehicle (SPV) and syndicate investments carry significant risks and are only suitable for experienced investors who fully understand these risks. Any independent investment software platform utilised will execute all relevant checks and vetting on network members as are required by law to protect and verify the identity and experience of potential investors. It is essential to seek independent financial advice before making any investment decisions.
+          </Text>
+          
+          <Text fontSize="md" mt={4}>
+            Collective VC Ltd - 14226589 - SIC64303
+          </Text>
         </VStack>
       </VStack>
     </Container>
   );
 };
 
-export default Portfolio;
+export default Disclaimer;
