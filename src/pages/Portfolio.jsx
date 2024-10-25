@@ -72,7 +72,7 @@ const Portfolio = () => {
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Link href="https://www.collective.vc" isExternal _hover={{ textDecoration: 'none' }}>
+            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
               <Box 
                 as="pre" 
                 fontSize="4xl" 
@@ -94,7 +94,7 @@ const Portfolio = () => {
             <Link href="https://element-2.co.uk/" isExternal color="blue.300">{companyLinks.element2}</Link> // {" "}
             <Link href="https://www.sustainableventures.co.uk/" isExternal color="blue.300">{companyLinks.sustainable}</Link> // {" "}
             <Link href="https://stratiphy.io" isExternal color="blue.300">{companyLinks.stratiphy}</Link> // {" "}
-            <Link href="https://meetotis.com/" isExternal color="blue.300">{companyLinks.otis}</Link>
+            <Link href="https://meetotis.com/" isExternal color="blue.300">{companyLinks.otis}</Link> // {" "}
           </Text>
           
           <Text fontSize="lg" mt={4}>2. syndicate deals</Text>

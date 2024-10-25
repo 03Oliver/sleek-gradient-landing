@@ -19,7 +19,7 @@ const Index = () => {
   const fullBodyText = "an early-stage climate-syndicate & media organisation led by ";
   const oliverText = "Oliver Bonallack";
   const remainingText = ", working towards capital deployment for the benefit of humanity: ";
-  const portfolioText = "portfolio";
+  const portfolioText = "portfolio // disclaimer";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -39,14 +39,14 @@ const Index = () => {
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText + portfolioText + " // disclaimer";
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText;
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
       }
-    }, 40); // Changed from 50 to 40 to make it 1.25x faster
+    }, 40);
   };
 
   return (
@@ -55,7 +55,7 @@ const Index = () => {
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Link href="https://www.collective.vc" isExternal _hover={{ textDecoration: 'none' }}>
+            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
               <Box 
                 as="pre" 
                 fontSize="4xl" 
@@ -90,7 +90,7 @@ const Index = () => {
             }}
           >
             {bodyText.substring(0, fullBodyText.length)}
-            <Link href="https://www.linkedin.com/in/bonallack" isExternal color="blue.300">
+            <Link as={RouterLink} to="/portfolio" style={{ color: '#63B3ED' }}>
               {bodyText.substring(fullBodyText.length, fullBodyText.length + oliverText.length)}
             </Link>
             {bodyText.substring(fullBodyText.length + oliverText.length, fullBodyText.length + oliverText.length + remainingText.length)}
