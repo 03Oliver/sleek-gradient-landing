@@ -32,21 +32,21 @@ const Index = () => {
         clearInterval(headerInterval);
         startBodyTyping();
       }
-    }, 40); // Faster typing speed (was 50)
+    }, 50);
 
     return () => clearInterval(headerInterval);
   }, []);
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText + portfolioText + " // disclaimer";
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText;
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
       }
-    }, 40); // Faster typing speed (was 50)
+    }, 50);
   };
 
   return (
@@ -95,11 +95,7 @@ const Index = () => {
             </Link>
             {bodyText.substring(fullBodyText.length + oliverText.length, fullBodyText.length + oliverText.length + remainingText.length)}
             <RouterLink to="/portfolio" style={{ color: '#63B3ED' }}>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
-            </RouterLink>
-            {" // "}
-            <RouterLink to="/disclaimer" style={{ color: '#63B3ED', fontSize: '0.8em' }}>
-              disclaimer
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length)}
             </RouterLink>
           </Text>
         </Box>
