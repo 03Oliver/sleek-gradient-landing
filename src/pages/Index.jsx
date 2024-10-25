@@ -48,7 +48,7 @@ const Index = () => {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
       }
-    }, 50);
+    }, 40); // Changed from 50 to 40 to make it 1.25x faster
   };
 
   return (
