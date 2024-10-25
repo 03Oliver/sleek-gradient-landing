@@ -34,7 +34,6 @@ const Disclaimer = () => {
           </Link>
         </VStack>
       </VStack>
-      <Text fontSize="xs" color="gray.500" mt="auto" pb={4}>homecrafted with minimalism in mind</Text>
     </Container>
   );
 };

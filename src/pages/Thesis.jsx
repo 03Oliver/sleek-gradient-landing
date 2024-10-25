@@ -52,21 +52,20 @@ const Thesis = () => {
           </Flex>
         </Box>
 
-        <VStack spacing={4} width="100%" maxW="800px" px={4} textAlign="center">
-          <Text fontSize="lg" mb={4}>
+        <VStack spacing={8} width="100%" maxW="800px" px={4} textAlign="center">
+          <Text fontSize="xl" mb={8}>
             looking to deploy into imaginative, compelling and scalable tech and human opportunities in:
           </Text>
 
-          <Text fontSize="sm" lineHeight="1.6">
+          <Text fontSize="md" lineHeight="2">
             supply chain intelligence & fortification // resilient digital infrastructure // finance {'<>'} climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // pro-humanising digital experiences & environments (notifications, assistants) // data protection & privacy // optimising key services // circular economy
           </Text>
 
-          <Link as={RouterLink} to="/" color="blue.300" mt={4}>
+          <Link as={RouterLink} to="/" color="blue.300" mt={8}>
             return home
           </Link>
         </VStack>
       </VStack>
-      <Text fontSize="xs" color="gray.500" mt="auto" pb={4}>homecrafted with minimalism in mind</Text>
     </Container>
   );
 };
