@@ -19,7 +19,8 @@ const Index = () => {
   const fullBodyText = "an early-stage climate-syndicate & media organisation led by ";
   const oliverText = "Oliver Bonallack";
   const remainingText = ", working towards capital deployment for the benefit of humanity: ";
-  const portfolioText = "portfolio // ";
+  const portfolioText = "portfolio";
+  const dividerText = " // ";
   const disclaimerText = "disclaimer";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
@@ -40,7 +41,7 @@ const Index = () => {
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText + portfolioText + disclaimerText;
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText;
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
@@ -98,8 +99,9 @@ const Index = () => {
             <RouterLink to="/portfolio" style={{ color: '#63B3ED' }}>
               {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
             </RouterLink>
+            {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length)}
             <RouterLink to="/disclaimer" style={{ color: '#63B3ED' }}>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length)}
             </RouterLink>
           </Text>
         </Box>
