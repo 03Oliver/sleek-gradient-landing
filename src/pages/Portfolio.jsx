@@ -18,12 +18,21 @@ const Portfolio = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
+    const hasAnimationPlayed = localStorage.getItem('animationPlayed');
+    
+    if (hasAnimationPlayed) {
+      setHeaderText(fullHeaderText);
+      setIsTypingComplete(true);
+      return;
+    }
+
     const headerInterval = setInterval(() => {
       setHeaderText(fullHeaderText.substring(0, headerIndexRef.current + 1));
       headerIndexRef.current++;
       if (headerIndexRef.current === fullHeaderText.length) {
         clearInterval(headerInterval);
         setIsTypingComplete(true);
+        localStorage.setItem('animationPlayed', 'true');
       }
     }, 50);
 

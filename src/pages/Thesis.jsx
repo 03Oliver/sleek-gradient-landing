@@ -21,6 +21,15 @@ const Thesis = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
+    const hasAnimationPlayed = localStorage.getItem('animationPlayed');
+    
+    if (hasAnimationPlayed) {
+      setHeaderText(fullHeaderText);
+      setBodyText(fullBodyText);
+      setIsTypingComplete(true);
+      return;
+    }
+
     const headerInterval = setInterval(() => {
       setHeaderText(fullHeaderText.substring(0, headerIndexRef.current + 1));
       headerIndexRef.current++;
@@ -40,6 +49,7 @@ const Thesis = () => {
       if (bodyIndexRef.current === fullBodyText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
+        localStorage.setItem('animationPlayed', 'true');
       }
     }, 40);
   };
