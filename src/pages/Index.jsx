@@ -33,7 +33,14 @@ const Index = () => {
       headerIndexRef.current++;
       if (headerIndexRef.current === fullHeaderText.length) {
         clearInterval(headerInterval);
-        startBodyTyping();
+        const hasAnimationPlayed = localStorage.getItem('bodyAnimationPlayed');
+        if (hasAnimationPlayed) {
+          // If animation has played before, show full text immediately
+          setBodyText(fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText);
+          setIsTypingComplete(true);
+        } else {
+          startBodyTyping();
+        }
       }
     }, 50);
 
@@ -48,6 +55,7 @@ const Index = () => {
       if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
+        localStorage.setItem('bodyAnimationPlayed', 'true');
       }
     }, 40);
   };
