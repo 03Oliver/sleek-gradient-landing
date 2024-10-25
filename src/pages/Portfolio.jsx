@@ -12,12 +12,6 @@ const blink = keyframes`
 
 const Portfolio = () => {
   const [headerText, setHeaderText] = useState("");
-  const [companyLinks, setCompanyLinks] = useState({
-    element2: "",
-    sustainable: "",
-    stratiphy: "",
-    otis: ""
-  });
   const fullHeaderText = "collective.vc";
   const headerIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -28,43 +22,12 @@ const Portfolio = () => {
       headerIndexRef.current++;
       if (headerIndexRef.current === fullHeaderText.length) {
         clearInterval(headerInterval);
-        startCompanyTyping();
+        setIsTypingComplete(true);
       }
     }, 50);
 
     return () => clearInterval(headerInterval);
   }, []);
-
-  const startCompanyTyping = () => {
-    let currentIndex = 0;
-    const companies = {
-      element2: "element 2 hydrogen",
-      sustainable: "sustainable ventures sa7",
-      stratiphy: "stratiphy",
-      otis: "otis.ai"
-    };
-    
-    const interval = setInterval(() => {
-      const companyKeys = Object.keys(companies);
-      if (currentIndex >= Object.keys(companies).length * 20) {
-        clearInterval(interval);
-        setIsTypingComplete(true);
-        return;
-      }
-      
-      const currentCompany = Math.floor(currentIndex / 20);
-      const companyKey = companyKeys[currentCompany];
-      const text = companies[companyKey];
-      const progress = currentIndex % 20;
-      
-      setCompanyLinks(prev => ({
-        ...prev,
-        [companyKey]: text.substring(0, progress)
-      }));
-      
-      currentIndex++;
-    }, 50);
-  };
 
   return (
     <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
@@ -72,7 +35,7 @@ const Portfolio = () => {
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+            <Link href="https://www.collective.vc" isExternal _hover={{ textDecoration: 'none' }}>
               <Box 
                 as="pre" 
                 fontSize="4xl" 
@@ -91,10 +54,10 @@ const Portfolio = () => {
         <VStack spacing={6} alignItems="center" width="100%" maxW="600px" px={4} textAlign="center">
           <Text fontSize="lg">1. oliver's personal investments & deals </Text>
           <Text fontSize="md">
-            <Link href="https://element-2.co.uk/" isExternal color="blue.300">{companyLinks.element2}</Link> // {" "}
-            <Link href="https://www.sustainableventures.co.uk/" isExternal color="blue.300">{companyLinks.sustainable}</Link> // {" "}
-            <Link href="https://stratiphy.io" isExternal color="blue.300">{companyLinks.stratiphy}</Link> // {" "}
-            <Link href="https://meetotis.com/" isExternal color="blue.300">{companyLinks.otis}</Link> // {" "}
+            <Link href="https://element-2.co.uk/" isExternal color="blue.300">element 2 hydrogen</Link> // {" "}
+            <Link href="https://www.sustainableventures.co.uk/" isExternal color="blue.300">sustainable ventures sa7</Link> // {" "}
+            <Link href="https://stratiphy.io" isExternal color="blue.300">stratiphy</Link> // {" "}
+            <Link href="https://meetotis.com/" isExternal color="blue.300">otis.ai</Link>
           </Text>
           
           <Text fontSize="lg" mt={4}>2. syndicate deals</Text>

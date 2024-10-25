@@ -20,8 +20,6 @@ const Index = () => {
   const oliverText = "Oliver Bonallack";
   const remainingText = ", working towards capital deployment for the benefit of humanity: ";
   const portfolioText = "portfolio";
-  const dividerText = " // ";
-  const disclaimerText = "disclaimer";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -41,14 +39,14 @@ const Index = () => {
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText;
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText;
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
       }
-    }, 40);
+    }, 50);
   };
 
   return (
@@ -57,7 +55,7 @@ const Index = () => {
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+            <Link href="https://www.collective.vc" isExternal _hover={{ textDecoration: 'none' }}>
               <Box 
                 as="pre" 
                 fontSize="4xl" 
@@ -92,17 +90,13 @@ const Index = () => {
             }}
           >
             {bodyText.substring(0, fullBodyText.length)}
-            <Link as={RouterLink} to="/portfolio" style={{ color: '#63B3ED' }}>
+            <Link href="https://www.linkedin.com/in/bonallack" isExternal color="blue.300">
               {bodyText.substring(fullBodyText.length, fullBodyText.length + oliverText.length)}
             </Link>
             {bodyText.substring(fullBodyText.length + oliverText.length, fullBodyText.length + oliverText.length + remainingText.length)}
-            <Link as={RouterLink} to="/portfolio" style={{ color: '#63B3ED' }}>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
-            </Link>
-            {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length)}
-            <Link as={RouterLink} to="/disclaimer" style={{ color: '#63B3ED' }}>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length)}
-            </Link>
+            <RouterLink to="/portfolio" style={{ color: '#63B3ED' }}>
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length)}
+            </RouterLink>
           </Text>
         </Box>
 
