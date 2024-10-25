@@ -31,7 +31,7 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
+    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
       <VStack spacing={6} width="100%">
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
@@ -63,8 +63,13 @@ const Portfolio = () => {
           
           <Text fontSize="lg" mt={4}>2. syndicate deals</Text>
           <Text fontSize="md">coming very soon</Text>
+
+          <Link as={RouterLink} to="/" color="blue.300" mt={4}>
+            return home
+          </Link>
         </VStack>
       </VStack>
+      <Text fontSize="xs" color="gray.500" mt="auto" pb={4}>homecrafted with minimalism in mind</Text>
     </Container>
   );
 };
