@@ -26,6 +26,7 @@ const Index = () => {
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const hasAnimationPlayed = localStorage.getItem('animationPlayed') === 'true';
 
   useEffect(() => {
     const headerInterval = setInterval(() => {
@@ -33,12 +34,18 @@ const Index = () => {
       headerIndexRef.current++;
       if (headerIndexRef.current === fullHeaderText.length) {
         clearInterval(headerInterval);
-        startBodyTyping();
+        if (!hasAnimationPlayed) {
+          startBodyTyping();
+        } else {
+          const fullText = fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText;
+          setBodyText(fullText);
+          setIsTypingComplete(true);
+        }
       }
     }, 50);
 
     return () => clearInterval(headerInterval);
-  }, []);
+  }, [hasAnimationPlayed]);
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
@@ -48,6 +55,7 @@ const Index = () => {
       if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
+        localStorage.setItem('animationPlayed', 'true');
       }
     }, 40);
   };
