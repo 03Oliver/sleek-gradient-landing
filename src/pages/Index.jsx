@@ -53,8 +53,8 @@ const Index = () => {
   };
 
   return (
-    <Container centerContent maxW="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden">
-      <VStack spacing={6} width="100%">
+    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden" p={0}>
+      <VStack spacing={6} flex="1" width="100%" justifyContent="center">
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
@@ -130,10 +130,9 @@ const Index = () => {
         </SimpleGrid>
       </VStack>
       
-      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt="auto">
         built lightweight with minimalism in mind
       </Box>
-
     </Container>
   );
 };
