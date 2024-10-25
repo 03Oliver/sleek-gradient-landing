@@ -22,6 +22,7 @@ const Index = () => {
   const portfolioText = "portfolio";
   const dividerText = " // ";
   const disclaimerText = "disclaimer";
+  const thesisText = "thesis";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -41,14 +42,14 @@ const Index = () => {
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText;
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText;
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
       }
-    }, 40); // Changed from 50 to 40 to make it 1.25x faster
+    }, 40);
   };
 
   return (
@@ -101,7 +102,11 @@ const Index = () => {
             </RouterLink>
             {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length)}
             <RouterLink to="/disclaimer" style={{ color: '#63B3ED' }}>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length)}
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length)}
+            </RouterLink>
+            {dividerText}
+            <RouterLink to="/thesis" style={{ color: '#63B3ED' }}>
+              {thesisText}
             </RouterLink>
           </Text>
         </Box>
