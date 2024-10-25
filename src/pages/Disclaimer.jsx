@@ -29,9 +29,13 @@ const Disclaimer = () => {
             collective vc ltd - 14226589 - sic 64303
           </Text>
 
-          <Link as={RouterLink} to="/" color="blue.300">
-            return home
-          </Link>
+          <Text color="white">
+            <Link as={RouterLink} to="/" color="blue.300">return home</Link>
+            {" // "}
+            <Link as={RouterLink} to="/portfolio" color="blue.300">portfolio</Link>
+            {" // "}
+            <Link as={RouterLink} to="/thesis" color="blue.300">thesis</Link>
+          </Text>
         </VStack>
       </VStack>
     </Container>

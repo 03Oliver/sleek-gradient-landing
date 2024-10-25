@@ -75,9 +75,13 @@ const Thesis = () => {
             supply chain intelligence & fortification // resilient digital infrastructure // finance {'<>'} climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // pro-humanising digital experiences & environments (notifications, assistants) // data protection & privacy // optimising key services // circular economy
           </Text>
 
-          <Link as={RouterLink} to="/" color="blue.300" mt={8} fontSize="sm">
-            return home
-          </Link>
+          <Text color="white">
+            <Link as={RouterLink} to="/" color="blue.300">return home</Link>
+            {" // "}
+            <Link as={RouterLink} to="/portfolio" color="blue.300">portfolio</Link>
+            {" // "}
+            <Link as={RouterLink} to="/disclaimer" color="blue.300">disclaimer</Link>
+          </Text>
         </VStack>
       </VStack>
     </Container>
