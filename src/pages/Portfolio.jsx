@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Container, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import Footer from "../components/Footer";
 
 const typing = keyframes`
   from { width: 0 }
@@ -32,7 +31,7 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8} pb={16}>
+    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
       <VStack spacing={6} width="100%">
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
@@ -75,7 +74,6 @@ const Portfolio = () => {
           </Text>
         </VStack>
       </VStack>
-      <Footer />
     </Container>
   );
 };

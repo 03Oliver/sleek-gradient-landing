@@ -1,10 +1,9 @@
 import { Box, Container, Text, Link, Flex, Image, VStack } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import Footer from "../components/Footer";
 
 const Disclaimer = () => {
   return (
-    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8} pb={16}>
+    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
       <VStack spacing={8} width="100%" maxW="800px" px={4}>
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
@@ -39,7 +38,6 @@ const Disclaimer = () => {
           </Text>
         </VStack>
       </VStack>
-      <Footer />
     </Container>
   );
 };
