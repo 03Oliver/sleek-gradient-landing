@@ -22,4 +22,4 @@ jobs:
     - name: Install deps
       run: npm ci
     - name: Build
-      run: npm run dev
+      run: npm run build
