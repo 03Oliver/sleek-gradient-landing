@@ -53,12 +53,13 @@ const Portfolio = () => {
         </Box>
         
         <VStack spacing={6} alignItems="center" width="100%" maxW="600px" px={4} textAlign="center">
-          <Text fontSize="lg">1. oliver's personal investments & deals </Text>
+          <Text fontSize="lg">1. oliver's personal investments, deals & sweat equities</Text>
           <Text fontSize="md">
             <Link href="https://element-2.co.uk/" isExternal color="green.300">element 2 hydrogen</Link> // {" "}
             <Link href="https://www.sustainableventures.co.uk/" isExternal color="green.300">sustainable ventures sa7</Link> // {" "}
             <Link href="https://stratiphy.io" isExternal color="yellow.300">stratiphy</Link> // {" "}
-            <Link href="https://meetotis.com/" isExternal color="blue.300">otis.ai</Link>
+            <Link href="https://meetotis.com/" isExternal color="blue.300">otis.ai</Link> // {" "}
+            <Link href="https://teamignite.ventures" isExternal color="blue.300">team ignite ventures (fund)</Link>
           </Text>
           
           <Text fontSize="lg" mt={4}>2. syndicate deals</Text>
