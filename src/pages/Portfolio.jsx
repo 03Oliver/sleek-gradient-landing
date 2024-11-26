@@ -64,6 +64,14 @@ const Portfolio = () => {
           
           <Text fontSize="lg" mt={4}>syndicate deals</Text>
           <Text fontSize="md">coming very soon</Text>
+
+          <Text color="white">
+            <Link as={RouterLink} to="/" color="blue.300">return home</Link>
+            {" // "}
+            <Link as={RouterLink} to="/disclaimer" color="blue.300">disclaimer</Link>
+            {" // "}
+            <Link as={RouterLink} to="/thesis" color="blue.300">thesis</Link>
+          </Text>
         </VStack>
       </VStack>
     </Container>
