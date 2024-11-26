@@ -15,7 +15,6 @@ const blink = keyframes`
 const Index = () => {
   const [headerText, setHeaderText] = useState("");
   const [bodyText, setBodyText] = useState("");
-  const [linkText, setLinkText] = useState("");  // New state for link text
   const fullHeaderText = "collective.vc";
   const fullBodyText = "an early-stage climate-syndicate & media organisation led by ";
   const oliverText = "Oliver Bonallack";
@@ -26,7 +25,6 @@ const Index = () => {
   const thesisText = "thesis";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
-  const linkIndexRef = useRef(0);  // Ref for link text animation
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
@@ -44,24 +42,12 @@ const Index = () => {
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText;
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText;
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
         clearInterval(bodyInterval);
         setIsTypingComplete(true);
-        startLinkTyping();  // Start link typing after body typing is complete
-      }
-    }, 40);
-  };
-
-  const startLinkTyping = () => {
-    const linkInterval = setInterval(() => {
-      const linkTexts = portfolioText + dividerText + disclaimerText + thesisText + dividerText;
-      setLinkText(linkTexts.substring(0, linkIndexRef.current + 1));
-      linkIndexRef.current++;
-      if (linkIndexRef.current === linkTexts.length) {
-        clearInterval(linkInterval);
       }
     }, 40);
   };
@@ -141,7 +127,7 @@ const Index = () => {
           <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
             <Box as={FaWhatsapp} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
           </Link>
-        </SimpleGrid> 
+        </SimpleGrid>
       </VStack>
       
       <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt="auto">
