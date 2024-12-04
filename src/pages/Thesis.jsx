@@ -84,8 +84,9 @@ const Thesis = () => {
           </Text>
         </VStack>
       </VStack>
+
       <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
-        built lightweight with minimalism in mind
+        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(0.04g CO₂)</Link> with minimalism in mind
       </Box>
     </Container>
   );
