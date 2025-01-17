@@ -26,6 +26,12 @@ const NotFound = () => {
           💀
         </Text>
         <Text fontSize="2xl">404 - Page Not Found</Text>
+        <Text fontSize="md" fontStyle="italic" color="gray.400" mt={2}>
+          sometimes I can't believe it
+        </Text>
+        <Text fontSize="md" fontStyle="italic" color="gray.400">
+          I'm moving past the feeling
+        </Text>
         <Link as={RouterLink} to="/" color="blue.300" fontSize="xl">
           Return Home
         </Link>
