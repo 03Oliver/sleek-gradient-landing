@@ -59,7 +59,9 @@ const Portfolio = () => {
             <Link href="https://www.sustainableventures.co.uk/" isExternal color="red.600">sustainable ventures sa7 (accelerator batch)</Link> // {" "}
             <Link href="https://stratiphy.io" isExternal color="yellow.300">stratiphy</Link> // {" "}
             <Link href="https://meetotis.com/" isExternal color="blue.300">otis ai</Link> // {" "}
-            <Link href="https://teamignite.ventures" isExternal color="orange.300">teamignite.ventures (fund i) </Link>
+            <Link href="https://teamignite.ventures" isExternal color="orange.300">teamignite.ventures (fund i)</Link> // {" "}
+            <Link href="https://www.soldera.org/" isExternal color="#e0fca4">soldera</Link> // {" "}
+            <Link href="https://www.mirico.co.uk/" isExternal color="#c8141c">mirico</Link>
           </Text>
           
           <Text fontSize="lg" mt={4}>syndicate deals</Text>
