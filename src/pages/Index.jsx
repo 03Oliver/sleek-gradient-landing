@@ -1,12 +1,16 @@
 import { useEffect, useState, useRef } from "react";
-import { Container, SimpleGrid, Link, Box, Text, Flex, Image, VStack, useColorModeValue } from "@chakra-ui/react";
+import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
-import { motion } from "framer-motion";
 
-const MotionBox = motion(Box);
-const MotionText = motion(Text);
-const MotionFlex = motion(Flex);
+const typing = keyframes`
+  from { width: 0 }
+  to { width: 100% }
+`;
+
+const blink = keyframes`
+  50% { border-color: transparent }
+`;
 
 const Index = () => {
   const [headerText, setHeaderText] = useState("");
@@ -22,9 +26,6 @@ const Index = () => {
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-
-  const bgGradient = "linear(to-r, black, gray.900)";
-  const linkHoverColor = "blue.400";
 
   useEffect(() => {
     const headerInterval = setInterval(() => {
@@ -51,153 +52,88 @@ const Index = () => {
     }, 40);
   };
 
-  const containerVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.6 } }
-  };
-
-  const socialIconVariants = {
-    initial: { scale: 0, opacity: 0 },
-    animate: (i) => ({
-      scale: 1,
-      opacity: 1,
-      transition: { delay: 1.2 + i * 0.1, duration: 0.3, type: "spring", stiffness: 200 }
-    }),
-    hover: { scale: 1.1, transition: { duration: 0.2 } }
-  };
-
   return (
-    <MotionBox
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={containerVariants}
-      minH="100vh"
-      bgGradient={bgGradient}
-      color="white"
-      overflow="hidden"
-      position="relative"
-    >
-      <Container maxW="container.lg" centerContent py={16}>
-        <VStack spacing={8} w="full" position="relative">
-          <MotionFlex
-            alignItems="center"
-            justifyContent="center"
-            mb={8}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <Image src="/favicon.ico" alt="Favicon" boxSize="32px" mr={3} />
+    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden" p={0}>
+      <VStack spacing={6} flex="1" width="100%" justifyContent="center">
+        <Box textAlign="center" mb={4}>
+          <Flex alignItems="center" justifyContent="center">
+            <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
             <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-              <MotionText
-                fontSize={{ base: "4xl", md: "5xl" }}
-                fontWeight="bold"
-                fontFamily="mono"
-                bgGradient="linear(to-r, white, gray.300)"
-                bgClip="text"
-                letterSpacing="tight"
+              <Box 
+                as="pre" 
+                fontSize="4xl" 
+                fontWeight="bold" 
+                whiteSpace="nowrap" 
+                overflow="hidden" 
+                borderRight={isTypingComplete ? "none" : "2px solid"}
+                animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
               >
                 {headerText}
-              </MotionText>
+              </Box>
             </Link>
-          </MotionFlex>
-
-          <MotionBox
-            textAlign="center"
-            maxW="800px"
-            px={4}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
+          </Flex>
+        </Box>
+        
+        <Box mb={4} textAlign="center" maxW="600px" height="60px" display="flex" alignItems="center" justifyContent="center" fontFamily="Roboto, sans-serif">
+          <Text 
+            fontSize="lg" 
+            fontFamily="Roboto, sans-serif"
+            whiteSpace="normal"
+            overflow="hidden"
+            position="relative"
+            _after={{
+              content: '""',
+              position: "absolute",
+              right: 0,
+              top: 0,
+              height: "100%",
+              width: isTypingComplete ? "0" : "2px",
+              backgroundColor: "white",
+              animation: isTypingComplete ? "none" : `${blink} 0.75s step-end infinite`
+            }}
           >
-            <Text
-              fontSize={{ base: "lg", md: "xl" }}
-              lineHeight="tall"
-              fontFamily="body"
-              color="gray.100"
-            >
-              {bodyText.substring(0, fullBodyText.length)}
-              <Link 
-                href="https://www.linkedin.com/in/bonallack" 
-                isExternal 
-                color={linkHoverColor}
-                _hover={{ textDecoration: "underline", textUnderlineOffset: "4px" }}
-              >
-                {bodyText.substring(fullBodyText.length, fullBodyText.length + oliverText.length)}
-              </Link>
-              {bodyText.substring(fullBodyText.length + oliverText.length, fullBodyText.length + oliverText.length + remainingText.length)}
-              <RouterLink to="/portfolio" style={{ color: '#63B3ED', textDecoration: 'none' }}>
-                {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
-              </RouterLink>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length)}
-              <RouterLink to="/disclaimer" style={{ color: '#63B3ED', textDecoration: 'none' }}>
-                {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length)}
-              </RouterLink>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length)}
-              <RouterLink to="/thesis" style={{ color: '#63B3ED', textDecoration: 'none' }}>
-                {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length)}
-              </RouterLink>
-            </Text>
-          </MotionBox>
+            {bodyText.substring(0, fullBodyText.length)}
+            <Link href="https://www.linkedin.com/in/bonallack" isExternal color="blue.300">
+              {bodyText.substring(fullBodyText.length, fullBodyText.length + oliverText.length)}
+            </Link>
+            {bodyText.substring(fullBodyText.length + oliverText.length, fullBodyText.length + oliverText.length + remainingText.length)}
+            <RouterLink to="/portfolio" style={{ color: '#63B3ED' }}>
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
+            </RouterLink>
+            {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length)}
+            <RouterLink to="/disclaimer" style={{ color: '#63B3ED' }}>
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length)}
+            </RouterLink>
+            {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length)}
+            <RouterLink to="/thesis" style={{ color: '#63B3ED' }}>
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length)}
+            </RouterLink>
+          </Text>
+        </Box>
 
-          <SimpleGrid 
-            columns={{ base: 2, md: 4 }} 
-            spacing={8} 
-            pt={12}
-            w="full"
-            maxW="400px"
-            justifyItems="center"
-          >
-            {[
-              { icon: FaLinkedin, href: "https://www.linkedin.com/company/collectivevc" },
-              { icon: FaYoutube, href: "https://www.youtube.com/@collectivevc" },
-              { icon: FaEnvelope, href: "https://collectivevc.substack.com" },
-              { icon: FaWhatsapp, href: "https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" }
-            ].map((item, i) => (
-              <MotionBox
-                key={i}
-                custom={i}
-                variants={socialIconVariants}
-                whileHover="hover"
-              >
-                <Link 
-                  href={item.href} 
-                  isExternal
-                  _hover={{ color: linkHoverColor }}
-                  transition="color 0.2s"
-                >
-                  <Box as={item.icon} size="36px" />
-                </Link>
-              </MotionBox>
-            ))}
-          </SimpleGrid>
-        </VStack>
-      </Container>
+        <SimpleGrid columns={{ base: 2, md: 4 }} spacing={5} textAlign="center">
+          <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
+            <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          </Link>
 
-      <Box 
-        as="footer" 
-        position="absolute" 
-        bottom={4} 
-        left={0} 
-        right={0} 
-        textAlign="center" 
-        fontSize="xs" 
-        color="whiteAlpha.600"
-      >
-        built lightweight{" "}
-        <Link 
-          href="https://www.websitecarbon.com/website/collective-vc/" 
-          isExternal 
-          color="whiteAlpha.600"
-          _hover={{ color: "whiteAlpha.800", textDecoration: "underline" }}
-        >
-          (<b>0.04g CO₂</b>)
-        </Link>{" "}
-        with minimalism in mind
+          <Link href="https://www.youtube.com/@collectivevc" isExternal>
+            <Box as={FaYoutube} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          </Link>
+
+          <Link href="https://collectivevc.substack.com" isExternal>
+            <Box as={FaEnvelope} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          </Link>
+
+          <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
+            <Box as={FaWhatsapp} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+          </Link>
+        </SimpleGrid>
+      </VStack>
+      
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt="auto">
+        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
       </Box>
-    </MotionBox>
+    </Container>
   );
 };
 
