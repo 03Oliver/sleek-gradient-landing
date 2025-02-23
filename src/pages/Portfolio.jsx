@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import { Container, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
@@ -31,32 +30,6 @@ const Portfolio = () => {
     return () => clearInterval(headerInterval);
   }, []);
 
-  const renderPortfolioItems = (items) => {
-    return items.split(" // ").map((item, index, array) => (
-      <Text
-        as="span"
-        key={index}
-        display="inline-block"
-        transition="transform 0.2s, color 0.2s"
-        _hover={{
-          transform: "scale(1.05)",
-          color: "blue.300"
-        }}
-      >
-        {item}
-        {index < array.length - 1 && (
-          <Text 
-            as="span" 
-            color="white" 
-            _hover={{ transform: "none" }}
-          >
-            {" // "}
-          </Text>
-        )}
-      </Text>
-    ));
-  };
-
   return (
     <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
       <VStack spacing={6} width="100%" flex="1">
@@ -82,18 +55,24 @@ const Portfolio = () => {
         <VStack spacing={6} alignItems="center" width="100%" maxW="600px" px={4} textAlign="center">
           <Text fontSize="lg">oliver's personal investments & deals + sweat equity & carry share (assorted)</Text>
           <Text fontSize="md">
-            {renderPortfolioItems(
-              '<Link href="https://element-2.co.uk/" isExternal color="#4440e8">element 2 hydrogen</Link> // <Link href="https://www.sustainableventures.co.uk/" isExternal color="#d0041c">sustainable ventures sa7 (accelerator batch)</Link> // <Link href="https://stratiphy.io" isExternal color="#fcc450">stratiphy</Link> // <Link href="https://meetotis.com/" isExternal color="#3c8cfc">otis ai</Link> // <Link href="https://teamignite.ventures" isExternal color="#ef5a2c">teamignite.ventures (fund i)</Link> // <Link href="https://www.soldera.org/" isExternal color="#e0fca4">soldera</Link> // <Link href="https://www.mirico.co.uk/" isExternal color="#c8141c">mirico</Link>'
-            )}
+            <Link href="https://element-2.co.uk/" isExternal color="#4440e8">element 2 hydrogen</Link> // {" "}
+            <Link href="https://www.sustainableventures.co.uk/" isExternal color="#d0041c">sustainable ventures sa7 (accelerator batch)</Link> // {" "}
+            <Link href="https://stratiphy.io" isExternal color="#fcc450">stratiphy</Link> // {" "}
+            <Link href="https://meetotis.com/" isExternal color="#3c8cfc">otis ai</Link> // {" "}
+            <Link href="https://teamignite.ventures" isExternal color="#ef5a2c">teamignite.ventures (fund i)</Link> // {" "}
+            <Link href="https://www.soldera.org/" isExternal color="#e0fca4">soldera</Link> // {" "}
+            <Link href="https://www.mirico.co.uk/" isExternal color="#c8141c">mirico</Link>
           </Text>
           
           <Text fontSize="lg" mt={4}>syndicate deals</Text>
           <Text fontSize="md">coming very soon</Text>
 
           <Text color="white">
-            {renderPortfolioItems(
-              '<Link as={RouterLink} to="/" color="blue.300">return home</Link> // <Link as={RouterLink} to="/disclaimer" color="blue.300">disclaimer</Link> // <Link as={RouterLink} to="/thesis" color="blue.300">thesis</Link>'
-            )}
+            <Link as={RouterLink} to="/" color="blue.300">return home</Link>
+            {" // "}
+            <Link as={RouterLink} to="/disclaimer" color="blue.300">disclaimer</Link>
+            {" // "}
+            <Link as={RouterLink} to="/thesis" color="blue.300">thesis</Link>
           </Text>
         </VStack>
       </VStack>
