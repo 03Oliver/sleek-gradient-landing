@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
@@ -28,6 +29,17 @@ const Index = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
+    // Check if animation has already played this session
+    const hasAnimationPlayed = sessionStorage.getItem('animationPlayed');
+
+    if (hasAnimationPlayed) {
+      // If animation has played, set the complete text immediately
+      setHeaderText(fullHeaderText);
+      setBodyText(fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText);
+      setIsTypingComplete(true);
+      return;
+    }
+
     const headerInterval = setInterval(() => {
       setHeaderText(fullHeaderText.substring(0, headerIndexRef.current + 1));
       headerIndexRef.current++;
@@ -36,6 +48,9 @@ const Index = () => {
         startBodyTyping();
       }
     }, 50);
+
+    // Mark animation as played
+    sessionStorage.setItem('animationPlayed', 'true');
 
     return () => clearInterval(headerInterval);
   }, []);
