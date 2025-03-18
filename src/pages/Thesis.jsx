@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef } from "react";
-import { Container, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
+import { Container, Link, Box, Text, keyframes, Flex, Image, VStack, useMediaQuery } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
 const typing = keyframes`
@@ -15,11 +15,16 @@ const blink = keyframes`
 const Thesis = () => {
   const [headerText, setHeaderText] = useState("");
   const [bodyText, setBodyText] = useState("");
+  const [subheadingText, setSubheadingText] = useState("");
   const fullHeaderText = "collective.vc";
   const fullBodyText = "humans are market animals. within a prediction-prevention-disruption framework of mitigation and adaptation, we seek out imaginative, compelling and scalable opportunities with a climate angle in:";
+  const fullSubheadingText = "conquering climate";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const subheadingIndexRef = useRef(0);
+  const [isHeaderTypingComplete, setIsHeaderTypingComplete] = useState(false);
+  const [isBodyTypingComplete, setIsBodyTypingComplete] = useState(false);
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     const headerInterval = setInterval(() => {
@@ -27,12 +32,24 @@ const Thesis = () => {
       headerIndexRef.current++;
       if (headerIndexRef.current === fullHeaderText.length) {
         clearInterval(headerInterval);
-        startBodyTyping();
+        setIsHeaderTypingComplete(true);
+        startSubheadingTyping();
       }
     }, 50);
 
     return () => clearInterval(headerInterval);
   }, []);
+
+  const startSubheadingTyping = () => {
+    const subheadingInterval = setInterval(() => {
+      setSubheadingText(fullSubheadingText.substring(0, subheadingIndexRef.current + 1));
+      subheadingIndexRef.current++;
+      if (subheadingIndexRef.current === fullSubheadingText.length) {
+        clearInterval(subheadingInterval);
+        startBodyTyping();
+      }
+    }, 50);
+  };
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
@@ -40,50 +57,52 @@ const Thesis = () => {
       bodyIndexRef.current++;
       if (bodyIndexRef.current === fullBodyText.length) {
         clearInterval(bodyInterval);
-        setIsTypingComplete(true);
+        setIsBodyTypingComplete(true);
       }
     }, 40);
   };
 
   const renderThesisItems = (text) => {
-    return text.split(" // ").map((item, index) => (
-      <Text
-        as="span"
-        key={index}
-        display="inline-block"
-        transition="transform 0.2s, font-size 0.2s"
-        position="relative"
-        zIndex="1"
-        _hover={{
-          transform: "scale(3)",
-          color: "blue.300",
-          zIndex: "10",
-          "& > .hover-bg": {
-            opacity: 1,
-          }
-        }}
-      >
-        {item}
-        <Box 
-          className="hover-bg"
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translate(-50%, -50%)"
-          width="105%"
-          height="105%"
-          borderRadius="md"
-          bg="gray.800"
-          opacity="0"
-          transition="opacity 0.2s"
-          zIndex="-1"
-        />
-        {index < text.split(" // ").length - 1 && (
-          <Text as="span" color="white" _hover={{ transform: "none" }}>
+    const items = text.split(" // ");
+    return items.map((item, index) => (
+      <Box key={index} display="inline">
+        <Text
+          as="span"
+          display="inline-block"
+          transition="transform 0.2s, font-size 0.2s"
+          position="relative"
+          zIndex="1"
+          _hover={isMobile ? {} : {
+            transform: "scale(3)",
+            color: "blue.300",
+            zIndex: "10",
+            "& > .hover-bg": {
+              opacity: 1,
+            }
+          }}
+        >
+          {item}
+          <Box 
+            className="hover-bg"
+            position="absolute"
+            top="50%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            width="105%"
+            height="105%"
+            borderRadius="md"
+            bg="gray.800"
+            opacity="0"
+            transition="opacity 0.2s"
+            zIndex="-1"
+          />
+        </Text>
+        {index < items.length - 1 && (
+          <Text as="span" color="white">
             {" // "}
           </Text>
         )}
-      </Text>
+      </Box>
     ));
   };
 
@@ -100,8 +119,8 @@ const Thesis = () => {
                 fontWeight="bold" 
                 whiteSpace="nowrap" 
                 overflow="hidden" 
-                borderRight={isTypingComplete ? "none" : "2px solid"}
-                animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+                borderRight={isHeaderTypingComplete ? "none" : "2px solid"}
+                animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
               >
                 {headerText}
               </Box>
@@ -110,6 +129,18 @@ const Thesis = () => {
         </Box>
 
         <VStack spacing={4} width="100%" maxW="800px" px={4} textAlign="center">
+          <Text 
+            fontSize="xl" 
+            fontWeight="bold" 
+            color="blue.300"
+            whiteSpace="nowrap" 
+            overflow="hidden" 
+            borderRight={isBodyTypingComplete ? "none" : "2px solid"}
+            animation={isBodyTypingComplete ? "none" : `${blink} 0.75s step-end infinite`}
+          >
+            {subheadingText}
+          </Text>
+
           <Text fontSize="sm" mb={4} whiteSpace="pre-wrap" lineHeight="1.2">
             {bodyText}
           </Text>
