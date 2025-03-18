@@ -35,8 +35,6 @@ const Disclaimer = () => {
             <Link as={RouterLink} to="/portfolio" color="blue.300">portfolio</Link>
             {" // "}
             <Link as={RouterLink} to="/thesis" color="blue.300">thesis</Link>
-            {" // "}
-            <Link as={RouterLink} to="/media" color="blue.300">media</Link>
           </Text>
         </VStack>
       </VStack>

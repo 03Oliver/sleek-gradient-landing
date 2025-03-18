@@ -73,8 +73,6 @@ const Portfolio = () => {
             <Link as={RouterLink} to="/disclaimer" color="blue.300">disclaimer</Link>
             {" // "}
             <Link as={RouterLink} to="/thesis" color="blue.300">thesis</Link>
-            {" // "}
-            <Link as={RouterLink} to="/media" color="blue.300">media</Link>
           </Text>
         </VStack>
       </VStack>
