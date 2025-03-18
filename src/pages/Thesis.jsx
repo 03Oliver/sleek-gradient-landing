@@ -52,12 +52,32 @@ const Thesis = () => {
         key={index}
         display="inline-block"
         transition="transform 0.2s, font-size 0.2s"
+        position="relative"
+        zIndex="1"
         _hover={{
-          transform: "scale(5)",
-          color: "blue.300"
+          transform: "scale(3)",
+          color: "blue.300",
+          zIndex: "10",
+          "& > .hover-bg": {
+            opacity: 1,
+          }
         }}
       >
         {item}
+        <Box 
+          className="hover-bg"
+          position="absolute"
+          top="50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          width="105%"
+          height="105%"
+          borderRadius="md"
+          bg="gray.800"
+          opacity="0"
+          transition="opacity 0.2s"
+          zIndex="-1"
+        />
         {index < text.split(" // ").length - 1 && (
           <Text as="span" color="white" _hover={{ transform: "none" }}>
             {" // "}
