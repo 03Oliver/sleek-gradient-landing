@@ -53,7 +53,7 @@ const Thesis = () => {
         display="inline-block"
         transition="transform 0.2s, font-size 0.2s"
         _hover={{
-          transform: "scale(1.05)",
+          transform: "scale(5)",
           color: "blue.300"
         }}
       >
