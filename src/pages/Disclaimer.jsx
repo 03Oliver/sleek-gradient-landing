@@ -1,4 +1,3 @@
-
 import { Box, Container, Text, Link, Flex, Image, VStack } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -36,8 +35,6 @@ const Disclaimer = () => {
             <Link as={RouterLink} to="/portfolio" color="blue.300">portfolio</Link>
             {" // "}
             <Link as={RouterLink} to="/thesis" color="blue.300">thesis</Link>
-            {" // "}
-            <Link as={RouterLink} to="/media" color="blue.300">media</Link>
           </Text>
         </VStack>
       </VStack>

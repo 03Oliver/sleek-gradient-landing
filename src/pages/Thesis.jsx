@@ -104,8 +104,6 @@ const Thesis = () => {
             <Link as={RouterLink} to="/portfolio" color="blue.300">portfolio</Link>
             {" // "}
             <Link as={RouterLink} to="/disclaimer" color="blue.300">disclaimer</Link>
-            {" // "}
-            <Link as={RouterLink} to="/media" color="blue.300">media</Link>
           </Text>
         </VStack>
       </VStack>
