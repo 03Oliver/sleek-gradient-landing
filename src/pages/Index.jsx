@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
@@ -24,18 +23,17 @@ const Index = () => {
   const dividerText = " // ";
   const disclaimerText = "disclaimer";
   const thesisText = "thesis";
+  const mediaText = "media";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
-    // Check if animation has already played this session
     const hasAnimationPlayed = sessionStorage.getItem('animationPlayed');
 
     if (hasAnimationPlayed) {
-      // If animation has played, set the complete text immediately
       setHeaderText(fullHeaderText);
-      setBodyText(fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText);
+      setBodyText(fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText + dividerText + mediaText);
       setIsTypingComplete(true);
       return;
     }
@@ -49,7 +47,6 @@ const Index = () => {
       }
     }, 50);
 
-    // Mark animation as played
     sessionStorage.setItem('animationPlayed', 'true');
 
     return () => clearInterval(headerInterval);
@@ -57,7 +54,7 @@ const Index = () => {
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText;
+      const currentText = fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText + dividerText + mediaText;
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
@@ -121,7 +118,11 @@ const Index = () => {
             </RouterLink>
             {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length)}
             <RouterLink to="/thesis" style={{ color: '#63B3ED' }}>
-              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length)}
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length + thesisText.length)}
+            </RouterLink>
+            {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length + thesisText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length + thesisText.length + dividerText.length)}
+            <RouterLink to="/media" style={{ color: '#63B3ED' }}>
+              {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length + thesisText.length + dividerText.length)}
             </RouterLink>
           </Text>
         </Box>
