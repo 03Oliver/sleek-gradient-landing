@@ -1,21 +1,5 @@
-
-import { 
-  Box, 
-  Container, 
-  Text, 
-  Link, 
-  Flex, 
-  Image, 
-  VStack, 
-  Divider,
-  useColorModeValue,
-  keyframes,
-  useMediaQuery,
-  HStack
-} from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
-import { Brain, AlertTriangle, Building, PoundSterling } from "lucide-react";
+import { Container, VStack, Box, Text } from "@chakra-ui/react";
+import Footer from "../components/common/Footer";
 
 const typing = keyframes`
   from { width: 0 }
@@ -170,9 +154,7 @@ const Disclaimer = () => {
         </VStack>
       </VStack>
       
-      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
-        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
-      </Box>
+      <Footer />
     </Container>
   );
 };
