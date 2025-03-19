@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
@@ -38,7 +37,7 @@ const unravel = keyframes`
 
 const pulse = keyframes`
   0% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
-  50% { transform: scale(1.03); box-shadow: 0 0 15px rgba(14, 165, 233, 0.5); }
+  50% { transform: scale(1.02); box-shadow: 0 0 10px rgba(14, 165, 233, 0.4); }
   100% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
 `;
 
@@ -65,11 +64,9 @@ const Thesis = () => {
   const glowColor = useColorModeValue("0 0 20px #0EA5E9", "0 0 20px #0EA5E9");
 
   useEffect(() => {
-    // Check if the animation has already been shown in this session
     const hasShownAnimation = sessionStorage.getItem("hasAnimatedThesis");
     
     if (hasShownAnimation) {
-      // Skip animation if already shown
       setHeaderText(fullHeaderText);
       setSubheadingText(fullSubheadingText);
       setBodyText(fullBodyText);
@@ -78,7 +75,6 @@ const Thesis = () => {
       setHasAnimated(true);
       setIsPulsingActive(true);
     } else {
-      // Start the typing animation
       const headerInterval = setInterval(() => {
         setHeaderText(fullHeaderText.substring(0, headerIndexRef.current + 1));
         headerIndexRef.current++;
@@ -94,12 +90,11 @@ const Thesis = () => {
   }, []);
 
   useEffect(() => {
-    // Add a delay before starting the pulsing effect
     if (hasAnimated) {
       const pulseTimer = setTimeout(() => {
         setIsPulsingActive(true);
-      }, 3000); // Wait 3 seconds after unravel animation completes
-      
+      }, 3000);
+
       return () => clearTimeout(pulseTimer);
     }
   }, [hasAnimated]);
@@ -111,7 +106,6 @@ const Thesis = () => {
       if (subheadingIndexRef.current === fullSubheadingText.length) {
         clearInterval(subheadingInterval);
         startBodyTyping();
-        // Mark that animation has been shown
         sessionStorage.setItem("hasAnimatedThesis", "true");
       }
     }, 50);
@@ -140,23 +134,19 @@ const Thesis = () => {
   };
 
   const getRandomDuration = () => {
-    // Return a random duration between 0.6s and 1.5s for unravel animation
-    return (0.6 + Math.random() * 0.9).toFixed(2);
+    return (0.4 + Math.random() * 0.6).toFixed(2);
   };
 
   const getRandomDelay = () => {
-    // Return a random delay between 0.1s and 2s
-    return (0.1 + Math.random() * 1.9).toFixed(2);
+    return (0.1 + Math.random() * 1.4).toFixed(2);
   };
 
   const getRandomPulseDelay = () => {
-    // Return a random delay for pulsing (5-20 seconds)
-    return (5 + Math.random() * 15).toFixed(2);
+    return (3 + Math.random() * 9).toFixed(2);
   };
 
   const getRandomPulseDuration = () => {
-    // Return a random duration for pulsing (1-3 seconds)
-    return (1 + Math.random() * 2).toFixed(2);
+    return (0.8 + Math.random() * 1.2).toFixed(2);
   };
 
   const renderThesisItems = (text) => {
@@ -165,7 +155,6 @@ const Thesis = () => {
     return (
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={3} mt={6} width="100%">
         {items.map((item, index) => {
-          // Generate random values for animation
           const duration = getRandomDuration();
           const delay = getRandomDelay();
           const pulseDelay = getRandomPulseDelay();
@@ -220,7 +209,7 @@ const Thesis = () => {
       display="flex" 
       flexDirection="column" 
       alignItems="center" 
-      bgGradient={bgGradient}
+      bgGradient="linear(to-r, black, gray.800)"
       color="white" 
       fontFamily="Roboto, sans-serif" 
       pt={8}

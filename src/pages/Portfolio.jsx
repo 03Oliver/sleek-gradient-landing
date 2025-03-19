@@ -69,7 +69,7 @@ const Portfolio = () => {
       display="flex" 
       flexDirection="column" 
       alignItems="center" 
-      bgGradient={bgGradient}
+      bgGradient="linear(to-r, black, gray.800)"
       color="white" 
       fontFamily="Roboto, sans-serif" 
       pt={8}
