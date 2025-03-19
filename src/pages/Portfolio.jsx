@@ -11,7 +11,8 @@ import {
   VStack, 
   Divider,
   useMediaQuery,
-  useColorModeValue
+  useColorModeValue,
+  Tag
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -26,13 +27,9 @@ const blink = keyframes`
 
 const Portfolio = () => {
   const [headerText, setHeaderText] = useState("");
-  const [subheadingText, setSubheadingText] = useState("");
   const fullHeaderText = "collective.vc";
-  const fullSubheadingText = "startup investments";
   const headerIndexRef = useRef(0);
-  const subheadingIndexRef = useRef(0);
-  const [isHeaderTypingComplete, setIsHeaderTypingComplete] = useState(false);
-  const [isSubheadingTypingComplete, setIsSubheadingTypingComplete] = useState(false);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const bgGradient = useColorModeValue(
     "linear(to-r, gray.900, gray.800, gray.900)",
@@ -91,9 +88,7 @@ const Portfolio = () => {
     if (hasAnimationPlayed) {
       // If animation has played, set the complete text immediately
       setHeaderText(fullHeaderText);
-      setSubheadingText(fullSubheadingText);
-      setIsHeaderTypingComplete(true);
-      setIsSubheadingTypingComplete(true);
+      setIsTypingComplete(true);
       return;
     }
 
@@ -102,10 +97,7 @@ const Portfolio = () => {
       headerIndexRef.current++;
       if (headerIndexRef.current === fullHeaderText.length) {
         clearInterval(headerInterval);
-        setIsHeaderTypingComplete(true);
-        
-        // Start subheading animation after header is complete
-        startSubheadingTyping();
+        setIsTypingComplete(true);
         
         // Mark animation as played
         sessionStorage.setItem('animationPlayedPortfolio', 'true');
@@ -114,17 +106,6 @@ const Portfolio = () => {
 
     return () => clearInterval(headerInterval);
   }, []);
-
-  const startSubheadingTyping = () => {
-    const subheadingInterval = setInterval(() => {
-      setSubheadingText(fullSubheadingText.substring(0, subheadingIndexRef.current + 1));
-      subheadingIndexRef.current++;
-      if (subheadingIndexRef.current === fullSubheadingText.length) {
-        clearInterval(subheadingInterval);
-        setIsSubheadingTypingComplete(true);
-      }
-    }, 50);
-  };
 
   return (
     <Container 
@@ -151,8 +132,8 @@ const Portfolio = () => {
                 fontWeight="bold" 
                 whiteSpace="nowrap" 
                 overflow="hidden" 
-                borderRight={isHeaderTypingComplete ? "none" : "2px solid"}
-                animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+                borderRight={isTypingComplete ? "none" : "2px solid"}
+                animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
                 color="white"
                 letterSpacing="tight"
               >
@@ -163,21 +144,6 @@ const Portfolio = () => {
         </Box>
         
         <VStack spacing={6} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="center">
-          <Box 
-            fontSize={{ base: "xl", md: "2xl" }} 
-            fontWeight="medium"
-            borderBottom="2px solid"
-            borderColor="blue.400"
-            pb={1}
-            color="blue.300"
-            whiteSpace="nowrap" 
-            overflow="hidden" 
-            borderRight={isSubheadingTypingComplete ? "none" : "2px solid"}
-            animation={isSubheadingTypingComplete ? "none" : `${blink} 0.75s step-end infinite`}
-          >
-            {subheadingText}
-          </Box>
-
           <Text fontSize="lg">oliver's personal investments & deals + sweat equity & carry share (assorted)</Text>
           
           <Flex 
