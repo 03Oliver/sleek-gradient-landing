@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef } from "react";
-import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center } from "@chakra-ui/react";
+import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center, useColorModeValue } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import MatrixRain from "../components/MatrixRain";
@@ -25,6 +25,16 @@ const Index = () => {
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  
+  // Color mode values
+  const bgGradient = useColorModeValue("linear(to-r, gray.100, gray.300)", "linear(to-r, black, gray.800)");
+  const boxBg = useColorModeValue("rgba(255,255,255,0.8)", "rgba(0,0,0,0.7)");
+  const boxShadow = useColorModeValue("lg", "dark-lg");
+  const borderColor = useColorModeValue("gray.200", "whiteAlpha.200");
+  const linkColor = useColorModeValue("blue.600", "blue.300");
+  const hoverLinkColor = useColorModeValue("blue.800", "blue.100");
+  const dividerColor = useColorModeValue("gray.400", "whiteAlpha.600");
+  const footerColor = useColorModeValue("gray.600", "whiteAlpha.600");
 
   useEffect(() => {
     const checkMobile = () => {
@@ -84,8 +94,8 @@ const Index = () => {
       minH="100vh" 
       display="flex" 
       flexDirection="column" 
-      bgGradient="linear(to-r, black, gray.800)" 
-      color="white" 
+      bgGradient={bgGradient}
+      color={useColorModeValue("gray.800", "white")} 
       fontFamily="Roboto, sans-serif" 
       overflow="hidden" 
       p={0}
@@ -103,13 +113,15 @@ const Index = () => {
         <Box 
           p={8} 
           borderRadius="lg" 
-          bg="rgba(0,0,0,0.7)" 
+          bg={boxBg}
           backdropFilter="blur(8px)" 
           maxW="600px" 
           textAlign="center"
-          boxShadow="dark-lg"
+          boxShadow={boxShadow}
           display="flex"
           flexDirection="column"
+          borderWidth="1px"
+          borderColor={borderColor}
         >
           <VStack spacing={6} flex="1" width="100%" justifyContent="center">
             <Box textAlign="center" mb={4}>
@@ -156,12 +168,12 @@ const Index = () => {
                   top: 0,
                   height: "100%",
                   width: isTypingComplete ? "0" : "2px",
-                  backgroundColor: "white",
+                  backgroundColor: useColorModeValue("gray.800", "white"),
                   animation: isTypingComplete ? "none" : `${blink} 0.75s step-end infinite`
                 }}
               >
                 {bodyText.substring(0, fullBodyText.length)}
-                <Link href="https://www.linkedin.com/in/bonallack" isExternal color="blue.300">
+                <Link href="https://www.linkedin.com/in/bonallack" isExternal color={linkColor}>
                   {bodyText.substring(fullBodyText.length, fullBodyText.length + oliverText.length)}
                 </Link>
                 {bodyText.substring(fullBodyText.length + oliverText.length)}
@@ -175,39 +187,39 @@ const Index = () => {
               gap={3} 
               mt={{ base: 8, md: "auto" }}
               borderTop="1px solid"
-              borderColor="whiteAlpha.200"
+              borderColor={borderColor}
               pt={4}
               width="100%"
               maxW={{ base: "600px", md: "100%" }}
             >
-              <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-              <Text color="whiteAlpha.600">//</Text>
-              <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-              <Text color="whiteAlpha.600">//</Text>
-              <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+              <Link as={RouterLink} to="/portfolio" color={linkColor} _hover={{ color: hoverLinkColor }}>portfolio</Link>
+              <Text color={dividerColor}>//</Text>
+              <Link as={RouterLink} to="/disclaimer" color={linkColor} _hover={{ color: hoverLinkColor }}>disclaimer</Link>
+              <Text color={dividerColor}>//</Text>
+              <Link as={RouterLink} to="/thesis" color={linkColor} _hover={{ color: hoverLinkColor }}>thesis</Link>
             </Flex>
 
             <SimpleGrid columns={{ base: 2, md: 4 }} spacing={5} textAlign="center" mt={2}>
               <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
-                <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={FaLinkedin} size="36px" color={linkColor} _hover={{ transform: "scale(1.1)", color: hoverLinkColor }} transition="transform 0.2s, color 0.2s" />
               </Link>
 
               <Link href="https://www.youtube.com/@collectivevc" isExternal>
-                <Box as={FaYoutube} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={FaYoutube} size="36px" color={linkColor} _hover={{ transform: "scale(1.1)", color: hoverLinkColor }} transition="transform 0.2s, color 0.2s" />
               </Link>
 
               <Link href="https://collectivevc.substack.com" isExternal>
-                <Box as={FaEnvelope} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={FaEnvelope} size="36px" color={linkColor} _hover={{ transform: "scale(1.1)", color: hoverLinkColor }} transition="transform 0.2s, color 0.2s" />
               </Link>
 
               <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
-                <Box as={FaWhatsapp} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={FaWhatsapp} size="36px" color={linkColor} _hover={{ transform: "scale(1.1)", color: hoverLinkColor }} transition="transform 0.2s, color 0.2s" />
               </Link>
             </SimpleGrid>
           </VStack>
           
-          <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt={8}>
-            built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
+          <Box as="footer" py={4} textAlign="center" fontSize="xs" color={footerColor} width="100%" mt={8}>
+            built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color={footerColor}>(<b>0.04g CO₂</b>)</Link> with minimalism in mind
           </Box>
         </Box>
       </Center>

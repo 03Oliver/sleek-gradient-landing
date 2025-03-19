@@ -44,10 +44,17 @@ const NotFound = () => {
   const fullHeaderText = "collective.vc";
   const headerIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const bgGradient = useColorModeValue(
-    "linear(to-r, gray.900, gray.800, gray.900)",
-    "linear(to-r, gray.900, gray.800, gray.900)"
-  );
+  
+  // Color mode values
+  const bgGradient = useColorModeValue("linear(to-r, gray.100, gray.300)", "linear(to-r, black, gray.800)");
+  const textColor = useColorModeValue("gray.800", "white");
+  const lyricsColor = useColorModeValue("gray.500", "gray.400");
+  const dividerColor = useColorModeValue("blue.600", "blue.400");
+  const linkColor = useColorModeValue("blue.600", "blue.300");
+  const hoverLinkColor = useColorModeValue("blue.800", "blue.100");
+  const separatorColor = useColorModeValue("gray.400", "whiteAlpha.600");
+  const borderColor = useColorModeValue("gray.200", "whiteAlpha.200");
+  const footerColor = useColorModeValue("gray.600", "whiteAlpha.600");
 
   useEffect(() => {
     const headerInterval = setInterval(() => {
@@ -70,8 +77,8 @@ const NotFound = () => {
       display="flex" 
       flexDirection="column" 
       alignItems="center" 
-      bgGradient="linear(to-r, black, gray.800)"
-      color="white" 
+      bgGradient={bgGradient}
+      color={textColor} 
       fontFamily="Roboto, sans-serif" 
       pt={8}
       px={0}
@@ -89,7 +96,7 @@ const NotFound = () => {
                 overflow="hidden" 
                 borderRight={isTypingComplete ? "none" : "2px solid"}
                 animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
-                color="white"
+                color={textColor}
                 letterSpacing="tight"
               >
                 {headerText}
@@ -109,13 +116,13 @@ const NotFound = () => {
           <Text fontSize="2xl">404</Text>
           <VStack spacing={0}>
             {randomLyrics.map((line, index) => (
-              <Text key={index} fontSize="md" fontStyle="italic" color="gray.400">
+              <Text key={index} fontSize="md" fontStyle="italic" color={lyricsColor}>
                 {line}
               </Text>
             ))}
           </VStack>
 
-          <Divider maxW="200px" borderColor="blue.400" opacity="0.3" mt={6} mb={6} />
+          <Divider maxW="200px" borderColor={dividerColor} opacity="0.3" mt={6} mb={6} />
 
           <Flex 
             wrap="wrap" 
@@ -123,22 +130,22 @@ const NotFound = () => {
             gap={3} 
             mt={4}
             borderTop="1px solid"
-            borderColor="whiteAlpha.200"
+            borderColor={borderColor}
             pt={4}
             width="100%"
             maxW="600px"
           >
-            <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
-            <Text color="whiteAlpha.600">//</Text>
-            <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-            <Text color="whiteAlpha.600">//</Text>
-            <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+            <Link as={RouterLink} to="/" color={linkColor} _hover={{ color: hoverLinkColor }}>return home</Link>
+            <Text color={separatorColor}>//</Text>
+            <Link as={RouterLink} to="/portfolio" color={linkColor} _hover={{ color: hoverLinkColor }}>portfolio</Link>
+            <Text color={separatorColor}>//</Text>
+            <Link as={RouterLink} to="/thesis" color={linkColor} _hover={{ color: hoverLinkColor }}>thesis</Link>
           </Flex>
         </VStack>
       </VStack>
       
-      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
-        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color={footerColor} width="100%">
+        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color={footerColor}>(<b>0.04g CO₂</b>)</Link> with minimalism in mind
       </Box>
     </Container>
   );

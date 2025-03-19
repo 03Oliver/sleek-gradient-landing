@@ -7,7 +7,8 @@ import {
   Flex, 
   Image, 
   Badge,
-  Link
+  Link,
+  useColorModeValue
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -27,6 +28,8 @@ const ThesisHeader = ({
   isBodyTypingComplete, 
   fullHeaderText 
 }) => {
+  const textColor = useColorModeValue("gray.800", "white");
+
   return (
     <Flex alignItems="center" justifyContent="center" mb={4}>
       <Image src="/favicon.ico" alt="Favicon" boxSize={{ base: "24px", md: "30px" }} mr={{ base: 2, md: 3 }} />
@@ -39,7 +42,7 @@ const ThesisHeader = ({
           overflow="hidden" 
           borderRight={isHeaderTypingComplete ? "none" : "2px solid"}
           animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
-          color="white"
+          color={textColor}
           letterSpacing="tight"
         >
           {headerText}
