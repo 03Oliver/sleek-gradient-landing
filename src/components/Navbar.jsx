@@ -13,20 +13,19 @@ const Navbar = () => {
 
   return (
     <Box position="relative" zIndex="10">
-      <Flex alignItems="center" justifyContent="center" mb={4}>
-        <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-        <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-          <Box as="pre" fontSize="4xl" fontWeight="bold">
-            collective.vc
-          </Box>
-        </Link>
+      <Flex alignItems="center" justifyContent="space-between" mb={4} width="100%">
+        <Flex alignItems="center">
+          <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
+          <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+            <Box as="pre" fontSize="4xl" fontWeight="bold">
+              collective.vc
+            </Box>
+          </Link>
+        </Flex>
         <IconButton
           icon={<FaBars />}
           variant="ghost"
           color="white"
-          position="absolute"
-          right="10px"
-          top="10px"
           onClick={handleToggle}
           aria-label="Open menu"
           _hover={{ bg: "whiteAlpha.200" }}

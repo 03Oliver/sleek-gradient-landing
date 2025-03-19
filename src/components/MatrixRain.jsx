@@ -24,8 +24,8 @@ const MatrixRain = () => {
     for (let i = 0; i < columns; i++) {
       drops[i] = {
         y: Math.random() * -500, // Start above the canvas at random heights
-        speed: 1 + Math.random() * 3, // Faster speed (was 0.5-2)
-        length: 5 + Math.floor(Math.random() * 6), // Random length between 5-10 chars
+        speed: 1.5 + Math.random() * 3.5, // Faster speed (was 1-3)
+        length: 4 + Math.floor(Math.random() * 4), // Shorter trails: Random length between 4-7 chars
         opacity: 0.05 + Math.random() * 0.25, // Slightly higher max opacity
         type: Math.random() > 0.3 ? 'fade' : 'trail', // 70% fade, 30% trail
       };
@@ -37,8 +37,8 @@ const MatrixRain = () => {
     const density = isMobile ? 0.2 : 0.4; // Show fewer columns on mobile
 
     function draw() {
-      // Semi-transparent black background to create fade effect
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      // Semi-transparent black background with very low opacity to maintain gradient visibility
+      ctx.fillStyle = "rgba(0, 0, 0, 0.03)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Set character style
@@ -52,7 +52,7 @@ const MatrixRain = () => {
         // For each drop, create a string of characters
         const drop = drops[i];
         
-        // Generate a string of 5-10 random characters
+        // Generate a string of random characters
         for (let j = 0; j < drop.length; j++) {
           const y = drop.y - (j * 20); // Space characters vertically
           
@@ -86,16 +86,16 @@ const MatrixRain = () => {
         // Reset drop when it goes off screen with buffer for entire string length
         if (drop.y > canvas.height + (drop.length * 20)) {
           drop.y = Math.random() * -200;
-          drop.length = 5 + Math.floor(Math.random() * 6); // Random length between 5-10
+          drop.length = 4 + Math.floor(Math.random() * 4); // Random length between 4-7
           drop.opacity = 0.05 + Math.random() * 0.25; // Randomize opacity
           drop.type = Math.random() > 0.3 ? 'fade' : 'trail'; // Randomize type again
-          drop.speed = 1 + Math.random() * 3; // Randomize speed again
+          drop.speed = 1.5 + Math.random() * 3.5; // Randomize speed again
         }
       }
     }
 
-    // Animation loop - faster refresh rate (was 50ms)
-    const interval = setInterval(draw, 40);
+    // Animation loop - faster refresh rate
+    const interval = setInterval(draw, 30); // Even faster (was 40ms)
 
     // Handle window resize
     const handleResize = () => {
