@@ -388,6 +388,16 @@ const Thesis = () => {
     );
   };
 
+  useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    
+    document.body.style.overflow = "hidden";
+    
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+
   return (
     <Container 
       centerContent 
@@ -402,6 +412,7 @@ const Thesis = () => {
       pt={8}
       px={0}
       overflowX="hidden"
+      overflowY="hidden"
       position="relative"
     >
       {!isMobile && renderThesisItems(thesisItemsList)}
