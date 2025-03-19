@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
+import MatrixRain from "../components/MatrixRain";
 
 const typing = keyframes`
   from { width: 0 }
@@ -69,6 +70,7 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden" p={0}>
+      <MatrixRain />
       <VStack spacing={6} flex="1" width="100%" justifyContent="center">
         <Box textAlign="center" mb={4}>
           <Flex alignItems="center" justifyContent="center">
@@ -145,7 +147,7 @@ const Index = () => {
         </SimpleGrid>
       </VStack>
       
-      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt="auto">
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt="auto" position="relative" zIndex={2}>
         built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
       </Box>
     </Container>
