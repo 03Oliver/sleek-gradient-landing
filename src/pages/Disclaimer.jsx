@@ -142,7 +142,7 @@ const Disclaimer = () => {
             <HStack align="flex-start" spacing={4}>
               <PoundSterling size={20} color="#781c44" style={{ marginTop: '4px', flexShrink: 0 }} />
               <Text>
-                not fca regulated - not offering investment services or advice.
+                not fca regulated – private, networked, relationship-based
               </Text>
             </HStack>
           </Box>
