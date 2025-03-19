@@ -360,7 +360,7 @@ const Thesis = () => {
           <ModalHeader fontSize="xl" fontWeight="bold">
             <Flex align="center">
               <ListPlus size={20} style={{ marginRight: "10px" }} />
-              Full List of Climate Focus Areas
+              full list of climate focus areas
             </Flex>
           </ModalHeader>
           <ModalCloseButton />
@@ -560,7 +560,7 @@ const Thesis = () => {
                 onClick={onOpen}
                 alignSelf="center"
               >
-                View Full List
+                view full list
               </Button>
               
               <Box mt="auto">
