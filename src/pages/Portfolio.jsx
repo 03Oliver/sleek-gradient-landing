@@ -11,7 +11,9 @@ import {
   VStack, 
   Divider,
   useMediaQuery,
-  useColorModeValue
+  useColorModeValue,
+  Tag,
+  Tooltip
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -34,6 +36,16 @@ const Portfolio = () => {
     "linear(to-r, gray.900, gray.800, gray.900)",
     "linear(to-r, gray.900, gray.800, gray.900)"
   );
+
+  const investments = [
+    { name: "element 2 hydrogen", url: "https://element-2.co.uk/", color: "#4440e8" },
+    { name: "sustainable ventures sa7 (accelerator batch)", url: "https://www.sustainableventures.co.uk/", color: "#d0041c" },
+    { name: "stratiphy", url: "https://stratiphy.io", color: "#fcc450" },
+    { name: "otis ai", url: "https://meetotis.com/", color: "#3c8cfc" },
+    { name: "teamignite.ventures (fund i)", url: "https://teamignite.ventures", color: "#ef5a2c" },
+    { name: "soldera", url: "https://www.soldera.org/", color: "#e0fca4" },
+    { name: "mirico", url: "https://www.mirico.co.uk/", color: "#c8141c" }
+  ];
 
   useEffect(() => {
     // Check if animation has already played this session
@@ -99,15 +111,46 @@ const Portfolio = () => {
         
         <VStack spacing={6} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="center">
           <Text fontSize="lg">oliver's personal investments & deals + sweat equity & carry share (assorted)</Text>
-          <Text fontSize="md">
-            <Link href="https://element-2.co.uk/" isExternal color="#4440e8">element 2 hydrogen</Link> // {" "}
-            <Link href="https://www.sustainableventures.co.uk/" isExternal color="#d0041c">sustainable ventures sa7 (accelerator batch)</Link> // {" "}
-            <Link href="https://stratiphy.io" isExternal color="#fcc450">stratiphy</Link> // {" "}
-            <Link href="https://meetotis.com/" isExternal color="#3c8cfc">otis ai</Link> // {" "}
-            <Link href="https://teamignite.ventures" isExternal color="#ef5a2c">teamignite.ventures (fund i)</Link> // {" "}
-            <Link href="https://www.soldera.org/" isExternal color="#e0fca4">soldera</Link> // {" "}
-            <Link href="https://www.mirico.co.uk/" isExternal color="#c8141c">mirico</Link>
-          </Text>
+          
+          <Flex 
+            wrap="wrap" 
+            justify="center" 
+            gap={4}
+            width="100%"
+            mt={2}
+          >
+            {investments.map((investment, index) => (
+              <Tooltip key={index} label={investment.name} placement="top" hasArrow>
+                <Link 
+                  href={investment.url} 
+                  isExternal 
+                  _hover={{ textDecoration: "none", transform: "scale(1.05)" }}
+                  transition="transform 0.2s"
+                >
+                  <Box
+                    p={3}
+                    borderRadius="md"
+                    bg="rgba(30, 30, 30, 0.6)"
+                    borderLeft={`3px solid ${investment.color}`}
+                    backdropFilter="blur(10px)"
+                    boxShadow="lg"
+                    minWidth="120px"
+                    textAlign="center"
+                    fontSize="sm"
+                    fontWeight="medium"
+                    color="white"
+                    transition="all 0.2s"
+                    _hover={{ 
+                      bg: "rgba(40, 40, 40, 0.7)",
+                      boxShadow: "xl"
+                    }}
+                  >
+                    {investment.name.split(' ')[0]}
+                  </Box>
+                </Link>
+              </Tooltip>
+            ))}
+          </Flex>
           
           <Text fontSize="lg" mt={4}>syndicate deals</Text>
           <Text fontSize="md">coming very soon</Text>
