@@ -1,9 +1,10 @@
 
 import { useEffect, useState, useRef } from "react";
 import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center } from "@chakra-ui/react";
-import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
+import { FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import MatrixRain from "../components/MatrixRain";
+import { BookmarkCheck, Mail } from "lucide-react";
 
 const typing = keyframes`
   from { width: 0 }
@@ -187,7 +188,7 @@ const Index = () => {
               <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
             </Flex>
 
-            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={5} textAlign="center" mt={2}>
+            <SimpleGrid columns={{ base: 2, md: 5 }} spacing={5} textAlign="center" mt={2}>
               <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
                 <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
               </Link>
@@ -197,7 +198,11 @@ const Index = () => {
               </Link>
 
               <Link href="https://collectivevc.substack.com" isExternal>
-                <Box as={FaEnvelope} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={BookmarkCheck} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+              </Link>
+
+              <Link href="mailto:oliver@collective.vc" isExternal>
+                <Box as={Mail} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
               </Link>
 
               <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
