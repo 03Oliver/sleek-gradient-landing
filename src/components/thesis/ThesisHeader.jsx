@@ -33,7 +33,7 @@ const ThesisHeader = ({
           color="white"
           letterSpacing="tight"
         >
-          thesis: conquering climate
+          {headerText}
         </Box>
       </Link>
     </Flex>

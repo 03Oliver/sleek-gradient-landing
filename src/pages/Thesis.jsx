@@ -23,9 +23,9 @@ const Thesis = () => {
   const [subheadingText, setSubheadingText] = useState("");
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isPulsingActive, setIsPulsingActive] = useState(false);
-  const fullHeaderText = "thesis: conquering climate";
+  const fullHeaderText = "collective.vc";
   const fullBodyText = "humans are market animals. within a prediction-prevention-disruption framework of mitigation and adaptation, we seek out imaginative, compelling and scalable opportunities with a climate angle in:";
-  const fullSubheadingText = "";
+  const fullSubheadingText = "conquering climate";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const subheadingIndexRef = useRef(0);
@@ -69,8 +69,7 @@ const Thesis = () => {
         if (headerIndexRef.current === fullHeaderText.length) {
           clearInterval(headerInterval);
           setIsHeaderTypingComplete(true);
-          startBodyTyping();
-          sessionStorage.setItem("hasAnimatedThesis", "true");
+          startSubheadingTyping();
         }
       }, 50);
 
@@ -87,6 +86,18 @@ const Thesis = () => {
       return () => clearTimeout(pulseTimer);
     }
   }, [hasAnimated]);
+
+  const startSubheadingTyping = () => {
+    const subheadingInterval = setInterval(() => {
+      setSubheadingText(fullSubheadingText.substring(0, subheadingIndexRef.current + 1));
+      subheadingIndexRef.current++;
+      if (subheadingIndexRef.current === fullSubheadingText.length) {
+        clearInterval(subheadingInterval);
+        startBodyTyping();
+        sessionStorage.setItem("hasAnimatedThesis", "true");
+      }
+    }, 50);
+  };
 
   const startBodyTyping = () => {
     const bodyInterval = setInterval(() => {
