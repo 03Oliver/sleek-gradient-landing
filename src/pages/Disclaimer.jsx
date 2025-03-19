@@ -10,10 +10,12 @@ import {
   Divider,
   useColorModeValue,
   keyframes,
-  useMediaQuery
+  useMediaQuery,
+  HStack
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
+import { Brain, AlertTriangle } from "lucide-react";
 
 const typing = keyframes`
   from { width: 0 }
@@ -97,20 +99,47 @@ const Disclaimer = () => {
           </Flex>
         </Box>
 
-        <VStack spacing={6} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="center">
-          <Text>
-            this website is intended for informational purposes only and should not be seen as an invitation to invest or as a financial promotion. you should not rely on any information provided here. the content is not intended to offer, nor should it be interpreted as, any form of advice.
-          </Text>
-          
-          <Text>
-            please note that startup, special-purpose-vehicle (spv) and syndicate investments carry significant risks and are only suitable for experienced investors who fully understand these risks. any independent investment software platform utilised will execute all relevant checks and vetting on network members as are required by law to protect and verify the identity and experience of potential investors. it is essential to seek independent financial advice before making any investment decisions.
-          </Text>
-          
-          <Text>
-            collective vc ltd - 14226589 - sic 64303
-          </Text>
+        <VStack spacing={6} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="left" alignItems="flex-start">
+          <Box 
+            position="relative" 
+            pl={10} 
+            borderLeft="2px solid" 
+            borderLeftColor="gray.600"
+            _before={{
+              content: '""',
+              position: 'absolute',
+              left: '0',
+              top: '0',
+              bottom: '0',
+              width: '2px',
+              boxShadow: '0 0 8px 2px rgba(120, 120, 120, 0.3)',
+              zIndex: '1'
+            }}
+          >
+            <HStack align="flex-start" spacing={4}>
+              <Brain size={20} color="#3182CE" style={{ marginTop: '4px', flexShrink: 0 }} />
+              <Text>
+                this website is intended for informational purposes only and should not be seen as an invitation to invest or as a financial promotion. you should not rely on any information provided here. the content is not intended to offer, nor should it be interpreted as, any form of advice.
+              </Text>
+            </HStack>
+            
+            <Box h={6} />
+            
+            <HStack align="flex-start" spacing={4}>
+              <AlertTriangle size={20} color="#E53E3E" style={{ marginTop: '4px', flexShrink: 0 }} />
+              <Text>
+                please note that startup, special-purpose-vehicle (spv) and syndicate investments carry significant risks and are only suitable for experienced investors who fully understand these risks. any independent investment software platform utilised will execute all relevant checks and vetting on network members as are required by law to protect and verify the identity and experience of potential investors. it is essential to seek independent financial advice before making any investment decisions.
+              </Text>
+            </HStack>
+            
+            <Box h={6} />
+            
+            <Text pl={8}>
+              collective vc ltd - 14226589 - sic 64303
+            </Text>
+          </Box>
 
-          <Divider maxW="200px" borderColor="blue.400" opacity="0.3" mt={6} mb={6} />
+          <Divider maxW="200px" borderColor="blue.400" opacity="0.3" mt={6} mb={6} alignSelf="center" />
 
           <Flex 
             wrap="wrap" 
@@ -122,6 +151,7 @@ const Disclaimer = () => {
             pt={4}
             width="100%"
             maxW="600px"
+            alignSelf="center"
           >
             <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
             <Text color="whiteAlpha.600">//</Text>
