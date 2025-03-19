@@ -31,19 +31,10 @@ const Portfolio = () => {
   const headerIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isMobile] = useMediaQuery("(max-width: 768px)");
-  
-  // Color mode values
-  const bgGradient = useColorModeValue("linear(to-r, gray.100, gray.300)", "linear(to-r, black, gray.800)");
-  const cardBg = useColorModeValue("rgba(255, 255, 255, 0.6)", "rgba(30, 30, 30, 0.6)");
-  const cardHoverBg = useColorModeValue("rgba(255, 255, 255, 0.8)", "rgba(40, 40, 40, 0.7)");
-  const textColor = useColorModeValue("gray.800", "white");
-  const subTextColor = useColorModeValue("gray.600", "whiteAlpha.700");
-  const borderColor = useColorModeValue("gray.200", "whiteAlpha.200");
-  const dividerColor = useColorModeValue("blue.600", "blue.400");
-  const linkColor = useColorModeValue("blue.600", "blue.300");
-  const hoverLinkColor = useColorModeValue("blue.800", "blue.100");
-  const separatorColor = useColorModeValue("gray.400", "whiteAlpha.600");
-  const footerColor = useColorModeValue("gray.600", "whiteAlpha.600");
+  const bgGradient = useColorModeValue(
+    "linear(to-r, gray.900, gray.800, gray.900)",
+    "linear(to-r, gray.900, gray.800, gray.900)"
+  );
 
   const investments = [
     { 
@@ -124,8 +115,8 @@ const Portfolio = () => {
       display="flex" 
       flexDirection="column" 
       alignItems="center" 
-      bgGradient={bgGradient}
-      color={textColor}
+      bgGradient="linear(to-r, black, gray.800)"
+      color="white" 
       fontFamily="Roboto, sans-serif" 
       pt={8}
       px={0}
@@ -143,7 +134,7 @@ const Portfolio = () => {
                 overflow="hidden" 
                 borderRight={isTypingComplete ? "none" : "2px solid"}
                 animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
-                color={textColor}
+                color="white"
                 letterSpacing="tight"
               >
                 {headerText}
@@ -173,7 +164,7 @@ const Portfolio = () => {
                 <Box
                   p={3}
                   borderRadius="md"
-                  bg={cardBg}
+                  bg="rgba(30, 30, 30, 0.6)"
                   borderLeft={`3px solid ${investment.color}`}
                   backdropFilter="blur(10px)"
                   boxShadow="lg"
@@ -185,10 +176,10 @@ const Portfolio = () => {
                   textAlign="center"
                   fontSize="sm"
                   fontWeight="medium"
-                  color={textColor}
+                  color="white"
                   transition="all 0.2s"
                   _hover={{ 
-                    bg: cardHoverBg,
+                    bg: "rgba(40, 40, 40, 0.7)",
                     boxShadow: "xl"
                   }}
                 >
@@ -197,7 +188,7 @@ const Portfolio = () => {
                     {investment.subheading && (
                       <Text 
                         fontSize="xs" 
-                        color={subTextColor}
+                        color="whiteAlpha.700" 
                         mt="0 !important"
                       >
                         ({investment.subheading})
@@ -212,7 +203,7 @@ const Portfolio = () => {
           <Text fontSize="lg" mt={4}>syndicate deals</Text>
           <Text fontSize="md">coming very soon</Text>
 
-          <Divider maxW="200px" borderColor={dividerColor} opacity="0.3" mt={6} mb={6} />
+          <Divider maxW="200px" borderColor="blue.400" opacity="0.3" mt={6} mb={6} />
 
           <Flex 
             wrap="wrap" 
@@ -220,22 +211,22 @@ const Portfolio = () => {
             gap={3} 
             mt={4}
             borderTop="1px solid"
-            borderColor={borderColor}
+            borderColor="whiteAlpha.200"
             pt={4}
             width="100%"
             maxW="600px"
           >
-            <Link as={RouterLink} to="/" color={linkColor} _hover={{ color: hoverLinkColor }}>return home</Link>
-            <Text color={separatorColor}>//</Text>
-            <Link as={RouterLink} to="/disclaimer" color={linkColor} _hover={{ color: hoverLinkColor }}>disclaimer</Link>
-            <Text color={separatorColor}>//</Text>
-            <Link as={RouterLink} to="/thesis" color={linkColor} _hover={{ color: hoverLinkColor }}>thesis</Link>
+            <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
           </Flex>
         </VStack>
       </VStack>
       
-      <Box as="footer" py={4} textAlign="center" fontSize="xs" color={footerColor} width="100%">
-        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color={footerColor}>(<b>0.04g CO₂</b>)</Link> with minimalism in mind
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
+        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
       </Box>
     </Container>
   );

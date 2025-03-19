@@ -1,13 +1,11 @@
 
 import { useEffect, useRef } from "react";
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 const characters = "ﾕނֈﾎࠁｿߠٯցޏｸؿձߵޅ֊߷ﾊשﾏލ߹ｶގքﾐހքﾂރߴգߨﾘش߸ｴֆވՁߺըތޅֆզպ՝ⵠբރ՚ބմނ߶جｳߦձﾘﾋފحقߢ՝ވｱՇﻧߦէ֍ޏջࠃչߩﾋߡնｺﺝ߶ކսႠػՕݩފﾚڤࠂكއիｵސﾅފ֍ߣމﾖ֊ށߥމպ؍ߧթލﾑդｹߞքހｺއտބֈߡղސթｸޏبձؾⵠｺհｻցփ֊ސߣ߳ｷႠࠅղԷލր﷼ｵղքކք﮼ｿލեշތｸލࠄեփգހއդ߻።ރյﾍշވｷ߷՚ｶנތԷشߠպ߾ｷ՝ނݩշⵠؼյշｷחֈހլߴײցｴ՝շՒժނߤՁܐ։ֆﾐﾚ؍بﾖﾘكՐﾍ؛ﮯՂﾇﾀ֊ｹէքصﭺﾓﾁخｳﾈخػԱﾂﾐՀﾊؼ﷼ﾋզﾕﻭտﾌէﾕօگﾏقﾀﾒټذﾑصﾅﾇتցｶՁٯըﾇյࢪﾆւﾌيء֍հؿｾﷺﾏｵխشؼփوﾐﾁچպﾓغտշؼｿսⵠքمմﾘشگ֊عքｴկكﯼﾃէﻧ՗ﾏﾅդهﾂץλֈصձչسﾚՓկﾆԷｺբﻡԷﾋՍսیﾗՠﾔﷲﾎمդｸնւռٱժｶտզﾖز﮼ｳزٮ֊ﾃՈﾄًցﾑثսｸﷲﾘյՊﾎՙيｻւՆﾆ֍լؔﾊﮕｿｱրｱﾘցՈٯｵղձ֊ｶݩբقթﾗﯾｹկ֍şըשﾒըجｹｴԶշﮮնｵｴｱز֍";
 
 const MatrixRain = () => {
   const canvasRef = useRef(null);
-  const textColor = useColorModeValue("rgba(0, 0, 0, 0.7)", "rgba(255, 255, 255, 0.7)");
-  const fadeColor = useColorModeValue("rgba(255, 255, 255, 0.05)", "rgba(0, 0, 0, 0.05)");
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -48,8 +46,8 @@ const MatrixRain = () => {
     
     // Animation loop
     const draw = () => {
-      // Add semi-transparent background rectangle to create fade effect
-      ctx.fillStyle = fadeColor;
+      // Add semi-transparent black rectangle to create fade effect
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Set text properties
@@ -71,8 +69,8 @@ const MatrixRain = () => {
           // Calculate opacity based on position (head of trail is brighter)
           const opacity = j === 0 ? 0.9 : 0.9 - (j / text.length * 0.7);
           
-          // Set color for this character with varying opacity
-          ctx.fillStyle = textColor.replace("0.7", opacity.toString());
+          // Set color for this character (white with varying opacity)
+          ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
           
           // Draw the character
           ctx.fillText(char, i * fontSize, y);
@@ -99,7 +97,7 @@ const MatrixRain = () => {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [textColor, fadeColor]);
+  }, []);
 
   return (
     <Box 

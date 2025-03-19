@@ -5,12 +5,12 @@ import Portfolio from "./pages/Portfolio.jsx";
 import Disclaimer from "./pages/Disclaimer.jsx";
 import Thesis from "./pages/Thesis.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import ColorModeToggle from "./components/ColorModeToggle.jsx";
+import ThemeToggle from "./components/ThemeToggle.jsx";
 
 function App() {
   return (
     <Router>
-      <ColorModeToggle />
+      <ThemeToggle />
       <Routes>
         <Route exact path="/" element={<Index />} />
         <Route path="/portfolio" element={<Portfolio />} />
