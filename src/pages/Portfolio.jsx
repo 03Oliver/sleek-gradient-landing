@@ -12,8 +12,7 @@ import {
   Divider,
   useMediaQuery,
   useColorModeValue,
-  Tag,
-  Tooltip
+  Tag
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -155,50 +154,49 @@ const Portfolio = () => {
             mt={2}
           >
             {investments.map((investment, index) => (
-              <Tooltip key={index} label={investment.name + (investment.subheading ? ` (${investment.subheading})` : "")} placement="top" hasArrow>
-                <Link 
-                  href={investment.url} 
-                  isExternal 
-                  _hover={{ textDecoration: "none", transform: "scale(1.05)" }}
-                  transition="transform 0.2s"
+              <Link 
+                key={index}
+                href={investment.url} 
+                isExternal 
+                _hover={{ textDecoration: "none", transform: "scale(1.05)" }}
+                transition="transform 0.2s"
+              >
+                <Box
+                  p={3}
+                  borderRadius="md"
+                  bg="rgba(30, 30, 30, 0.6)"
+                  borderLeft={`3px solid ${investment.color}`}
+                  backdropFilter="blur(10px)"
+                  boxShadow="lg"
+                  minWidth="180px"
+                  height="60px"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  textAlign="center"
+                  fontSize="sm"
+                  fontWeight="medium"
+                  color="white"
+                  transition="all 0.2s"
+                  _hover={{ 
+                    bg: "rgba(40, 40, 40, 0.7)",
+                    boxShadow: "xl"
+                  }}
                 >
-                  <Box
-                    p={3}
-                    borderRadius="md"
-                    bg="rgba(30, 30, 30, 0.6)"
-                    borderLeft={`3px solid ${investment.color}`}
-                    backdropFilter="blur(10px)"
-                    boxShadow="lg"
-                    minWidth="180px"
-                    height="60px"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    textAlign="center"
-                    fontSize="sm"
-                    fontWeight="medium"
-                    color="white"
-                    transition="all 0.2s"
-                    _hover={{ 
-                      bg: "rgba(40, 40, 40, 0.7)",
-                      boxShadow: "xl"
-                    }}
-                  >
-                    <VStack spacing={0} w="100%">
-                      <Text>{investment.name}</Text>
-                      {investment.subheading && (
-                        <Text 
-                          fontSize="xs" 
-                          color="whiteAlpha.700" 
-                          mt="0 !important"
-                        >
-                          ({investment.subheading})
-                        </Text>
-                      )}
-                    </VStack>
-                  </Box>
-                </Link>
-              </Tooltip>
+                  <VStack spacing={0} w="100%">
+                    <Text>{investment.name}</Text>
+                    {investment.subheading && (
+                      <Text 
+                        fontSize="xs" 
+                        color="whiteAlpha.700" 
+                        mt="0 !important"
+                      >
+                        ({investment.subheading})
+                      </Text>
+                    )}
+                  </VStack>
+                </Box>
+              </Link>
             ))}
           </Flex>
           

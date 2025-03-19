@@ -81,7 +81,7 @@ const Thesis = () => {
   const subheadingIndexRef = useRef(0);
   const [isHeaderTypingComplete, setIsHeaderTypingComplete] = useState(false);
   const [isBodyTypingComplete, setIsBodyTypingComplete] = useState(false);
-  const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const [isMobile, isMobileSet] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   
   const bgGradient = useColorModeValue(
@@ -90,6 +90,18 @@ const Thesis = () => {
   );
   const borderColor = useColorModeValue("blue.400", "blue.400");
   const glowColor = useColorModeValue("0 0 20px #0EA5E9", "0 0 20px #0EA5E9");
+
+  useEffect(() => {
+    const checkMobile = () => {
+      isMobileSet(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const hasShownAnimation = sessionStorage.getItem("hasAnimatedThesis");
@@ -393,6 +405,8 @@ const Thesis = () => {
     
     if (!isMobile) {
       document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
     }
     
     return () => {
@@ -644,4 +658,3 @@ const Thesis = () => {
 };
 
 export default Thesis;
-
