@@ -13,7 +13,8 @@ import {
   Divider,
   useColorModeValue,
   SimpleGrid,
-  HStack
+  HStack,
+  Center
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { 
@@ -216,40 +217,6 @@ const Thesis = () => {
     return <Cpu size={18} color="#60a5fa" style={{ flexShrink: 0 }} />;
   };
 
-  const renderThesisItems = (text) => {
-    const items = text.split(" // ");
-    const itemsPerColumn = Math.ceil(items.length / 3);
-    
-    const column1 = items.slice(0, itemsPerColumn);
-    const column2 = items.slice(itemsPerColumn, itemsPerColumn * 2);
-    const column3 = items.slice(itemsPerColumn * 2);
-    
-    return (
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3} mt={6} width="100%">
-        <VStack spacing={3} 
-          animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
-          transition="all 0.3s"
-        >
-          {column1.map((item, index) => renderThesisItem(item, index))}
-        </VStack>
-        
-        <VStack spacing={3} 
-          animation={hasAnimated ? `${scrollUp} 60s linear infinite alternate` : "none"}
-          transition="all 0.3s"
-        >
-          {column2.map((item, index) => renderThesisItem(item, index))}
-        </VStack>
-        
-        <VStack spacing={3} 
-          animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
-          transition="all 0.3s"
-        >
-          {column3.map((item, index) => renderThesisItem(item, index))}
-        </VStack>
-      </SimpleGrid>
-    );
-  };
-  
   const renderThesisItem = (item, index) => {
     const duration = getRandomDuration();
     const delay = getRandomDelay();
@@ -299,6 +266,78 @@ const Thesis = () => {
     );
   };
 
+  const renderThesisItems = (text) => {
+    const items = text.split(" // ");
+    
+    if (isMobile) {
+      const itemsPerColumn = Math.ceil(items.length / 3);
+      
+      const column1 = items.slice(0, itemsPerColumn);
+      const column2 = items.slice(itemsPerColumn, itemsPerColumn * 2);
+      const column3 = items.slice(itemsPerColumn * 2);
+      
+      return (
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3} mt={6} width="100%">
+          <VStack spacing={3} 
+            animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
+            transition="all 0.3s"
+          >
+            {column1.map((item, index) => renderThesisItem(item, index))}
+          </VStack>
+          
+          <VStack spacing={3} 
+            animation={hasAnimated ? `${scrollUp} 60s linear infinite alternate` : "none"}
+            transition="all 0.3s"
+          >
+            {column2.map((item, index) => renderThesisItem(item, index))}
+          </VStack>
+          
+          <VStack spacing={3} 
+            animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
+            transition="all 0.3s"
+          >
+            {column3.map((item, index) => renderThesisItem(item, index))}
+          </VStack>
+        </SimpleGrid>
+      );
+    } else {
+      return (
+        <Box 
+          position="absolute" 
+          top="0" 
+          left="0" 
+          right="0" 
+          bottom="0" 
+          overflow="hidden"
+          zIndex="0"
+        >
+          <SimpleGrid 
+            columns={5} 
+            spacing={3} 
+            width="120%" 
+            height="120%"
+            position="absolute"
+            top="-10%"
+            left="-10%"
+          >
+            {items.map((item, index) => {
+              const isEvenColumn = Math.floor(index / Math.ceil(items.length / 5)) % 2 === 0;
+              return (
+                <Box 
+                  key={index}
+                  animation={isEvenColumn ? `${scrollDown} 120s linear infinite` : `${scrollUp} 120s linear infinite`}
+                  transition="all 0.3s"
+                >
+                  {renderThesisItem(item, index)}
+                </Box>
+              );
+            })}
+          </SimpleGrid>
+        </Box>
+      );
+    }
+  };
+
   return (
     <Container 
       centerContent 
@@ -313,84 +352,177 @@ const Thesis = () => {
       pt={8}
       px={0}
       overflowX="hidden"
+      position="relative"
     >
-      <VStack spacing={6} width="100%" flex="1" maxW="1200px" px={4}>
-        <Box textAlign="center" mb={2}>
-          <Flex alignItems="center" justifyContent="center">
-            <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-              <Box 
-                as="pre" 
-                fontSize={{ base: "2xl", md: "4xl" }}
-                fontWeight="bold" 
-                whiteSpace="nowrap" 
-                overflow="hidden" 
-                borderRight={isHeaderTypingComplete ? "none" : "2px solid"}
-                animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
-                color="white"
-                letterSpacing="tight"
-              >
-                {headerText}
+      {!isMobile && renderThesisItems("supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy")}
+
+      <VStack 
+        spacing={6} 
+        width="100%" 
+        flex="1" 
+        maxW="1200px" 
+        px={4}
+        position={isMobile ? "static" : "relative"}
+        zIndex={isMobile ? "auto" : 10}
+        h={isMobile ? "auto" : "100vh"}
+        justifyContent={isMobile ? "flex-start" : "center"}
+      >
+        {isMobile ? (
+          <>
+            <Box textAlign="center" mb={2}>
+              <Flex alignItems="center" justifyContent="center">
+                <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
+                <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+                  <Box 
+                    as="pre" 
+                    fontSize={{ base: "2xl", md: "4xl" }}
+                    fontWeight="bold" 
+                    whiteSpace="nowrap" 
+                    overflow="hidden" 
+                    borderRight={isHeaderTypingComplete ? "none" : "2px solid"}
+                    animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+                    color="white"
+                    letterSpacing="tight"
+                  >
+                    {headerText}
+                  </Box>
+                </Link>
+              </Flex>
+            </Box>
+
+            <VStack spacing={6} width="100%" maxW="1200px" px={{ base: 4, md: 6 }} textAlign="center">
+              <Box>
+                <Badge 
+                  colorScheme="blue" 
+                  fontSize="md" 
+                  py={1} 
+                  px={3} 
+                  borderRadius="full"
+                  textTransform="lowercase"
+                  letterSpacing="wider"
+                  animation={isBodyTypingComplete ? "none" : `${blink} 0.75s step-end infinite`}
+                >
+                  {subheadingText}
+                </Badge>
               </Box>
-            </Link>
-          </Flex>
-        </Box>
 
-        <VStack spacing={6} width="100%" maxW="1200px" px={{ base: 4, md: 6 }} textAlign="center">
-          <Box>
-            <Badge 
-              colorScheme="blue" 
-              fontSize="md" 
-              py={1} 
-              px={3} 
-              borderRadius="full"
-              textTransform="lowercase"
-              letterSpacing="wider"
-              animation={isBodyTypingComplete ? "none" : `${blink} 0.75s step-end infinite`}
+              <Text 
+                fontSize={{ base: "sm", md: "md" }} 
+                mb={4} 
+                whiteSpace="pre-wrap" 
+                lineHeight="1.6"
+                maxW="800px"
+                fontWeight="medium"
+                letterSpacing="wide"
+              >
+                {bodyText}
+              </Text>
+
+              <Divider maxW="200px" borderColor="blue.400" opacity="0.3" />
+
+              <Box width="100%" overflow="hidden">
+                {isMobile && renderThesisItems("supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy")}
+              </Box>
+            </VStack>
+          </>
+        ) : (
+          <Center 
+            height="100vh" 
+            width="100%" 
+            position="relative" 
+            zIndex="10"
+          >
+            <Box 
+              p={8} 
+              borderRadius="lg" 
+              bg="rgba(0,0,0,0.7)" 
+              backdropFilter="blur(8px)" 
+              maxW="600px" 
+              textAlign="center"
+              boxShadow="dark-lg"
             >
-              {subheadingText}
-            </Badge>
-          </Box>
+              <Flex alignItems="center" justifyContent="center" mb={4}>
+                <Image src="/favicon.ico" alt="Favicon" boxSize="30px" mr={3} />
+                <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+                  <Box 
+                    as="pre" 
+                    fontSize="4xl"
+                    fontWeight="bold" 
+                    whiteSpace="nowrap" 
+                    overflow="hidden" 
+                    borderRight={isHeaderTypingComplete ? "none" : "2px solid"}
+                    animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+                    color="white"
+                    letterSpacing="tight"
+                  >
+                    {headerText}
+                  </Box>
+                </Link>
+              </Flex>
 
-          <Text 
-            fontSize={{ base: "sm", md: "md" }} 
-            mb={4} 
-            whiteSpace="pre-wrap" 
-            lineHeight="1.6"
-            maxW="800px"
-            fontWeight="medium"
-            letterSpacing="wide"
-          >
-            {bodyText}
-          </Text>
+              <Box mb={4}>
+                <Badge 
+                  colorScheme="blue" 
+                  fontSize="lg" 
+                  py={1} 
+                  px={4} 
+                  borderRadius="full"
+                  textTransform="lowercase"
+                  letterSpacing="wider"
+                  animation={isBodyTypingComplete ? "none" : `${blink} 0.75s step-end infinite`}
+                >
+                  {subheadingText}
+                </Badge>
+              </Box>
 
-          <Divider maxW="200px" borderColor="blue.400" opacity="0.3" />
+              <Text 
+                fontSize="md" 
+                mb={6} 
+                whiteSpace="pre-wrap" 
+                lineHeight="1.8"
+                fontWeight="medium"
+                letterSpacing="wide"
+              >
+                {bodyText}
+              </Text>
+            </Box>
+          </Center>
+        )}
 
-          <Box width="100%" overflow="hidden">
-            {renderThesisItems("supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy")}
-          </Box>
-
-          <Flex 
-            wrap="wrap" 
-            justify="center" 
-            gap={3} 
-            mt={8}
-            borderTop="1px solid"
-            borderColor="whiteAlpha.200"
-            pt={4}
-            width="100%"
-            maxW="600px"
-          >
-            <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
-            <Text color="whiteAlpha.600">//</Text>
-            <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-            <Text color="whiteAlpha.600">//</Text>
-            <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-          </Flex>
-        </VStack>
+        <Flex 
+          wrap="wrap" 
+          justify="center" 
+          gap={3} 
+          mt={isMobile ? 8 : 0}
+          borderTop="1px solid"
+          borderColor="whiteAlpha.200"
+          pt={4}
+          width="100%"
+          maxW="600px"
+          position={isMobile ? "static" : "absolute"}
+          bottom={isMobile ? "auto" : "20px"}
+          zIndex="10"
+        >
+          <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
+          <Text color="whiteAlpha.600">//</Text>
+          <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+          <Text color="whiteAlpha.600">//</Text>
+          <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
+        </Flex>
       </VStack>
 
-      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
+      <Box 
+        as="footer" 
+        py={4} 
+        textAlign="center" 
+        fontSize="xs" 
+        color="whiteAlpha.600" 
+        width="100%"
+        position={isMobile ? "static" : "absolute"}
+        bottom={0}
+        zIndex="10"
+        bg={isMobile ? "transparent" : "rgba(0,0,0,0.3)"}
+      >
         built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
       </Box>
     </Container>
