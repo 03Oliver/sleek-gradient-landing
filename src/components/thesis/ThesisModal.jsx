@@ -34,10 +34,10 @@ const ThesisModal = ({ isOpen, onClose, getIconForThesisItem }) => {
           },
           "&::-webkit-scrollbar-thumb": {
             borderRadius: "8px",
-            backgroundColor: "rgba(100, 100, 255, 0.3)"
+            backgroundColor: "rgba(255, 255, 255, 0.5)"
           },
           "&::-webkit-scrollbar-thumb:hover": {
-            backgroundColor: "rgba(100, 100, 255, 0.5)"
+            backgroundColor: "rgba(255, 255, 255, 0.7)"
           }
         }}
       >
@@ -58,10 +58,10 @@ const ThesisModal = ({ isOpen, onClose, getIconForThesisItem }) => {
             },
             "&::-webkit-scrollbar-thumb": {
               borderRadius: "8px",
-              backgroundColor: "rgba(100, 100, 255, 0.3)"
+              backgroundColor: "rgba(255, 255, 255, 0.5)"
             },
             "&::-webkit-scrollbar-thumb:hover": {
-              backgroundColor: "rgba(100, 100, 255, 0.5)"
+              backgroundColor: "rgba(255, 255, 255, 0.7)"
             }
           }}
         >
