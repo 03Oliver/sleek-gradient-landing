@@ -1,3 +1,4 @@
+
 import { 
   Box, 
   Container, 
@@ -14,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { Brain, AlertTriangle, Building } from "lucide-react";
+import { Brain, AlertTriangle, Building, PoundSterling } from "lucide-react";
 
 const typing = keyframes`
   from { width: 0 }
@@ -129,10 +130,19 @@ const Disclaimer = () => {
             
             <Box h={6} />
             
-            <HStack align="flex-start" spacing={4} pl={8}>
+            <HStack align="flex-start" spacing={4}>
               <Building size={20} color="#718096" style={{ marginTop: '4px', flexShrink: 0 }} />
               <Text>
                 collective vc ltd - 14226589 - sic 64303
+              </Text>
+            </HStack>
+            
+            <Box h={6} />
+            
+            <HStack align="flex-start" spacing={4}>
+              <PoundSterling size={20} color="#781c44" style={{ marginTop: '4px', flexShrink: 0 }} />
+              <Text>
+                not fca regulated - not offering investment services or advice.
               </Text>
             </HStack>
           </Box>
