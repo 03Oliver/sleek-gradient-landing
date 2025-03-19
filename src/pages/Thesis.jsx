@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
@@ -14,10 +13,7 @@ import {
   Divider,
   useColorModeValue,
   SimpleGrid,
-  HStack,
-  Center,
-  Heading,
-  Stack
+  HStack
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { 
@@ -229,45 +225,24 @@ const Thesis = () => {
     const column3 = items.slice(itemsPerColumn * 2);
     
     return (
-      <SimpleGrid 
-        columns={{ base: 1, md: 3 }} 
-        spacing={3} 
-        width="100%" 
-        height={{ base: "auto", md: "100vh" }}
-        position="relative"
-      >
-        <VStack 
-          spacing={3} 
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3} mt={6} width="100%">
+        <VStack spacing={3} 
           animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
           transition="all 0.3s"
-          height={{ base: "auto", md: "100%" }}
-          overflow="hidden"
-          pt={{ base: 0, md: 20 }}
-          pb={{ base: 0, md: 20 }}
         >
           {column1.map((item, index) => renderThesisItem(item, index))}
         </VStack>
         
-        <VStack 
-          spacing={3} 
+        <VStack spacing={3} 
           animation={hasAnimated ? `${scrollUp} 60s linear infinite alternate` : "none"}
           transition="all 0.3s"
-          height={{ base: "auto", md: "100%" }}
-          overflow="hidden"
-          pt={{ base: 0, md: 20 }}
-          pb={{ base: 0, md: 20 }}
         >
           {column2.map((item, index) => renderThesisItem(item, index))}
         </VStack>
         
-        <VStack 
-          spacing={3} 
+        <VStack spacing={3} 
           animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
           transition="all 0.3s"
-          height={{ base: "auto", md: "100%" }}
-          overflow="hidden"
-          pt={{ base: 0, md: 20 }}
-          pb={{ base: 0, md: 20 }}
         >
           {column3.map((item, index) => renderThesisItem(item, index))}
         </VStack>
@@ -338,25 +313,9 @@ const Thesis = () => {
       pt={8}
       px={0}
       overflowX="hidden"
-      position="relative"
     >
-      <Box
-        position={{ base: "relative", md: "absolute" }}
-        top={{ base: "auto", md: "50%" }}
-        left={{ base: "auto", md: "50%" }}
-        transform={{ base: "none", md: "translate(-50%, -50%)" }}
-        zIndex="10"
-        bg="rgba(0,0,0,0.85)"
-        borderRadius="xl"
-        p={{ base: 4, md: 8 }}
-        backdropFilter="blur(8px)"
-        boxShadow="0 0 30px rgba(14, 165, 233, 0.2)"
-        textAlign="center"
-        width={{ base: "90%", md: "auto" }}
-        maxW={{ base: "100%", md: "600px" }}
-        mb={{ base: 6, md: 0 }}
-      >
-        <VStack spacing={6}>
+      <VStack spacing={6} width="100%" flex="1" maxW="1200px" px={4}>
+        <Box textAlign="center" mb={2}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
             <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
@@ -375,7 +334,9 @@ const Thesis = () => {
               </Box>
             </Link>
           </Flex>
+        </Box>
 
+        <VStack spacing={6} width="100%" maxW="1200px" px={{ base: 4, md: 6 }} textAlign="center">
           <Box>
             <Badge 
               colorScheme="blue" 
@@ -393,6 +354,7 @@ const Thesis = () => {
 
           <Text 
             fontSize={{ base: "sm", md: "md" }} 
+            mb={4} 
             whiteSpace="pre-wrap" 
             lineHeight="1.6"
             maxW="800px"
@@ -401,42 +363,34 @@ const Thesis = () => {
           >
             {bodyText}
           </Text>
+
+          <Divider maxW="200px" borderColor="blue.400" opacity="0.3" />
+
+          <Box width="100%" overflow="hidden">
+            {renderThesisItems("supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy")}
+          </Box>
+
+          <Flex 
+            wrap="wrap" 
+            justify="center" 
+            gap={3} 
+            mt={8}
+            borderTop="1px solid"
+            borderColor="whiteAlpha.200"
+            pt={4}
+            width="100%"
+            maxW="600px"
+          >
+            <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
+          </Flex>
         </VStack>
-      </Box>
+      </VStack>
 
-      <Box width="100%" height={{ base: "auto", md: "100vh" }} overflow="hidden" position="relative">
-        {renderThesisItems("supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy")}
-      </Box>
-
-      <Box 
-        as="footer" 
-        py={4} 
-        textAlign="center" 
-        fontSize="xs" 
-        color="whiteAlpha.600" 
-        width="100%"
-        position="fixed"
-        bottom="0"
-        left="0"
-        bg="rgba(0,0,0,0.6)"
-        backdropFilter="blur(4px)"
-        zIndex="5"
-      >
-        <Flex 
-          wrap="wrap" 
-          justify="center" 
-          gap={3}
-          width="100%"
-          maxW="600px"
-          mx="auto"
-          mb={2}
-        >
-          <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
-          <Text color="whiteAlpha.600">//</Text>
-          <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-          <Text color="whiteAlpha.600">//</Text>
-          <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-        </Flex>
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
         built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
       </Box>
     </Container>
