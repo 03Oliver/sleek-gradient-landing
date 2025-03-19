@@ -12,9 +12,11 @@ import {
   Badge,
   Divider,
   useColorModeValue,
-  SimpleGrid
+  SimpleGrid,
+  HStack
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import { Zap, Lightbulb, Leaf, Cpu, Atom, Droplet, Wind, BarChart, Database } from "lucide-react";
 
 const typing = keyframes`
   from { width: 0 }
@@ -159,6 +161,21 @@ const Thesis = () => {
     return (1.6 + Math.random() * 2.4).toFixed(2);
   };
 
+  const getRandomIcon = () => {
+    const icons = [
+      <Leaf size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
+      <Cpu size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
+      <Zap size={18} color="#fbbf24" style={{ flexShrink: 0 }} />,
+      <Atom size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
+      <Droplet size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
+      <Wind size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
+      <Lightbulb size={18} color="#fcd34d" style={{ flexShrink: 0 }} />,
+      <BarChart size={18} color="#f87171" style={{ flexShrink: 0 }} />,
+      <Database size={18} color="#c084fc" style={{ flexShrink: 0 }} />
+    ];
+    return icons[Math.floor(Math.random() * icons.length)];
+  };
+
   const renderThesisItems = (text) => {
     const items = text.split(" // ");
     const itemsPerColumn = Math.ceil(items.length / 3);
@@ -198,6 +215,7 @@ const Thesis = () => {
     const delay = getRandomDelay();
     const pulseDelay = getRandomPulseDelay();
     const pulseDuration = getRandomPulseDuration();
+    const randomIcon = getRandomIcon();
     
     return (
       <Box 
@@ -227,13 +245,16 @@ const Thesis = () => {
         fontSize="xs"
         width="100%"
       >
-        <Text 
-          fontSize="sm" 
-          fontWeight="medium"
-          letterSpacing="wide"
-        >
-          {item}
-        </Text>
+        <HStack align="flex-start" spacing={2}>
+          {randomIcon}
+          <Text 
+            fontSize="sm" 
+            fontWeight="medium"
+            letterSpacing="wide"
+          >
+            {item}
+          </Text>
+        </HStack>
       </Box>
     );
   };
