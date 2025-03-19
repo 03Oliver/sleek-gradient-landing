@@ -14,14 +14,22 @@ import {
   useColorModeValue,
   SimpleGrid,
   HStack,
-  Center
+  Center,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { 
   Zap, Lightbulb, Leaf, Cpu, Atom, Droplet, Wind, BarChart, Database,
   Network, Code, CircuitBoard, Server, HardDrive, TreeDeciduous, Flower,
   Sprout, Battery, Plug, PlugZap, Sun, SunMoon, Waves, Fish, Router,
-  Terminal, Microchip, Shrub, Flower2, Clover, TreePalm, TreePine
+  Terminal, Microchip, Shrub, Flower2, Clover, TreePalm, TreePine, ListPlus
 } from "lucide-react";
 
 const typing = keyframes`
@@ -74,6 +82,8 @@ const Thesis = () => {
   const [isHeaderTypingComplete, setIsHeaderTypingComplete] = useState(false);
   const [isBodyTypingComplete, setIsBodyTypingComplete] = useState(false);
   const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  
   const bgGradient = useColorModeValue(
     "linear(to-r, gray.900, gray.800, gray.900)",
     "linear(to-r, gray.900, gray.800, gray.900)"
@@ -266,6 +276,8 @@ const Thesis = () => {
     );
   };
 
+  const thesisItemsList = "supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy";
+
   const renderThesisItems = (text) => {
     const items = text.split(" // ");
     
@@ -325,7 +337,7 @@ const Thesis = () => {
               return (
                 <Box 
                   key={index}
-                  animation={isEvenColumn ? `${scrollDown} 60s linear infinite` : `${scrollUp} 60s linear infinite`}
+                  animation={isEvenColumn ? `${scrollDown} 30s linear infinite` : `${scrollUp} 30s linear infinite`}
                   transition="all 0.3s"
                 >
                   {renderThesisItem(item, index)}
@@ -336,6 +348,44 @@ const Thesis = () => {
         </Box>
       );
     }
+  };
+
+  const renderFullListModal = () => {
+    const items = thesisItemsList.split(" // ");
+    
+    return (
+      <Modal isOpen={isOpen} onClose={onClose} size="xl" scrollBehavior="inside">
+        <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(8px)" />
+        <ModalContent bg="gray.900" color="white" borderColor="blue.400" borderWidth="1px">
+          <ModalHeader fontSize="xl" fontWeight="bold">
+            <Flex align="center">
+              <ListPlus size={20} style={{ marginRight: "10px" }} />
+              Full List of Climate Focus Areas
+            </Flex>
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3} mb={4}>
+              {items.map((item, index) => (
+                <HStack 
+                  key={index} 
+                  p={2}
+                  bg="rgba(0,0,0,0.3)"
+                  borderRadius="md"
+                  borderLeft="3px solid"
+                  borderColor="blue.400"
+                >
+                  {getIconForThesisItem(item)}
+                  <Text fontSize="sm" fontWeight="medium">
+                    {item}
+                  </Text>
+                </HStack>
+              ))}
+            </SimpleGrid>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    );
   };
 
   return (
@@ -354,7 +404,7 @@ const Thesis = () => {
       overflowX="hidden"
       position="relative"
     >
-      {!isMobile && renderThesisItems("supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy")}
+      {!isMobile && renderThesisItems(thesisItemsList)}
 
       <VStack 
         spacing={6} 
@@ -431,6 +481,7 @@ const Thesis = () => {
             width="100%" 
             position="relative" 
             zIndex="10"
+            pointerEvents="none"
           >
             <Box 
               p={8} 
@@ -442,6 +493,7 @@ const Thesis = () => {
               boxShadow="dark-lg"
               display="flex"
               flexDirection="column"
+              pointerEvents="auto"
             >
               <Flex alignItems="center" justifyContent="center" mb={4}>
                 <Image src="/favicon.ico" alt="Favicon" boxSize="30px" mr={3} />
@@ -479,7 +531,7 @@ const Thesis = () => {
 
               <Text 
                 fontSize="md" 
-                mb={6} 
+                mb={4} 
                 whiteSpace="pre-wrap" 
                 lineHeight="1.8"
                 fontWeight="medium"
@@ -487,6 +539,18 @@ const Thesis = () => {
               >
                 {bodyText}
               </Text>
+              
+              <Button 
+                variant="outline" 
+                colorScheme="blue" 
+                size="sm" 
+                rightIcon={<ListPlus size={16} />}
+                mb={6}
+                onClick={onOpen}
+                alignSelf="center"
+              >
+                View Full List
+              </Button>
               
               <Box mt="auto">
                 <Flex 
@@ -560,6 +624,8 @@ const Thesis = () => {
           {/* Removed the footer from here since it's now in the central box */}
         </Box>
       )}
+      
+      {renderFullListModal()}
     </Container>
   );
 };
