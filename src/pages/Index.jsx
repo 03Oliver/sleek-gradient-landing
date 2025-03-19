@@ -1,10 +1,9 @@
-
 import { useEffect, useState, useRef } from "react";
 import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center } from "@chakra-ui/react";
 import { FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import MatrixRain from "../components/MatrixRain";
-import { BookmarkCheck, Mail } from "lucide-react";
+import { Bookmark, Mail } from "lucide-react";
 
 const typing = keyframes`
   from { width: 0 }
@@ -40,11 +39,9 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    // Check if animation has already played this session
     const hasAnimationPlayed = sessionStorage.getItem('animationPlayed');
 
     if (hasAnimationPlayed) {
-      // If animation has played, set the complete text immediately
       setHeaderText(fullHeaderText);
       setBodyText(fullBodyText + oliverText + remainingText);
       setIsTypingComplete(true);
@@ -60,7 +57,6 @@ const Index = () => {
       }
     }, 50);
 
-    // Mark animation as played
     sessionStorage.setItem('animationPlayed', 'true');
 
     return () => clearInterval(headerInterval);
@@ -92,7 +88,6 @@ const Index = () => {
       p={0}
       position="relative"
     >
-      {/* Matrix Rain Effect */}
       <MatrixRain />
       
       <Center 
@@ -169,7 +164,6 @@ const Index = () => {
               </Text>
             </Box>
 
-            {/* Navigation Links with Horizontal Line Separators */}
             <Flex 
               wrap="wrap" 
               justify="center" 
@@ -198,7 +192,7 @@ const Index = () => {
               </Link>
 
               <Link href="https://collectivevc.substack.com" isExternal>
-                <Box as={BookmarkCheck} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={Bookmark} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
               </Link>
 
               <Link href="mailto:oliver@collective.vc" isExternal>
