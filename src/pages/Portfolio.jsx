@@ -1,11 +1,9 @@
-
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
   Link, 
   Box, 
   Text, 
-  keyframes, 
   Flex, 
   Image, 
   VStack, 
@@ -16,12 +14,7 @@ import {
   Badge
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import { blink } from "../components/thesis/AnimationKeyframes";
-
-const typing = keyframes`
-  from { width: 0 }
-  to { width: 100% }
-`;
+import { typing, blink, badgeBlink } from "../components/thesis/AnimationKeyframes";
 
 const Portfolio = () => {
   const [headerText, setHeaderText] = useState("");
@@ -84,11 +77,9 @@ const Portfolio = () => {
   ];
 
   useEffect(() => {
-    // Check if animation has already played this session
     const hasAnimationPlayed = sessionStorage.getItem('animationPlayedPortfolio');
 
     if (hasAnimationPlayed) {
-      // If animation has played, set the complete text immediately
       setHeaderText(fullHeaderText);
       setSubheadingText(fullSubheadingText);
       setIsHeaderTypingComplete(true);
@@ -117,7 +108,6 @@ const Portfolio = () => {
         clearInterval(subheadingInterval);
         setIsSubheadingTypingComplete(true);
         
-        // Mark animation as played
         sessionStorage.setItem('animationPlayedPortfolio', 'true');
       }
     }, 50);

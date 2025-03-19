@@ -35,3 +35,7 @@ export const scrollUp = keyframes`
   0% { transform: translateY(0); }
   100% { transform: translateY(-40px); }
 `;
+
+export const badgeBlink = keyframes`
+  50% { opacity: 0.7; }
+`;

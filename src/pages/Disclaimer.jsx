@@ -1,4 +1,3 @@
-
 import { 
   Box, 
   Container, 
@@ -9,7 +8,6 @@ import {
   VStack, 
   Divider,
   useColorModeValue,
-  keyframes,
   useMediaQuery,
   HStack,
   Badge
@@ -17,12 +15,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { Brain, AlertTriangle, Building, PoundSterling } from "lucide-react";
-import { blink } from "../components/thesis/AnimationKeyframes";
-
-const typing = keyframes`
-  from { width: 0 }
-  to { width: 100% }
-`;
+import { typing, blink, badgeBlink } from "../components/thesis/AnimationKeyframes";
 
 const Disclaimer = () => {
   const [headerText, setHeaderText] = useState("");

@@ -3,22 +3,13 @@ import { useState, useRef, useEffect } from "react";
 import { 
   Box, 
   Text, 
-  keyframes, 
   Flex, 
   Image, 
   Badge,
   Link
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-
-const typing = keyframes`
-  from { width: 0 }
-  to { width: 100% }
-`;
-
-const blink = keyframes`
-  50% { border-color: transparent }
-`;
+import { typing, blink } from "./AnimationKeyframes";
 
 const ThesisHeader = ({ 
   headerText, 
