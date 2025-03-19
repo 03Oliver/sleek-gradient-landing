@@ -51,12 +51,12 @@ const pulse = keyframes`
 
 const scrollDown = keyframes`
   0% { transform: translateY(0); }
-  100% { transform: translateY(20px); }
+  100% { transform: translateY(40px); }
 `;
 
 const scrollUp = keyframes`
   0% { transform: translateY(0); }
-  100% { transform: translateY(-20px); }
+  100% { transform: translateY(-40px); }
 `;
 
 const Thesis = () => {
@@ -325,7 +325,7 @@ const Thesis = () => {
               return (
                 <Box 
                   key={index}
-                  animation={isEvenColumn ? `${scrollDown} 120s linear infinite` : `${scrollUp} 120s linear infinite`}
+                  animation={isEvenColumn ? `${scrollDown} 60s linear infinite` : `${scrollUp} 60s linear infinite`}
                   transition="all 0.3s"
                 >
                   {renderThesisItem(item, index)}
@@ -440,6 +440,8 @@ const Thesis = () => {
               maxW="600px" 
               textAlign="center"
               boxShadow="dark-lg"
+              display="flex"
+              flexDirection="column"
             >
               <Flex alignItems="center" justifyContent="center" mb={4}>
                 <Image src="/favicon.ico" alt="Favicon" boxSize="30px" mr={3} />
@@ -485,46 +487,79 @@ const Thesis = () => {
               >
                 {bodyText}
               </Text>
+              
+              <Box mt="auto">
+                <Flex 
+                  wrap="wrap" 
+                  justify="center" 
+                  gap={3} 
+                  mt={4}
+                  borderTop="1px solid"
+                  borderColor="whiteAlpha.200"
+                  pt={4}
+                  width="100%"
+                >
+                  <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
+                  <Text color="whiteAlpha.600">//</Text>
+                  <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+                  <Text color="whiteAlpha.600">//</Text>
+                  <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
+                </Flex>
+
+                <Box 
+                  py={4} 
+                  textAlign="center" 
+                  fontSize="xs" 
+                  color="whiteAlpha.600" 
+                  width="100%"
+                  mt={2}
+                >
+                  built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
+                </Box>
+              </Box>
             </Box>
           </Center>
         )}
 
-        <Flex 
-          wrap="wrap" 
-          justify="center" 
-          gap={3} 
-          mt={isMobile ? 8 : 0}
-          borderTop="1px solid"
-          borderColor="whiteAlpha.200"
-          pt={4}
-          width="100%"
-          maxW="600px"
-          position={isMobile ? "static" : "absolute"}
-          bottom={isMobile ? "auto" : "20px"}
-          zIndex="10"
-        >
-          <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
-          <Text color="whiteAlpha.600">//</Text>
-          <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-          <Text color="whiteAlpha.600">//</Text>
-          <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-        </Flex>
+        {isMobile && (
+          <>
+            <Flex 
+              wrap="wrap" 
+              justify="center" 
+              gap={3} 
+              mt={8}
+              borderTop="1px solid"
+              borderColor="whiteAlpha.200"
+              pt={4}
+              width="100%"
+              maxW="600px"
+            >
+              <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
+              <Text color="whiteAlpha.600">//</Text>
+              <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+              <Text color="whiteAlpha.600">//</Text>
+              <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
+            </Flex>
+
+            <Box 
+              as="footer" 
+              py={4} 
+              textAlign="center" 
+              fontSize="xs" 
+              color="whiteAlpha.600" 
+              width="100%"
+            >
+              built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
+            </Box>
+          </>
+        )}
       </VStack>
 
-      <Box 
-        as="footer" 
-        py={4} 
-        textAlign="center" 
-        fontSize="xs" 
-        color="whiteAlpha.600" 
-        width="100%"
-        position={isMobile ? "static" : "absolute"}
-        bottom={0}
-        zIndex="10"
-        bg={isMobile ? "transparent" : "rgba(0,0,0,0.3)"}
-      >
-        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
-      </Box>
+      {!isMobile && (
+        <Box style={{ display: 'none' }}>
+          {/* Removed the footer from here since it's now in the central box */}
+        </Box>
+      )}
     </Container>
   );
 };
