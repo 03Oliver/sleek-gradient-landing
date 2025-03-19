@@ -1,20 +1,12 @@
-import { Box, Container, Text, Link, Flex, Image, VStack } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+
+import { Box, Container, Text, Link, VStack } from "@chakra-ui/react";
+import Navbar from "../components/Navbar";
 
 const Disclaimer = () => {
   return (
     <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
       <VStack spacing={8} width="100%" maxW="800px" px={4} flex="1">
-        <Box textAlign="center" mb={4}>
-          <Flex alignItems="center" justifyContent="center">
-            <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-              <Box as="pre" fontSize="4xl" fontWeight="bold">
-                collective.vc
-              </Box>
-            </Link>
-          </Flex>
-        </Box>
+        <Navbar />
 
         <VStack spacing={6} textAlign="center">
           <Text>
@@ -27,14 +19,6 @@ const Disclaimer = () => {
           
           <Text>
             collective vc ltd - 14226589 - sic 64303
-          </Text>
-
-          <Text color="white">
-            <Link as={RouterLink} to="/" color="blue.300">return home</Link>
-            {" // "}
-            <Link as={RouterLink} to="/portfolio" color="blue.300">portfolio</Link>
-            {" // "}
-            <Link as={RouterLink} to="/thesis" color="blue.300">thesis</Link>
           </Text>
         </VStack>
       </VStack>

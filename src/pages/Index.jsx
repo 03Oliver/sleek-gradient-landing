@@ -1,8 +1,10 @@
+
 import { useEffect, useState, useRef } from "react";
 import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import MatrixRain from "../components/MatrixRain";
+import Navbar from "../components/Navbar";
 
 const typing = keyframes`
   from { width: 0 }
@@ -69,24 +71,7 @@ const Index = () => {
       <MatrixRain />
       
       <VStack spacing={6} flex="1" width="100%" justifyContent="center" zIndex="1">
-        <Box textAlign="center" mb={4}>
-          <Flex alignItems="center" justifyContent="center">
-            <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-              <Box 
-                as="pre" 
-                fontSize="4xl" 
-                fontWeight="bold" 
-                whiteSpace="nowrap" 
-                overflow="hidden" 
-                borderRight={isTypingComplete ? "none" : "2px solid"}
-                animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
-              >
-                {headerText}
-              </Box>
-            </Link>
-          </Flex>
-        </Box>
+        <Navbar />
         
         <Box mb={4} textAlign="center" maxW="600px" height="60px" display="flex" alignItems="center" justifyContent="center" fontFamily="Roboto, sans-serif">
           <Text 
