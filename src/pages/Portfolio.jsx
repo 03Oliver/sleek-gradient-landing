@@ -11,10 +11,7 @@ import {
   VStack, 
   Divider,
   useMediaQuery,
-  useColorModeValue,
-  SimpleGrid,
-  Circle,
-  Tooltip
+  useColorModeValue
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -37,17 +34,6 @@ const Portfolio = () => {
     "linear(to-r, gray.900, gray.800, gray.900)",
     "linear(to-r, gray.900, gray.800, gray.900)"
   );
-
-  // Investments data with colors
-  const investments = [
-    { name: "element 2 hydrogen", url: "https://element-2.co.uk/", color: "#4440e8" },
-    { name: "sustainable ventures sa7", subtitle: "accelerator batch", url: "https://www.sustainableventures.co.uk/", color: "#d0041c" },
-    { name: "stratiphy", url: "https://stratiphy.io", color: "#fcc450" },
-    { name: "otis ai", url: "https://meetotis.com/", color: "#3c8cfc" },
-    { name: "teamignite.ventures", subtitle: "fund i", url: "https://teamignite.ventures", color: "#ef5a2c" },
-    { name: "soldera", url: "https://www.soldera.org/", color: "#e0fca4" },
-    { name: "mirico", url: "https://www.mirico.co.uk/", color: "#c8141c" }
-  ];
 
   useEffect(() => {
     // Check if animation has already played this session
@@ -111,69 +97,17 @@ const Portfolio = () => {
           </Flex>
         </Box>
         
-        <VStack spacing={8} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="center">
+        <VStack spacing={6} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="center">
           <Text fontSize="lg">oliver's personal investments & deals + sweat equity & carry share (assorted)</Text>
-
-          {/* Investment Bubbles */}
-          <SimpleGrid 
-            columns={{ base: 2, sm: 3, md: 4 }} 
-            spacing={6} 
-            width="100%" 
-            justifyItems="center"
-            py={4}
-          >
-            {investments.map((investment, index) => (
-              <Tooltip 
-                key={index} 
-                label={investment.subtitle ? `${investment.name} (${investment.subtitle})` : investment.name} 
-                placement="top"
-                hasArrow
-              >
-                <Link 
-                  href={investment.url} 
-                  isExternal 
-                  _hover={{ textDecoration: 'none', transform: 'scale(1.05)' }}
-                  transition="transform 0.2s"
-                  display="flex"
-                  flexDirection="column"
-                  alignItems="center"
-                >
-                  <Circle 
-                    size={{ base: "70px", sm: "80px", md: "90px" }} 
-                    bg={`${investment.color}20`}
-                    border="2px solid"
-                    borderColor={investment.color}
-                    mb={2}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    boxShadow="0 0 15px rgba(0,0,0,0.2)"
-                    transition="all 0.3s"
-                    _hover={{ boxShadow: `0 0 20px ${investment.color}60` }}
-                  >
-                    <Text 
-                      fontSize={{ base: "xs", md: "sm" }} 
-                      fontWeight="bold" 
-                      color={investment.color}
-                      textAlign="center"
-                      px={2}
-                    >
-                      {investment.name.split(' ')[0]}
-                    </Text>
-                  </Circle>
-                  <Text 
-                    fontSize="xs" 
-                    color={investment.color}
-                    maxW="90px"
-                    textAlign="center"
-                    noOfLines={1}
-                  >
-                    {investment.name}
-                  </Text>
-                </Link>
-              </Tooltip>
-            ))}
-          </SimpleGrid>
+          <Text fontSize="md">
+            <Link href="https://element-2.co.uk/" isExternal color="#4440e8">element 2 hydrogen</Link> // {" "}
+            <Link href="https://www.sustainableventures.co.uk/" isExternal color="#d0041c">sustainable ventures sa7 (accelerator batch)</Link> // {" "}
+            <Link href="https://stratiphy.io" isExternal color="#fcc450">stratiphy</Link> // {" "}
+            <Link href="https://meetotis.com/" isExternal color="#3c8cfc">otis ai</Link> // {" "}
+            <Link href="https://teamignite.ventures" isExternal color="#ef5a2c">teamignite.ventures (fund i)</Link> // {" "}
+            <Link href="https://www.soldera.org/" isExternal color="#e0fca4">soldera</Link> // {" "}
+            <Link href="https://www.mirico.co.uk/" isExternal color="#c8141c">mirico</Link>
+          </Text>
           
           <Text fontSize="lg" mt={4}>syndicate deals</Text>
           <Text fontSize="md">coming very soon</Text>
