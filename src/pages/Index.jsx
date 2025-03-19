@@ -1,6 +1,18 @@
 
 import { useEffect, useState, useRef } from "react";
-import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center } from "@chakra-ui/react";
+import { 
+  Container, 
+  Box, 
+  Text, 
+  keyframes, 
+  Flex, 
+  Image, 
+  VStack, 
+  Link, 
+  SimpleGrid, 
+  Center,
+  useColorMode
+} from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import MatrixRain from "../components/MatrixRain";
@@ -25,6 +37,7 @@ const Index = () => {
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -85,7 +98,7 @@ const Index = () => {
       display="flex" 
       flexDirection="column" 
       bgGradient="linear(to-r, black, gray.800)" 
-      color="white" 
+      color={colorMode === "dark" ? "white" : "gray.800"} 
       fontFamily="Roboto, sans-serif" 
       overflow="hidden" 
       p={0}
@@ -103,7 +116,7 @@ const Index = () => {
         <Box 
           p={8} 
           borderRadius="lg" 
-          bg="rgba(0,0,0,0.7)" 
+          bg={colorMode === "dark" ? "rgba(0,0,0,0.7)" : "rgba(255,255,255,0.7)"} 
           backdropFilter="blur(8px)" 
           maxW="600px" 
           textAlign="center"
@@ -124,6 +137,7 @@ const Index = () => {
                     overflow="hidden" 
                     borderRight={isTypingComplete ? "none" : "2px solid"}
                     animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+                    color={colorMode === "dark" ? "white" : "gray.800"}
                   >
                     {headerText}
                   </Box>
@@ -149,6 +163,7 @@ const Index = () => {
                 position="relative"
                 letterSpacing="wide"
                 lineHeight="1.6"
+                color={colorMode === "dark" ? "white" : "gray.800"}
                 _after={{
                   content: '""',
                   position: "absolute",
@@ -156,12 +171,12 @@ const Index = () => {
                   top: 0,
                   height: "100%",
                   width: isTypingComplete ? "0" : "2px",
-                  backgroundColor: "white",
+                  backgroundColor: colorMode === "dark" ? "white" : "gray.800",
                   animation: isTypingComplete ? "none" : `${blink} 0.75s step-end infinite`
                 }}
               >
                 {bodyText.substring(0, fullBodyText.length)}
-                <Link href="https://www.linkedin.com/in/bonallack" isExternal color="blue.300">
+                <Link href="https://www.linkedin.com/in/bonallack" isExternal color={colorMode === "dark" ? "blue.300" : "blue.600"}>
                   {bodyText.substring(fullBodyText.length, fullBodyText.length + oliverText.length)}
                 </Link>
                 {bodyText.substring(fullBodyText.length + oliverText.length)}
@@ -175,39 +190,39 @@ const Index = () => {
               gap={3} 
               mt={{ base: 8, md: "auto" }}
               borderTop="1px solid"
-              borderColor="whiteAlpha.200"
+              borderColor={colorMode === "dark" ? "whiteAlpha.200" : "blackAlpha.200"}
               pt={4}
               width="100%"
               maxW={{ base: "600px", md: "100%" }}
             >
-              <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-              <Text color="whiteAlpha.600">//</Text>
-              <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-              <Text color="whiteAlpha.600">//</Text>
-              <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+              <Link as={RouterLink} to="/portfolio" color={colorMode === "dark" ? "blue.300" : "blue.600"} _hover={{ color: colorMode === "dark" ? "blue.100" : "blue.800" }}>portfolio</Link>
+              <Text color={colorMode === "dark" ? "whiteAlpha.600" : "blackAlpha.600"}>//</Text>
+              <Link as={RouterLink} to="/disclaimer" color={colorMode === "dark" ? "blue.300" : "blue.600"} _hover={{ color: colorMode === "dark" ? "blue.100" : "blue.800" }}>disclaimer</Link>
+              <Text color={colorMode === "dark" ? "whiteAlpha.600" : "blackAlpha.600"}>//</Text>
+              <Link as={RouterLink} to="/thesis" color={colorMode === "dark" ? "blue.300" : "blue.600"} _hover={{ color: colorMode === "dark" ? "blue.100" : "blue.800" }}>thesis</Link>
             </Flex>
 
             <SimpleGrid columns={{ base: 2, md: 4 }} spacing={5} textAlign="center" mt={2}>
               <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
-                <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={FaLinkedin} size="36px" color={colorMode === "dark" ? "white" : "gray.700"} _hover={{ transform: "scale(1.1)", color: colorMode === "dark" ? "blue.300" : "blue.600" }} transition="transform 0.2s, color 0.2s" />
               </Link>
 
               <Link href="https://www.youtube.com/@collectivevc" isExternal>
-                <Box as={FaYoutube} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={FaYoutube} size="36px" color={colorMode === "dark" ? "white" : "gray.700"} _hover={{ transform: "scale(1.1)", color: colorMode === "dark" ? "red.400" : "red.600" }} transition="transform 0.2s, color 0.2s" />
               </Link>
 
               <Link href="https://collectivevc.substack.com" isExternal>
-                <Box as={FaEnvelope} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={FaEnvelope} size="36px" color={colorMode === "dark" ? "white" : "gray.700"} _hover={{ transform: "scale(1.1)", color: colorMode === "dark" ? "yellow.300" : "yellow.600" }} transition="transform 0.2s, color 0.2s" />
               </Link>
 
               <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
-                <Box as={FaWhatsapp} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                <Box as={FaWhatsapp} size="36px" color={colorMode === "dark" ? "white" : "gray.700"} _hover={{ transform: "scale(1.1)", color: colorMode === "dark" ? "green.400" : "green.600" }} transition="transform 0.2s, color 0.2s" />
               </Link>
             </SimpleGrid>
           </VStack>
           
-          <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt={8}>
-            built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
+          <Box as="footer" py={4} textAlign="center" fontSize="xs" color={colorMode === "dark" ? "whiteAlpha.600" : "blackAlpha.600"} width="100%" mt={8}>
+            built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color={colorMode === "dark" ? "whiteAlpha.600" : "blackAlpha.600"}>(<b>0.04g CO₂</b>)</Link> with minimalism in mind
           </Box>
         </Box>
       </Center>
