@@ -391,12 +391,14 @@ const Thesis = () => {
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
     
-    document.body.style.overflow = "hidden";
+    if (!isMobile) {
+      document.body.style.overflow = "hidden";
+    }
     
     return () => {
       document.body.style.overflow = originalStyle;
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <Container 
@@ -412,7 +414,7 @@ const Thesis = () => {
       pt={8}
       px={0}
       overflowX="hidden"
-      overflowY="hidden"
+      overflowY={isMobile ? "auto" : "hidden"}
       position="relative"
     >
       {!isMobile && renderThesisItems(thesisItemsList)}
@@ -642,3 +644,4 @@ const Thesis = () => {
 };
 
 export default Thesis;
+
