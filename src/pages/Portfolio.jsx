@@ -169,7 +169,11 @@ const Portfolio = () => {
                     borderLeft={`3px solid ${investment.color}`}
                     backdropFilter="blur(10px)"
                     boxShadow="lg"
-                    minWidth="120px"
+                    minWidth="180px"
+                    height="60px"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
                     textAlign="center"
                     fontSize="sm"
                     fontWeight="medium"
@@ -180,7 +184,7 @@ const Portfolio = () => {
                       boxShadow: "xl"
                     }}
                   >
-                    <VStack spacing={1}>
+                    <VStack spacing={0} w="100%">
                       <Text>{investment.name}</Text>
                       {investment.subheading && (
                         <Text 
