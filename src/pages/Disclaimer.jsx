@@ -115,7 +115,7 @@ const Disclaimer = () => {
             <HStack align="flex-start" spacing={4}>
               <Brain size={20} color="#3182CE" style={{ marginTop: '4px', flexShrink: 0 }} />
               <Text>
-                this website is intended for informational purposes only and should not be seen as an invitation to invest or as a financial promotion. you should not rely on any information provided here. the content is not intended to offer, nor should it be interpreted as, any form of advice.
+                this website is for informational purposes only and should not be seen as an invitation to invest or a financial promotion. you should not rely on any information provided here. the content is not intended to offer, nor should it be interpreted as, any form of advice.
               </Text>
             </HStack>
             
@@ -124,7 +124,7 @@ const Disclaimer = () => {
             <HStack align="flex-start" spacing={4}>
               <AlertTriangle size={20} color="#E53E3E" style={{ marginTop: '4px', flexShrink: 0 }} />
               <Text>
-                please note that startup, special-purpose-vehicle (spv) and syndicate investments carry significant risks and are only suitable for experienced investors who fully understand these risks. any independent investment software platform utilised will execute all relevant checks and vetting on network members as are required by law to protect and verify the identity and experience of potential investors. it is essential to seek independent financial advice before making any investment decisions.
+                please note that startup, special-purpose vehicle (spv) and syndicate investments carry significant risks and are only suitable for experienced investors who fully understand them. any independent investment platform used will carry out required checks and verification in line with legal obligations. always seek independent financial advice before making any investment decisions.
               </Text>
             </HStack>
             
@@ -133,7 +133,7 @@ const Disclaimer = () => {
             <HStack align="flex-start" spacing={4}>
               <Building size={20} color="#718096" style={{ marginTop: '4px', flexShrink: 0 }} />
               <Text>
-                collective vc ltd - 14226589 - sic 64303
+                collective vc ltd – 14226589 – sic 64303
               </Text>
             </HStack>
             
