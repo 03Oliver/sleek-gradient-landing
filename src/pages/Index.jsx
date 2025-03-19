@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
+import MatrixRain from "../components/MatrixRain";
 
 const typing = keyframes`
   from { width: 0 }
@@ -88,7 +89,11 @@ const Index = () => {
       fontFamily="Roboto, sans-serif" 
       overflow="hidden" 
       p={0}
+      position="relative"
     >
+      {/* Matrix Rain Effect */}
+      <MatrixRain />
+      
       <Center 
         height="100vh" 
         width="100%" 
