@@ -9,7 +9,8 @@ import {
   SimpleGrid,
   HStack,
   Text,
-  Flex
+  Flex,
+  Box
 } from "@chakra-ui/react";
 import { ListPlus } from "lucide-react";
 
@@ -20,7 +21,26 @@ const ThesisModal = ({ isOpen, onClose, getIconForThesisItem }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl" scrollBehavior="inside">
       <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(8px)" />
-      <ModalContent bg="gray.900" color="white" borderColor="blue.400" borderWidth="1px">
+      <ModalContent 
+        bg="gray.900" 
+        color="white" 
+        borderColor="blue.400" 
+        borderWidth="1px"
+        sx={{
+          "&::-webkit-scrollbar": {
+            width: "6px",
+            borderRadius: "8px",
+            backgroundColor: "rgba(0, 0, 0, 0.05)"
+          },
+          "&::-webkit-scrollbar-thumb": {
+            borderRadius: "8px",
+            backgroundColor: "rgba(100, 100, 255, 0.3)"
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "rgba(100, 100, 255, 0.5)"
+          }
+        }}
+      >
         <ModalHeader fontSize="xl" fontWeight="bold">
           <Flex align="center">
             <ListPlus size={20} style={{ marginRight: "10px" }} />
@@ -28,7 +48,23 @@ const ThesisModal = ({ isOpen, onClose, getIconForThesisItem }) => {
           </Flex>
         </ModalHeader>
         <ModalCloseButton />
-        <ModalBody pb={6}>
+        <ModalBody 
+          pb={6}
+          sx={{
+            "&::-webkit-scrollbar": {
+              width: "6px",
+              borderRadius: "8px",
+              backgroundColor: "rgba(0, 0, 0, 0.05)"
+            },
+            "&::-webkit-scrollbar-thumb": {
+              borderRadius: "8px",
+              backgroundColor: "rgba(100, 100, 255, 0.3)"
+            },
+            "&::-webkit-scrollbar-thumb:hover": {
+              backgroundColor: "rgba(100, 100, 255, 0.5)"
+            }
+          }}
+        >
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3} mb={4}>
             {items.map((item, index) => (
               <HStack 
