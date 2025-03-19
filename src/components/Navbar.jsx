@@ -1,60 +1,62 @@
 
 import { useState } from "react";
-import { Box, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, VStack, Link, Flex, Image } from "@chakra-ui/react";
+import { Box, IconButton, Flex, Link, HStack, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { FaBars } from "react-icons/fa";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
+  const location = useLocation();
+  
+  // Don't render navbar on homepage
+  if (location.pathname === "/") {
+    return null;
+  }
 
   return (
     <Box position="relative" zIndex="10">
       <Flex alignItems="center" justifyContent="space-between" mb={4} width="100%">
         <Flex alignItems="center">
-          <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
           <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
             <Box as="pre" fontSize="4xl" fontWeight="bold">
               collective.vc
             </Box>
           </Link>
         </Flex>
-        <IconButton
-          icon={<FaBars />}
-          variant="ghost"
-          color="white"
-          onClick={handleToggle}
-          aria-label="Open menu"
-          _hover={{ bg: "whiteAlpha.200" }}
-        />
+        
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            icon={<FaBars />}
+            variant="ghost"
+            color="white"
+            aria-label="menu"
+            _hover={{ bg: "transparent" }}
+            _active={{ bg: "transparent" }}
+          />
+          <MenuList 
+            bg="rgba(0, 0, 0, 0.7)" 
+            backdropFilter="blur(10px)"
+            border="none"
+            boxShadow="md"
+            mt={2}
+            right={0}
+          >
+            <MenuItem as={RouterLink} to="/" bg="transparent" color="white" _hover={{ bg: "whiteAlpha.200" }}>
+              home
+            </MenuItem>
+            <MenuItem as={RouterLink} to="/portfolio" bg="transparent" color="white" _hover={{ bg: "whiteAlpha.200" }}>
+              portfolio
+            </MenuItem>
+            <MenuItem as={RouterLink} to="/disclaimer" bg="transparent" color="white" _hover={{ bg: "whiteAlpha.200" }}>
+              disclaimer
+            </MenuItem>
+            <MenuItem as={RouterLink} to="/thesis" bg="transparent" color="white" _hover={{ bg: "whiteAlpha.200" }}>
+              thesis
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
-
-      <Drawer placement="right" onClose={handleToggle} isOpen={isOpen}>
-        <DrawerOverlay />
-        <DrawerContent bg="gray.900" color="white">
-          <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth="1px">Navigation</DrawerHeader>
-          <DrawerBody>
-            <VStack spacing={4} mt={4} align="stretch">
-              <Link as={RouterLink} to="/" color="blue.300" onClick={handleToggle}>
-                Home
-              </Link>
-              <Link as={RouterLink} to="/portfolio" color="blue.300" onClick={handleToggle}>
-                Portfolio
-              </Link>
-              <Link as={RouterLink} to="/disclaimer" color="blue.300" onClick={handleToggle}>
-                Disclaimer
-              </Link>
-              <Link as={RouterLink} to="/thesis" color="blue.300" onClick={handleToggle}>
-                Thesis
-              </Link>
-            </VStack>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
     </Box>
   );
 };

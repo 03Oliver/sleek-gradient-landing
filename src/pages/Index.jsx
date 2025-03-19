@@ -4,7 +4,6 @@ import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image, VStack 
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import MatrixRain from "../components/MatrixRain";
-import Navbar from "../components/Navbar";
 
 const typing = keyframes`
   from { width: 0 }
@@ -71,7 +70,13 @@ const Index = () => {
       <MatrixRain />
       
       <VStack spacing={6} flex="1" width="100%" justifyContent="center" zIndex="1">
-        <Navbar />
+        <Box as="nav" width="100%" display="flex" justifyContent="center" mb={4}>
+          <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+            <Box as="pre" fontSize="4xl" fontWeight="bold">
+              collective.vc
+            </Box>
+          </Link>
+        </Box>
         
         <Box mb={4} textAlign="center" maxW="600px" height="60px" display="flex" alignItems="center" justifyContent="center" fontFamily="Roboto, sans-serif">
           <Text 

@@ -24,9 +24,9 @@ const MatrixRain = () => {
     for (let i = 0; i < columns; i++) {
       drops[i] = {
         y: Math.random() * -500, // Start above the canvas at random heights
-        speed: 1.5 + Math.random() * 3.5, // Faster speed (was 1-3)
-        length: 4 + Math.floor(Math.random() * 4), // Shorter trails: Random length between 4-7 chars
-        opacity: 0.05 + Math.random() * 0.25, // Slightly higher max opacity
+        speed: 1.5 + Math.random() * 3.5, // Faster speed
+        length: 3 + Math.floor(Math.random() * 3), // Even shorter trails: Random length between 3-5 chars
+        opacity: 0.025 + Math.random() * 0.1, // Reduced opacity by approximately 50%
         type: Math.random() > 0.3 ? 'fade' : 'trail', // 70% fade, 30% trail
       };
     }
@@ -38,7 +38,7 @@ const MatrixRain = () => {
 
     function draw() {
       // Semi-transparent black background with very low opacity to maintain gradient visibility
-      ctx.fillStyle = "rgba(0, 0, 0, 0.03)";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.01)"; // Reduced opacity to almost nothing to prevent fading to black
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Set character style
@@ -86,8 +86,8 @@ const MatrixRain = () => {
         // Reset drop when it goes off screen with buffer for entire string length
         if (drop.y > canvas.height + (drop.length * 20)) {
           drop.y = Math.random() * -200;
-          drop.length = 4 + Math.floor(Math.random() * 4); // Random length between 4-7
-          drop.opacity = 0.05 + Math.random() * 0.25; // Randomize opacity
+          drop.length = 3 + Math.floor(Math.random() * 3); // Random length between 3-5
+          drop.opacity = 0.025 + Math.random() * 0.1; // Keep reduced opacity
           drop.type = Math.random() > 0.3 ? 'fade' : 'trail'; // Randomize type again
           drop.speed = 1.5 + Math.random() * 3.5; // Randomize speed again
         }
