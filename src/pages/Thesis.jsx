@@ -31,6 +31,11 @@ const fadeIn = keyframes`
   to { opacity: 1; transform: translateY(0); }
 `;
 
+const unravel = keyframes`
+  0% { transform: scaleY(0); opacity: 0; }
+  100% { transform: scaleY(1); opacity: 1; }
+`;
+
 const Thesis = () => {
   const [headerText, setHeaderText] = useState("");
   const [bodyText, setBodyText] = useState("");
@@ -48,7 +53,6 @@ const Thesis = () => {
     "linear(to-r, gray.900, gray.800, gray.900)",
     "linear(to-r, gray.900, gray.800, gray.900)"
   );
-  const cardBg = useColorModeValue("rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)");
   const borderColor = useColorModeValue("blue.400", "blue.400");
 
   useEffect(() => {
@@ -87,38 +91,57 @@ const Thesis = () => {
     }, 40);
   };
 
+  const getRandomShade = () => {
+    const shades = [
+      "rgba(0,0,0,0.25)", 
+      "rgba(0,0,0,0.3)", 
+      "rgba(0,0,0,0.35)", 
+      "rgba(0,0,0,0.4)"
+    ];
+    return shades[Math.floor(Math.random() * shades.length)];
+  };
+
   const renderThesisItems = (text) => {
     const items = text.split(" // ");
     
     return (
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4} mt={6} width="100%">
-        {items.map((item, index) => (
-          <Box 
-            key={index} 
-            p={3}
-            bg={cardBg}
-            borderRadius="md"
-            borderLeft="3px solid"
-            borderColor={borderColor}
-            boxShadow="lg"
-            transition="all 0.3s"
-            _hover={{
-              transform: "translateY(-5px)",
-              boxShadow: "xl",
-              borderColor: "blue.300",
-            }}
-            animation={`${fadeIn} ${0.3 + index * 0.03}s ease-out forwards`}
-            opacity="0"
-          >
-            <Text 
-              fontSize="sm" 
-              fontWeight="medium"
-              letterSpacing="wide"
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={3} mt={6} width="100%">
+        {items.map((item, index) => {
+          // Calculate a delay based on index for staggered animation
+          const delay = 0.05 * index;
+          
+          return (
+            <Box 
+              key={index} 
+              p={2}
+              bg={getRandomShade()}
+              borderRadius="md"
+              borderLeft="3px solid"
+              borderColor={borderColor}
+              boxShadow="lg"
+              transition="all 0.3s"
+              _hover={{
+                transform: "translateY(-3px)",
+                boxShadow: "xl",
+                borderColor: "blue.300",
+              }}
+              animation={`${unravel} 0.4s ease-out forwards`}
+              animationDelay={`${delay}s`}
+              opacity="0"
+              transformOrigin="top"
+              height="auto"
+              fontSize="xs"
             >
-              {item}
-            </Text>
-          </Box>
-        ))}
+              <Text 
+                fontSize="sm" 
+                fontWeight="medium"
+                letterSpacing="wide"
+              >
+                {item}
+              </Text>
+            </Box>
+          );
+        })}
       </SimpleGrid>
     );
   };
