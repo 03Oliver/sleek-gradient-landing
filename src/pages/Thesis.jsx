@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
@@ -41,12 +42,21 @@ const pulse = keyframes`
   100% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
 `;
 
+const ripple = keyframes`
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
+  40% { transform: scale(1.03); box-shadow: 0 0 15px rgba(14, 165, 233, 0.5); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
+`;
+
 const Thesis = () => {
   const [headerText, setHeaderText] = useState("");
   const [bodyText, setBodyText] = useState("");
   const [subheadingText, setSubheadingText] = useState("");
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isPulsingActive, setIsPulsingActive] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [isInteracting, setIsInteracting] = useState(false);
+  const gridRef = useRef(null);
   const fullHeaderText = "collective.vc";
   const fullBodyText = "humans are market animals. within a prediction-prevention-disruption framework of mitigation and adaptation, we seek out imaginative, compelling and scalable opportunities with a climate angle in:";
   const fullSubheadingText = "conquering climate";
@@ -61,7 +71,7 @@ const Thesis = () => {
     "linear(to-r, gray.900, gray.800, gray.900)"
   );
   const borderColor = useColorModeValue("blue.400", "blue.400");
-  const glowColor = useColorModeValue("0 0 20px #0EA5E9", "0 0 20px #0EA5E9");
+  const glowColor = useColorModeValue("0 0 25px #0EA5E9", "0 0 25px #0EA5E9");
 
   useEffect(() => {
     const hasShownAnimation = sessionStorage.getItem("hasAnimatedThesis");
@@ -99,6 +109,38 @@ const Thesis = () => {
     }
   }, [hasAnimated]);
 
+  // Handle mouse movement for ripple effect on desktop
+  useEffect(() => {
+    if (!isMobile && gridRef.current) {
+      const handleMouseMove = (e) => {
+        const rect = gridRef.current.getBoundingClientRect();
+        setCursorPosition({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        });
+      };
+
+      const handleMouseEnter = () => {
+        setIsInteracting(true);
+      };
+
+      const handleMouseLeave = () => {
+        setIsInteracting(false);
+      };
+
+      const grid = gridRef.current;
+      grid.addEventListener('mousemove', handleMouseMove);
+      grid.addEventListener('mouseenter', handleMouseEnter);
+      grid.addEventListener('mouseleave', handleMouseLeave);
+
+      return () => {
+        grid.removeEventListener('mousemove', handleMouseMove);
+        grid.removeEventListener('mouseenter', handleMouseEnter);
+        grid.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    }
+  }, [isMobile]);
+
   const startSubheadingTyping = () => {
     const subheadingInterval = setInterval(() => {
       setSubheadingText(fullSubheadingText.substring(0, subheadingIndexRef.current + 1));
@@ -123,14 +165,13 @@ const Thesis = () => {
     }, 40);
   };
 
-  const getRandomShade = () => {
-    const shades = [
-      "rgba(0,0,0,0.25)", 
-      "rgba(0,0,0,0.3)", 
-      "rgba(0,0,0,0.35)", 
-      "rgba(0,0,0,0.4)"
-    ];
-    return shades[Math.floor(Math.random() * shades.length)];
+  const getRandomShade = (index, total) => {
+    // Darken items at the bottom
+    const position = index / total;
+    const baseOpacity = 0.25;
+    const maxAdditionalOpacity = position > 0.7 ? 0.2 * ((position - 0.7) / 0.3) : 0;
+    
+    return `rgba(0,0,0,${baseOpacity + maxAdditionalOpacity})`;
   };
 
   const getRandomDuration = () => {
@@ -146,14 +187,43 @@ const Thesis = () => {
   };
 
   const getRandomPulseDuration = () => {
-    return (0.8 + Math.random() * 1.2).toFixed(2);
+    // Slow down the ripple by 2x
+    return (1.6 + Math.random() * 2.4).toFixed(2);
+  };
+
+  // Calculate distance from cursor to element center
+  const getDistanceFromCursor = (elementRect, index, columns) => {
+    if (!isInteracting || isMobile) return Infinity;
+    
+    const row = Math.floor(index / columns);
+    const col = index % columns;
+    
+    const cellWidth = elementRect.width / columns;
+    const totalRows = Math.ceil(elementRect.length / columns);
+    const cellHeight = elementRect.height / totalRows;
+    
+    const cellCenterX = (col + 0.5) * cellWidth;
+    const cellCenterY = (row + 0.5) * cellHeight;
+    
+    const dx = cellCenterX - cursorPosition.x;
+    const dy = cellCenterY - cursorPosition.y;
+    
+    return Math.sqrt(dx * dx + dy * dy);
   };
 
   const renderThesisItems = (text) => {
     const items = text.split(" // ");
     
     return (
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={3} mt={6} width="100%">
+      <SimpleGrid 
+        columns={{ base: 1, md: 2, lg: 3 }} 
+        spacing={3} 
+        mt={6} 
+        width="100%" 
+        ref={gridRef}
+        position="relative"
+        pb={10}
+      >
         {items.map((item, index) => {
           const duration = getRandomDuration();
           const delay = getRandomDelay();
@@ -164,7 +234,7 @@ const Thesis = () => {
             <Box 
               key={index} 
               p={2}
-              bg={getRandomShade()}
+              bg={getRandomShade(index, items.length)}
               borderRadius="md"
               borderLeft="3px solid"
               borderColor={borderColor}
@@ -178,7 +248,9 @@ const Thesis = () => {
               }}
               animation={
                 hasAnimated 
-                  ? `${unravel} ${duration}s ease-out forwards${isPulsingActive ? `, ${pulse} ${pulseDuration}s ease-in-out ${pulseDelay}s infinite` : ''}`
+                  ? (isMobile && isPulsingActive 
+                     ? `${unravel} ${duration}s ease-out forwards, ${pulse} ${pulseDuration}s ease-in-out ${pulseDelay}s infinite` 
+                     : `${unravel} ${duration}s ease-out forwards`)
                   : "none"
               }
               animationDelay={`${delay}s`}
@@ -186,6 +258,16 @@ const Thesis = () => {
               transformOrigin="top"
               height="auto"
               fontSize="xs"
+              className={`thesis-item-${index}`}
+              onMouseEnter={(e) => {
+                if (!isMobile && isInteracting) {
+                  const target = e.currentTarget;
+                  target.style.animation = `${ripple} ${pulseDuration}s ease-in-out`;
+                  target.addEventListener('animationend', () => {
+                    target.style.animation = '';
+                  }, { once: true });
+                }
+              }}
             >
               <Text 
                 fontSize="sm" 
@@ -268,7 +350,19 @@ const Thesis = () => {
 
           <Divider maxW="200px" borderColor="blue.400" opacity="0.3" />
 
-          <Box width="100%">
+          <Box width="100%" maxH={{ base: "70vh", md: "65vh" }} overflowY="auto" pb={4} css={{
+            '&::-webkit-scrollbar': {
+              width: '4px',
+            },
+            '&::-webkit-scrollbar-track': {
+              width: '6px',
+              background: 'rgba(0,0,0,0.1)',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              background: 'rgba(14, 165, 233, 0.3)',
+              borderRadius: '24px',
+            },
+          }}>
             {renderThesisItems("supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // pro-humanising digital experiences & environments (notifications, assistants) // data protection & privacy // optimising key services // circular economy")}
           </Box>
 
