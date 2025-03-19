@@ -40,6 +40,7 @@ const Thesis = () => {
   const [headerText, setHeaderText] = useState("");
   const [bodyText, setBodyText] = useState("");
   const [subheadingText, setSubheadingText] = useState("");
+  const [hasAnimated, setHasAnimated] = useState(false);
   const fullHeaderText = "collective.vc";
   const fullBodyText = "humans are market animals. within a prediction-prevention-disruption framework of mitigation and adaptation, we seek out imaginative, compelling and scalable opportunities with a climate angle in:";
   const fullSubheadingText = "conquering climate";
@@ -54,19 +55,36 @@ const Thesis = () => {
     "linear(to-r, gray.900, gray.800, gray.900)"
   );
   const borderColor = useColorModeValue("blue.400", "blue.400");
+  const glowColor = useColorModeValue("0 0 15px #0EA5E9", "0 0 15px #0EA5E9");
 
   useEffect(() => {
-    const headerInterval = setInterval(() => {
-      setHeaderText(fullHeaderText.substring(0, headerIndexRef.current + 1));
-      headerIndexRef.current++;
-      if (headerIndexRef.current === fullHeaderText.length) {
-        clearInterval(headerInterval);
-        setIsHeaderTypingComplete(true);
-        startSubheadingTyping();
-      }
-    }, 50);
+    // Check if the animation has already been shown in this session
+    const hasShownAnimation = sessionStorage.getItem("hasAnimatedThesis");
+    
+    if (hasShownAnimation) {
+      // Skip animation if already shown
+      setHeaderText(fullHeaderText);
+      setSubheadingText(fullSubheadingText);
+      setBodyText(fullBodyText);
+      setIsHeaderTypingComplete(true);
+      setIsBodyTypingComplete(true);
+      setHasAnimated(true);
+    } else {
+      // Start the typing animation
+      const headerInterval = setInterval(() => {
+        setHeaderText(fullHeaderText.substring(0, headerIndexRef.current + 1));
+        headerIndexRef.current++;
+        if (headerIndexRef.current === fullHeaderText.length) {
+          clearInterval(headerInterval);
+          setIsHeaderTypingComplete(true);
+          startSubheadingTyping();
+          // Mark that animation has been shown
+          sessionStorage.setItem("hasAnimatedThesis", "true");
+        }
+      }, 50);
 
-    return () => clearInterval(headerInterval);
+      return () => clearInterval(headerInterval);
+    }
   }, []);
 
   const startSubheadingTyping = () => {
@@ -87,6 +105,7 @@ const Thesis = () => {
       if (bodyIndexRef.current === fullBodyText.length) {
         clearInterval(bodyInterval);
         setIsBodyTypingComplete(true);
+        setHasAnimated(true);
       }
     }, 40);
   };
@@ -101,14 +120,25 @@ const Thesis = () => {
     return shades[Math.floor(Math.random() * shades.length)];
   };
 
+  const getRandomDuration = () => {
+    // Return a random duration between 0.3s and 0.9s
+    return (0.3 + Math.random() * 0.6).toFixed(2);
+  };
+
+  const getRandomDelay = () => {
+    // Return a random delay between 0.1s and 2s
+    return (0.1 + Math.random() * 1.9).toFixed(2);
+  };
+
   const renderThesisItems = (text) => {
     const items = text.split(" // ");
     
     return (
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={3} mt={6} width="100%">
         {items.map((item, index) => {
-          // Calculate a delay based on index for staggered animation
-          const delay = 0.05 * index;
+          // Generate random values for animation
+          const duration = getRandomDuration();
+          const delay = getRandomDelay();
           
           return (
             <Box 
@@ -121,13 +151,14 @@ const Thesis = () => {
               boxShadow="lg"
               transition="all 0.3s"
               _hover={{
-                transform: "translateY(-3px)",
-                boxShadow: "xl",
+                transform: "translateY(-3px) scale(1.05)",
+                boxShadow: `xl, ${glowColor}`,
                 borderColor: "blue.300",
+                zIndex: 1
               }}
-              animation={`${unravel} 0.4s ease-out forwards`}
+              animation={hasAnimated ? `${unravel} ${duration}s ease-out forwards` : "none"}
               animationDelay={`${delay}s`}
-              opacity="0"
+              opacity={hasAnimated ? "0" : "1"}
               transformOrigin="top"
               height="auto"
               fontSize="xs"
