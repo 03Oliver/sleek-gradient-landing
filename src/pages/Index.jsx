@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import { Container, SimpleGrid, Link, Box, Text, keyframes, Flex, Image, VStack } from "@chakra-ui/react";
 import { FaEnvelope, FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
-import MatrixRain from "../components/MatrixRain";
 
 const typing = keyframes`
   from { width: 0 }
@@ -30,9 +29,11 @@ const Index = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
+    // Check if animation has already played this session
     const hasAnimationPlayed = sessionStorage.getItem('animationPlayed');
 
     if (hasAnimationPlayed) {
+      // If animation has played, set the complete text immediately
       setHeaderText(fullHeaderText);
       setBodyText(fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText);
       setIsTypingComplete(true);
@@ -48,6 +49,7 @@ const Index = () => {
       }
     }, 50);
 
+    // Mark animation as played
     sessionStorage.setItem('animationPlayed', 'true');
 
     return () => clearInterval(headerInterval);
@@ -66,16 +68,25 @@ const Index = () => {
   };
 
   return (
-    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden" p={0} position="relative">
-      <MatrixRain />
-      
-      <VStack spacing={6} flex="1" width="100%" justifyContent="center" zIndex="1">
-        <Box as="nav" width="100%" display="flex" justifyContent="center" mb={4}>
-          <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-            <Box as="pre" fontSize="4xl" fontWeight="bold">
-              collective.vc
-            </Box>
-          </Link>
+    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" overflow="hidden" p={0}>
+      <VStack spacing={6} flex="1" width="100%" justifyContent="center">
+        <Box textAlign="center" mb={4}>
+          <Flex alignItems="center" justifyContent="center">
+            <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
+            <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+              <Box 
+                as="pre" 
+                fontSize="4xl" 
+                fontWeight="bold" 
+                whiteSpace="nowrap" 
+                overflow="hidden" 
+                borderRight={isTypingComplete ? "none" : "2px solid"}
+                animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+              >
+                {headerText}
+              </Box>
+            </Link>
+          </Flex>
         </Box>
         
         <Box mb={4} textAlign="center" maxW="600px" height="60px" display="flex" alignItems="center" justifyContent="center" fontFamily="Roboto, sans-serif">
@@ -134,7 +145,7 @@ const Index = () => {
         </SimpleGrid>
       </VStack>
       
-      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt="auto" zIndex="1">
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt="auto">
         built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
       </Box>
     </Container>
