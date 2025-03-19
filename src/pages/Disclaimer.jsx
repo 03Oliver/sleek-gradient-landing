@@ -1,4 +1,3 @@
-
 import { 
   Box, 
   Container, 
@@ -15,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { Brain, AlertTriangle } from "lucide-react";
+import { Brain, AlertTriangle, Building } from "lucide-react";
 
 const typing = keyframes`
   from { width: 0 }
@@ -38,11 +37,9 @@ const Disclaimer = () => {
   );
 
   useEffect(() => {
-    // Check if animation has already played this session
     const hasAnimationPlayed = sessionStorage.getItem('animationPlayedDisclaimer');
 
     if (hasAnimationPlayed) {
-      // If animation has played, set the complete text immediately
       setHeaderText(fullHeaderText);
       setIsTypingComplete(true);
       return;
@@ -54,8 +51,6 @@ const Disclaimer = () => {
       if (headerIndexRef.current === fullHeaderText.length) {
         clearInterval(headerInterval);
         setIsTypingComplete(true);
-        
-        // Mark animation as played
         sessionStorage.setItem('animationPlayedDisclaimer', 'true');
       }
     }, 50);
@@ -134,9 +129,12 @@ const Disclaimer = () => {
             
             <Box h={6} />
             
-            <Text pl={8}>
-              collective vc ltd - 14226589 - sic 64303
-            </Text>
+            <HStack align="flex-start" spacing={4} pl={8}>
+              <Building size={20} color="#718096" style={{ marginTop: '4px', flexShrink: 0 }} />
+              <Text>
+                collective vc ltd - 14226589 - sic 64303
+              </Text>
+            </HStack>
           </Box>
 
           <Divider maxW="200px" borderColor="blue.400" opacity="0.3" mt={6} mb={6} alignSelf="center" />
