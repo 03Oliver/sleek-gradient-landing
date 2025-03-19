@@ -38,13 +38,48 @@ const Portfolio = () => {
   );
 
   const investments = [
-    { name: "element 2 hydrogen", url: "https://element-2.co.uk/", color: "#4440e8" },
-    { name: "sustainable ventures sa7 (accelerator batch)", url: "https://www.sustainableventures.co.uk/", color: "#d0041c" },
-    { name: "stratiphy", url: "https://stratiphy.io", color: "#fcc450" },
-    { name: "otis ai", url: "https://meetotis.com/", color: "#3c8cfc" },
-    { name: "teamignite.ventures (fund i)", url: "https://teamignite.ventures", color: "#ef5a2c" },
-    { name: "soldera", url: "https://www.soldera.org/", color: "#e0fca4" },
-    { name: "mirico", url: "https://www.mirico.co.uk/", color: "#c8141c" }
+    { 
+      name: "element 2 hydrogen", 
+      subheading: "", 
+      url: "https://element-2.co.uk/", 
+      color: "#4440e8" 
+    },
+    { 
+      name: "sustainable ventures sa7", 
+      subheading: "accelerator batch", 
+      url: "https://www.sustainableventures.co.uk/", 
+      color: "#d0041c" 
+    },
+    { 
+      name: "stratiphy", 
+      subheading: "", 
+      url: "https://stratiphy.io", 
+      color: "#fcc450" 
+    },
+    { 
+      name: "otis ai", 
+      subheading: "", 
+      url: "https://meetotis.com/", 
+      color: "#3c8cfc" 
+    },
+    { 
+      name: "teamignite.ventures", 
+      subheading: "fund i", 
+      url: "https://teamignite.ventures", 
+      color: "#ef5a2c" 
+    },
+    { 
+      name: "soldera", 
+      subheading: "", 
+      url: "https://www.soldera.org/", 
+      color: "#e0fca4" 
+    },
+    { 
+      name: "mirico", 
+      subheading: "", 
+      url: "https://www.mirico.co.uk/", 
+      color: "#c8141c" 
+    }
   ];
 
   useEffect(() => {
@@ -120,7 +155,7 @@ const Portfolio = () => {
             mt={2}
           >
             {investments.map((investment, index) => (
-              <Tooltip key={index} label={investment.name} placement="top" hasArrow>
+              <Tooltip key={index} label={investment.name + (investment.subheading ? ` (${investment.subheading})` : "")} placement="top" hasArrow>
                 <Link 
                   href={investment.url} 
                   isExternal 
@@ -145,7 +180,18 @@ const Portfolio = () => {
                       boxShadow: "xl"
                     }}
                   >
-                    {investment.name.split(' ')[0]}
+                    <VStack spacing={1}>
+                      <Text>{investment.name}</Text>
+                      {investment.subheading && (
+                        <Text 
+                          fontSize="xs" 
+                          color="whiteAlpha.700" 
+                          mt="0 !important"
+                        >
+                          ({investment.subheading})
+                        </Text>
+                      )}
+                    </VStack>
                   </Box>
                 </Link>
               </Tooltip>
