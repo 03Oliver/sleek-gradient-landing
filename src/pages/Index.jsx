@@ -20,10 +20,6 @@ const Index = () => {
   const fullBodyText = "an early-stage climate-syndicate & media organisation led by ";
   const oliverText = "Oliver Bonallack";
   const remainingText = ", working towards capital deployment for the benefit of humanity: ";
-  const portfolioText = "portfolio";
-  const dividerText = " // ";
-  const disclaimerText = "disclaimer";
-  const thesisText = "thesis";
   const headerIndexRef = useRef(0);
   const bodyIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -48,7 +44,7 @@ const Index = () => {
     if (hasAnimationPlayed) {
       // If animation has played, set the complete text immediately
       setHeaderText(fullHeaderText);
-      setBodyText(fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText);
+      setBodyText(fullBodyText + oliverText + remainingText);
       setIsTypingComplete(true);
       return;
     }
@@ -69,8 +65,8 @@ const Index = () => {
   }, []);
 
   const startBodyTyping = () => {
+    const currentText = fullBodyText + oliverText + remainingText;
     const bodyInterval = setInterval(() => {
-      const currentText = fullBodyText + oliverText + remainingText + portfolioText + dividerText + disclaimerText + dividerText + thesisText;
       setBodyText(currentText.substring(0, bodyIndexRef.current + 1));
       bodyIndexRef.current++;
       if (bodyIndexRef.current === currentText.length) {
@@ -163,20 +159,28 @@ const Index = () => {
                 <Link href="https://www.linkedin.com/in/bonallack" isExternal color="blue.300">
                   {bodyText.substring(fullBodyText.length, fullBodyText.length + oliverText.length)}
                 </Link>
-                {bodyText.substring(fullBodyText.length + oliverText.length, fullBodyText.length + oliverText.length + remainingText.length)}
-                <RouterLink to="/portfolio" style={{ color: '#63B3ED' }}>
-                  {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length)}
-                </RouterLink>
-                {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length)}
-                <RouterLink to="/disclaimer" style={{ color: '#63B3ED' }}>
-                  {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length)}
-                </RouterLink>
-                {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length, fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length)}
-                <RouterLink to="/thesis" style={{ color: '#63B3ED' }}>
-                  {bodyText.substring(fullBodyText.length + oliverText.length + remainingText.length + portfolioText.length + dividerText.length + disclaimerText.length + dividerText.length)}
-                </RouterLink>
+                {bodyText.substring(fullBodyText.length + oliverText.length)}
               </Text>
             </Box>
+
+            {/* Navigation Links with Horizontal Line Separators */}
+            <Flex 
+              wrap="wrap" 
+              justify="center" 
+              gap={3} 
+              mt={{ base: 8, md: "auto" }}
+              borderTop="1px solid"
+              borderColor="whiteAlpha.200"
+              pt={4}
+              width="100%"
+              maxW={{ base: "600px", md: "100%" }}
+            >
+              <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+              <Text color="whiteAlpha.600">//</Text>
+              <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
+              <Text color="whiteAlpha.600">//</Text>
+              <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+            </Flex>
 
             <SimpleGrid columns={{ base: 2, md: 4 }} spacing={5} textAlign="center" mt={2}>
               <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
