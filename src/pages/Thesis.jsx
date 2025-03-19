@@ -41,6 +41,16 @@ const pulse = keyframes`
   100% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
 `;
 
+const scrollDown = keyframes`
+  0% { transform: translateY(0); }
+  100% { transform: translateY(20px); }
+`;
+
+const scrollUp = keyframes`
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px); }
+`;
+
 const Thesis = () => {
   const [headerText, setHeaderText] = useState("");
   const [bodyText, setBodyText] = useState("");
@@ -151,53 +161,80 @@ const Thesis = () => {
 
   const renderThesisItems = (text) => {
     const items = text.split(" // ");
+    const itemsPerColumn = Math.ceil(items.length / 3);
+    
+    const column1 = items.slice(0, itemsPerColumn);
+    const column2 = items.slice(itemsPerColumn, itemsPerColumn * 2);
+    const column3 = items.slice(itemsPerColumn * 2);
     
     return (
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={3} mt={6} width="100%">
-        {items.map((item, index) => {
-          const duration = getRandomDuration();
-          const delay = getRandomDelay();
-          const pulseDelay = getRandomPulseDelay();
-          const pulseDuration = getRandomPulseDuration();
-          
-          return (
-            <Box 
-              key={index} 
-              p={2}
-              bg={getRandomShade()}
-              borderRadius="md"
-              borderLeft="3px solid"
-              borderColor={borderColor}
-              boxShadow="lg"
-              transition="all 0.3s"
-              _hover={{
-                transform: "translateY(-3px) scale(1.05)",
-                boxShadow: `xl, ${glowColor}`,
-                borderColor: "blue.300",
-                zIndex: 1
-              }}
-              animation={
-                hasAnimated 
-                  ? `${unravel} ${duration}s ease-out forwards${isPulsingActive ? `, ${pulse} ${pulseDuration}s ease-in-out ${pulseDelay}s infinite` : ''}`
-                  : "none"
-              }
-              animationDelay={`${delay}s`}
-              opacity={hasAnimated ? "0" : "1"}
-              transformOrigin="top"
-              height="auto"
-              fontSize="xs"
-            >
-              <Text 
-                fontSize="sm" 
-                fontWeight="medium"
-                letterSpacing="wide"
-              >
-                {item}
-              </Text>
-            </Box>
-          );
-        })}
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3} mt={6} width="100%">
+        <VStack spacing={3} 
+          animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
+          transition="all 0.3s"
+        >
+          {column1.map((item, index) => renderThesisItem(item, index))}
+        </VStack>
+        
+        <VStack spacing={3} 
+          animation={hasAnimated ? `${scrollUp} 60s linear infinite alternate` : "none"}
+          transition="all 0.3s"
+        >
+          {column2.map((item, index) => renderThesisItem(item, index))}
+        </VStack>
+        
+        <VStack spacing={3} 
+          animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
+          transition="all 0.3s"
+        >
+          {column3.map((item, index) => renderThesisItem(item, index))}
+        </VStack>
       </SimpleGrid>
+    );
+  };
+  
+  const renderThesisItem = (item, index) => {
+    const duration = getRandomDuration();
+    const delay = getRandomDelay();
+    const pulseDelay = getRandomPulseDelay();
+    const pulseDuration = getRandomPulseDuration();
+    
+    return (
+      <Box 
+        key={index} 
+        p={2}
+        bg={getRandomShade()}
+        borderRadius="md"
+        borderLeft="3px solid"
+        borderColor={borderColor}
+        boxShadow="lg"
+        transition="all 0.3s"
+        _hover={{
+          transform: "translateY(-3px) scale(1.05)",
+          boxShadow: `xl, ${glowColor}`,
+          borderColor: "blue.300",
+          zIndex: 1
+        }}
+        animation={
+          hasAnimated 
+            ? `${unravel} ${duration}s ease-out forwards${isPulsingActive ? `, ${pulse} ${pulseDuration}s ease-in-out ${pulseDelay}s infinite` : ''}`
+            : "none"
+        }
+        animationDelay={`${delay}s`}
+        opacity={hasAnimated ? "0" : "1"}
+        transformOrigin="top"
+        height="auto"
+        fontSize="xs"
+        width="100%"
+      >
+        <Text 
+          fontSize="sm" 
+          fontWeight="medium"
+          letterSpacing="wide"
+        >
+          {item}
+        </Text>
+      </Box>
     );
   };
 
@@ -268,7 +305,7 @@ const Thesis = () => {
 
           <Divider maxW="200px" borderColor="blue.400" opacity="0.3" />
 
-          <Box width="100%">
+          <Box width="100%" overflow="hidden">
             {renderThesisItems("supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy")}
           </Box>
 
