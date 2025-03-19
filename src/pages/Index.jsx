@@ -135,13 +135,13 @@ const Index = () => {
               alignItems="center" 
               justifyContent="center" 
               fontFamily="Roboto, sans-serif"
+              position="relative"
             >
               <Text 
                 fontSize={isMobile ? "sm" : "lg"}
                 fontFamily="Roboto, sans-serif"
                 whiteSpace="normal"
                 overflow="hidden"
-                position="relative"
                 letterSpacing="wide"
                 lineHeight="1.6"
                 _after={{
@@ -168,13 +168,14 @@ const Index = () => {
               <Flex 
                 wrap="wrap" 
                 justify="center" 
-                gap={3} 
+                gap={0} 
                 width="100%"
+                align="center"
               >
                 <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-                <Text color="whiteAlpha.600">//</Text>
+                <Text color="whiteAlpha.600" mx={2}>//</Text>
                 <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-                <Text color="whiteAlpha.600">//</Text>
+                <Text color="whiteAlpha.600" mx={2}>//</Text>
                 <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
               </Flex>
             </VStack>
