@@ -1,22 +1,103 @@
-import { Box, Container, Text, Link, Flex, Image, VStack } from "@chakra-ui/react";
+
+import { 
+  Box, 
+  Container, 
+  Text, 
+  Link, 
+  Flex, 
+  Image, 
+  VStack, 
+  Divider,
+  useColorModeValue,
+  keyframes,
+  useMediaQuery
+} from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+
+const typing = keyframes`
+  from { width: 0 }
+  to { width: 100% }
+`;
+
+const blink = keyframes`
+  50% { border-color: transparent }
+`;
 
 const Disclaimer = () => {
+  const [headerText, setHeaderText] = useState("");
+  const fullHeaderText = "collective.vc";
+  const headerIndexRef = useRef(0);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const bgGradient = useColorModeValue(
+    "linear(to-r, gray.900, gray.800, gray.900)",
+    "linear(to-r, gray.900, gray.800, gray.900)"
+  );
+
+  useEffect(() => {
+    // Check if animation has already played this session
+    const hasAnimationPlayed = sessionStorage.getItem('animationPlayedDisclaimer');
+
+    if (hasAnimationPlayed) {
+      // If animation has played, set the complete text immediately
+      setHeaderText(fullHeaderText);
+      setIsTypingComplete(true);
+      return;
+    }
+
+    const headerInterval = setInterval(() => {
+      setHeaderText(fullHeaderText.substring(0, headerIndexRef.current + 1));
+      headerIndexRef.current++;
+      if (headerIndexRef.current === fullHeaderText.length) {
+        clearInterval(headerInterval);
+        setIsTypingComplete(true);
+        
+        // Mark animation as played
+        sessionStorage.setItem('animationPlayedDisclaimer', 'true');
+      }
+    }, 50);
+
+    return () => clearInterval(headerInterval);
+  }, []);
+
   return (
-    <Container centerContent maxW="100vw" minH="100vh" display="flex" flexDirection="column" alignItems="center" bgGradient="linear(to-r, black, gray.800)" color="white" fontFamily="Roboto, sans-serif" pt={8}>
-      <VStack spacing={8} width="100%" maxW="800px" px={4} flex="1">
-        <Box textAlign="center" mb={4}>
+    <Container 
+      centerContent 
+      maxW="100vw" 
+      minH="100vh" 
+      display="flex" 
+      flexDirection="column" 
+      alignItems="center" 
+      bgGradient={bgGradient}
+      color="white" 
+      fontFamily="Roboto, sans-serif" 
+      pt={8}
+      px={0}
+    >
+      <VStack spacing={6} width="100%" flex="1" maxW="1200px" px={4}>
+        <Box textAlign="center" mb={2}>
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
             <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-              <Box as="pre" fontSize="4xl" fontWeight="bold">
-                collective.vc
+              <Box 
+                as="pre" 
+                fontSize={{ base: "2xl", md: "4xl" }}
+                fontWeight="bold" 
+                whiteSpace="nowrap" 
+                overflow="hidden" 
+                borderRight={isTypingComplete ? "none" : "2px solid"}
+                animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+                color="white"
+                letterSpacing="tight"
+              >
+                {headerText}
               </Box>
             </Link>
           </Flex>
         </Box>
 
-        <VStack spacing={6} textAlign="center">
+        <VStack spacing={6} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="center">
           <Text>
             this website is intended for informational purposes only and should not be seen as an invitation to invest or as a financial promotion. you should not rely on any information provided here. the content is not intended to offer, nor should it be interpreted as, any form of advice.
           </Text>
@@ -29,15 +110,28 @@ const Disclaimer = () => {
             collective vc ltd - 14226589 - sic 64303
           </Text>
 
-          <Text color="white">
-            <Link as={RouterLink} to="/" color="blue.300">return home</Link>
-            {" // "}
-            <Link as={RouterLink} to="/portfolio" color="blue.300">portfolio</Link>
-            {" // "}
-            <Link as={RouterLink} to="/thesis" color="blue.300">thesis</Link>
-          </Text>
+          <Divider maxW="200px" borderColor="blue.400" opacity="0.3" mt={6} mb={6} />
+
+          <Flex 
+            wrap="wrap" 
+            justify="center" 
+            gap={3} 
+            mt={4}
+            borderTop="1px solid"
+            borderColor="whiteAlpha.200"
+            pt={4}
+            width="100%"
+            maxW="600px"
+          >
+            <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+          </Flex>
         </VStack>
       </VStack>
+      
       <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
         built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
       </Box>
