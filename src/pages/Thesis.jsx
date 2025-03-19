@@ -16,18 +16,7 @@ import {
   HStack
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import { 
-  Zap, Lightbulb, Leaf, Cpu, Atom, Droplet, Wind, BarChart, Database, 
-  Heart, Building, Cloud, Globe, Shield, Wallet, Sun, Factory, 
-  Thermometer, ArrowUpDown, Recycle, Package, HardDrive, Microscope, 
-  Layers, SunMoon, Timer, Truck, Brain, Anchor, BarChart2, 
-  Activity, Crop, Code, Battery, Puzzle, User, Clock, Bitcoin, 
-  Waves, Car, Home, Plane, Lock, LifeBuoy, Workflow, Terminal, Robot,
-  Fingerprint, Building2, Apple, Sprout, Forklift, CircuitBoard, WaveSine,
-  Pipette, ShieldAlert, CloudFog, Ruler, Music, Network, BookOpen, Tractor,
-  Scale, VenetianMask, HandMetal, CloudRain, Fish, TreePine, Mountain,
-  LineChart, Sandwich, Orbit, Bacteria, Eye, FlaskConical, Bolt
-} from "lucide-react";
+import { Zap, Lightbulb, Leaf, Cpu, Atom, Droplet, Wind, BarChart, Database } from "lucide-react";
 
 const typing = keyframes`
   from { width: 0 }
@@ -172,93 +161,19 @@ const Thesis = () => {
     return (1.6 + Math.random() * 2.4).toFixed(2);
   };
 
-  const getIconForThesisItem = (item) => {
-    const iconMap = {
-      "supply chain intelligence & fortification": <Forklift size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
-      "resilient digital infrastructure": <HardDrive size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "finance <> climate interface": <Wallet size={18} color="#34d399" style={{ flexShrink: 0 }} />,
-      "public goods & stewardship incentivisation": <Globe size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "inequality tech": <Scale size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "distributed & optimised compute": <Network size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
-      "carbon capture": <CloudFog size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
-      "intelligent energy distribution": <Zap size={18} color="#fbbf24" style={{ flexShrink: 0 }} />,
-      "human dialogue & political voice": <User size={18} color="#c084fc" style={{ flexShrink: 0 }} />,
-      "accessible legaltech": <Shield size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "nature protection": <TreePine size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "carbon analytics": <BarChart size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "anti-consumer": <Recycle size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "agritech": <Tractor size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "transport": <Truck size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
-      "electric vehicles": <Car size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "industrial decarbonisation": <Factory size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
-      "biodiversity & earth synergy": <Mountain size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "refi & web3": <Bitcoin size={18} color="#fbbf24" style={{ flexShrink: 0 }} />,
-      "conservation reward & monitoring": <Eye size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
-      "water provision & purity": <Droplet size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "pollution solutions": <Wind size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
-      "renewables at scale": <Sun size={18} color="#fcd34d" style={{ flexShrink: 0 }} />,
-      "renewables (domestic & modular)": <Home size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "desalination": <Waves size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "intelligent solar": <SunMoon size={18} color="#fcd34d" style={{ flexShrink: 0 }} />,
-      "macrologistics": <ArrowUpDown size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "infrastructure": <Building size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "longevity": <Timer size={18} color="#c084fc" style={{ flexShrink: 0 }} />,
-      "silver economy": <Clock size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
-      "health & human function": <Activity size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "agetech & assistive tech": <HandMetal size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
-      "biotech": <Microscope size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "healthtech": <Heart size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "data visualisation & connections": <Layers size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "optimising human capital": <Brain size={18} color="#c084fc" style={{ flexShrink: 0 }} />,
-      "neurodiversity tech": <Puzzle size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
-      "personalised education": <BookOpen size={18} color="#fcd34d" style={{ flexShrink: 0 }} />,
-      "waste management": <Recycle size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "intuitive reducing, reusing, recycling": <ArrowUpDown size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "rehabilitation": <Activity size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "packaging & microplastic reduction": <Package size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "energy transition": <Battery size={18} color="#fcd34d" style={{ flexShrink: 0 }} />,
-      "sustainable development & financing": <Building2 size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "proptech, management": <Building size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
-      "insulation": <Shield size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "wind & hydro": <Wind size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "intelligent land use": <Crop size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "harnessing creativity": <Lightbulb size={18} color="#fcd34d" style={{ flexShrink: 0 }} />,
-      "mobility solutions": <Car size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
-      "habitation resilience": <Home size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
-      "futurism & adaptability tech": <Cpu size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "biomimetics, robotics & automation": <Robot size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
-      "freshwater protection": <LifeBuoy size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "human connection": <User size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "soil health, regeneration, nutrition & food security": <Sprout size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "new fertilizers": <FlaskConical size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "biopesticides": <Bacteria size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "sustainable refrigerants": <Thermometer size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
-      "plant-based sustenance": <Apple size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "petrochemical reduction": <Factory size={18} color="#c084fc" style={{ flexShrink: 0 }} />,
-      "green & circular consumer": <Recycle size={18} color="#fcd34d" style={{ flexShrink: 0 }} />,
-      "localised vertical farming": <Layers size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "ocean cleanup": <Anchor size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "green architecture": <Building2 size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "energy storage & sharing": <Battery size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
-      "mycelium usage": <Ruler size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "clean & cultivated meat": <Sandwich size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "green hydrogen infrastructure & fuel": <Bolt size={18} color="#fbbf24" style={{ flexShrink: 0 }} />,
-      "smart grid": <CircuitBoard size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "algae": <Fish size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
-      "green data centers": <Database size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "carbon capture technologies": <CloudRain size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "indoor air quality technologies": <Wind size={18} color="#fcd34d" style={{ flexShrink: 0 }} />,
-      "equality": <Scale size={18} color="#c084fc" style={{ flexShrink: 0 }} />,
-      "empowerment & opportunity": <Workflow size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "alternative therapies": <VenetianMask size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "mental health": <Brain size={18} color="#f87171" style={{ flexShrink: 0 }} />,
-      "humanising digital experiences": <WaveSine size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
-      "data protection & privacy": <Lock size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
-      "optimising key services": <BarChart2 size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
-      "circular economy": <Orbit size={18} color="#fcd34d" style={{ flexShrink: 0 }} />
-    };
-    
-    return iconMap[item] || <Atom size={18} color="#a78bfa" style={{ flexShrink: 0 }} />;
+  const getRandomIcon = () => {
+    const icons = [
+      <Leaf size={18} color="#4ade80" style={{ flexShrink: 0 }} />,
+      <Cpu size={18} color="#60a5fa" style={{ flexShrink: 0 }} />,
+      <Zap size={18} color="#fbbf24" style={{ flexShrink: 0 }} />,
+      <Atom size={18} color="#a78bfa" style={{ flexShrink: 0 }} />,
+      <Droplet size={18} color="#38bdf8" style={{ flexShrink: 0 }} />,
+      <Wind size={18} color="#94a3b8" style={{ flexShrink: 0 }} />,
+      <Lightbulb size={18} color="#fcd34d" style={{ flexShrink: 0 }} />,
+      <BarChart size={18} color="#f87171" style={{ flexShrink: 0 }} />,
+      <Database size={18} color="#c084fc" style={{ flexShrink: 0 }} />
+    ];
+    return icons[Math.floor(Math.random() * icons.length)];
   };
 
   const renderThesisItems = (text) => {
@@ -300,7 +215,7 @@ const Thesis = () => {
     const delay = getRandomDelay();
     const pulseDelay = getRandomPulseDelay();
     const pulseDuration = getRandomPulseDuration();
-    const itemIcon = getIconForThesisItem(item);
+    const randomIcon = getRandomIcon();
     
     return (
       <Box 
@@ -331,7 +246,7 @@ const Thesis = () => {
         width="100%"
       >
         <HStack align="flex-start" spacing={2}>
-          {itemIcon}
+          {randomIcon}
           <Text 
             fontSize="sm" 
             fontWeight="medium"
