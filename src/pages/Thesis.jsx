@@ -1,71 +1,22 @@
+
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
-  Link, 
   Box, 
-  Text, 
-  keyframes, 
-  Flex, 
-  Image, 
   VStack, 
-  useMediaQuery,
-  Badge,
-  Divider,
   useColorModeValue,
-  SimpleGrid,
-  HStack,
   Center,
   Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
   useDisclosure
 } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
-import { 
-  Zap, Lightbulb, Leaf, Cpu, Atom, Droplet, Wind, BarChart, Database,
-  Network, Code, CircuitBoard, Server, HardDrive, TreeDeciduous, Flower,
-  Sprout, Battery, Plug, PlugZap, Sun, SunMoon, Waves, Fish, Router,
-  Terminal, Microchip, Shrub, Flower2, Clover, TreePalm, TreePine, ListPlus
-} from "lucide-react";
-
-const typing = keyframes`
-  from { width: 0 }
-  to { width: 100% }
-`;
-
-const blink = keyframes`
-  50% { border-color: transparent }
-`;
-
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
-
-const unravel = keyframes`
-  0% { transform: scaleY(0); opacity: 0; }
-  100% { transform: scaleY(1); opacity: 1; }
-`;
-
-const pulse = keyframes`
-  0% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
-  50% { transform: scale(1.02); box-shadow: 0 0 10px rgba(14, 165, 233, 0.4); }
-  100% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
-`;
-
-const scrollDown = keyframes`
-  0% { transform: translateY(0); }
-  100% { transform: translateY(40px); }
-`;
-
-const scrollUp = keyframes`
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-40px); }
-`;
+import { ListPlus } from "lucide-react";
+import ThesisHeader from "../components/thesis/ThesisHeader";
+import ThesisSubheading from "../components/thesis/ThesisSubheading";
+import ThesisBody from "../components/thesis/ThesisBody";
+import ThesisFooter from "../components/thesis/ThesisFooter";
+import ThesisItemsList from "../components/thesis/ThesisItemsList";
+import ThesisModal from "../components/thesis/ThesisModal";
+import { getIconForThesisItem } from "../components/thesis/IconUtils";
 
 const Thesis = () => {
   const [headerText, setHeaderText] = useState("");
@@ -81,19 +32,17 @@ const Thesis = () => {
   const subheadingIndexRef = useRef(0);
   const [isHeaderTypingComplete, setIsHeaderTypingComplete] = useState(false);
   const [isBodyTypingComplete, setIsBodyTypingComplete] = useState(false);
-  const [isMobile, isMobileSet] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   
   const bgGradient = useColorModeValue(
     "linear(to-r, gray.900, gray.800, gray.900)",
     "linear(to-r, gray.900, gray.800, gray.900)"
   );
-  const borderColor = useColorModeValue("blue.400", "blue.400");
-  const glowColor = useColorModeValue("0 0 20px #0EA5E9", "0 0 20px #0EA5E9");
 
   useEffect(() => {
     const checkMobile = () => {
-      isMobileSet(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 768);
     };
     
     checkMobile();
@@ -163,243 +112,6 @@ const Thesis = () => {
     }, 40);
   };
 
-  const getRandomShade = () => {
-    const shades = [
-      "rgba(0,0,0,0.25)", 
-      "rgba(0,0,0,0.3)", 
-      "rgba(0,0,0,0.35)", 
-      "rgba(0,0,0,0.4)"
-    ];
-    return shades[Math.floor(Math.random() * shades.length)];
-  };
-
-  const getRandomDuration = () => {
-    return (0.4 + Math.random() * 0.6).toFixed(2);
-  };
-
-  const getRandomDelay = () => {
-    return (0.1 + Math.random() * 1.4).toFixed(2);
-  };
-
-  const getRandomPulseDelay = () => {
-    return (3 + Math.random() * 9).toFixed(2);
-  };
-
-  const getRandomPulseDuration = () => {
-    return (1.6 + Math.random() * 2.4).toFixed(2);
-  };
-
-  const getIconForThesisItem = (text) => {
-    if (/nature|biodiversity|earth|soil|plant|regeneration|mycelium|algae/.test(text)) {
-      if (/soil|regeneration|nutrition/.test(text)) return <Leaf size={18} color="#4ade80" style={{ flexShrink: 0 }} />;
-      if (/mycelium/.test(text)) return <Sprout size={18} color="#84cc16" style={{ flexShrink: 0 }} />;
-      if (/algae/.test(text)) return <Flower size={18} color="#10b981" style={{ flexShrink: 0 }} />;
-      if (/biodiversity/.test(text)) return <TreeDeciduous size={18} color="#22c55e" style={{ flexShrink: 0 }} />;
-      if (/nature protection/.test(text)) return <TreePalm size={18} color="#22d3ee" style={{ flexShrink: 0 }} />;
-      return <Shrub size={18} color="#4ade80" style={{ flexShrink: 0 }} />;
-    }
-    
-    if (/water|ocean|desalination|hydro|freshwater/.test(text)) {
-      if (/ocean/.test(text)) return <Waves size={18} color="#38bdf8" style={{ flexShrink: 0 }} />;
-      if (/freshwater/.test(text)) return <Fish size={18} color="#0ea5e9" style={{ flexShrink: 0 }} />;
-      return <Droplet size={18} color="#38bdf8" style={{ flexShrink: 0 }} />;
-    }
-    
-    if (/energy|electric|renewables|solar|wind|power|green hydrogen|smart grid/.test(text)) {
-      if (/solar/.test(text)) return <Sun size={18} color="#fbbf24" style={{ flexShrink: 0 }} />;
-      if (/wind/.test(text)) return <Wind size={18} color="#94a3b8" style={{ flexShrink: 0 }} />;
-      if (/grid/.test(text)) return <PlugZap size={18} color="#fb923c" style={{ flexShrink: 0 }} />;
-      if (/green hydrogen/.test(text)) return <Atom size={18} color="#a78bfa" style={{ flexShrink: 0 }} />;
-      if (/storage/.test(text)) return <Battery size={18} color="#f59e0b" style={{ flexShrink: 0 }} />;
-      if (/distribution/.test(text)) return <Plug size={18} color="#f97316" style={{ flexShrink: 0 }} />;
-      return <Zap size={18} color="#fbbf24" style={{ flexShrink: 0 }} />;
-    }
-    
-    if (/digital|compute|analytics|tech|data|optimis|infrastructure|network|ai|intelligence/.test(text)) {
-      if (/data/.test(text)) return <Database size={18} color="#c084fc" style={{ flexShrink: 0 }} />;
-      if (/carbon analytics/.test(text)) return <BarChart size={18} color="#f87171" style={{ flexShrink: 0 }} />;
-      if (/network|infrastructure/.test(text)) return <Network size={18} color="#60a5fa" style={{ flexShrink: 0 }} />;
-      if (/compute|distributed/.test(text)) return <Cpu size={18} color="#60a5fa" style={{ flexShrink: 0 }} />;
-      if (/digital infrastructure/.test(text)) return <Server size={18} color="#818cf8" style={{ flexShrink: 0 }} />;
-      if (/legaltech/.test(text)) return <Terminal size={18} color="#a855f7" style={{ flexShrink: 0 }} />;
-      if (/web3|refi/.test(text)) return <CircuitBoard size={18} color="#d946ef" style={{ flexShrink: 0 }} />;
-      if (/intelligence|supply chain/.test(text)) return <Microchip size={18} color="#8b5cf6" style={{ flexShrink: 0 }} />;
-      if (/green data center/.test(text)) return <HardDrive size={18} color="#6366f1" style={{ flexShrink: 0 }} />;
-      return <Router size={18} color="#818cf8" style={{ flexShrink: 0 }} />;
-    }
-    
-    if (/creativity|human|health|neurodiversity|education|mental|therapy/.test(text)) {
-      if (/creativity|futurism/.test(text)) return <Lightbulb size={18} color="#fcd34d" style={{ flexShrink: 0 }} />;
-      if (/health|therapy|mental/.test(text)) return <Flower2 size={18} color="#f472b6" style={{ flexShrink: 0 }} />;
-      if (/connection|dialogue/.test(text)) return <Clover size={18} color="#a3e635" style={{ flexShrink: 0 }} />;
-      if (/education/.test(text)) return <SunMoon size={18} color="#fde047" style={{ flexShrink: 0 }} />;
-      return <Code size={18} color="#a3e635" style={{ flexShrink: 0 }} />;
-    }
-    
-    return <Cpu size={18} color="#60a5fa" style={{ flexShrink: 0 }} />;
-  };
-
-  const renderThesisItem = (item, index) => {
-    const duration = getRandomDuration();
-    const delay = getRandomDelay();
-    const pulseDelay = getRandomPulseDelay();
-    const pulseDuration = getRandomPulseDuration();
-    const thesisIcon = getIconForThesisItem(item);
-    
-    return (
-      <Box 
-        key={index} 
-        p={2}
-        bg={getRandomShade()}
-        borderRadius="md"
-        borderLeft="3px solid"
-        borderColor={borderColor}
-        boxShadow="lg"
-        transition="all 0.3s"
-        _hover={{
-          transform: "translateY(-3px) scale(1.05)",
-          boxShadow: `xl, ${glowColor}`,
-          borderColor: "blue.300",
-          zIndex: 1
-        }}
-        animation={
-          hasAnimated 
-            ? `${unravel} ${duration}s ease-out forwards${isPulsingActive ? `, ${pulse} ${pulseDuration}s ease-in-out ${pulseDelay}s infinite` : ''}`
-            : "none"
-        }
-        animationDelay={`${delay}s`}
-        opacity={hasAnimated ? "0" : "1"}
-        transformOrigin="top"
-        height="auto"
-        fontSize="xs"
-        width="100%"
-      >
-        <HStack align="flex-start" spacing={2}>
-          {thesisIcon}
-          <Text 
-            fontSize="sm" 
-            fontWeight="medium"
-            letterSpacing="wide"
-          >
-            {item}
-          </Text>
-        </HStack>
-      </Box>
-    );
-  };
-
-  const thesisItemsList = "supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy";
-
-  const renderThesisItems = (text) => {
-    const items = text.split(" // ");
-    
-    if (isMobile) {
-      const itemsPerColumn = Math.ceil(items.length / 3);
-      
-      const column1 = items.slice(0, itemsPerColumn);
-      const column2 = items.slice(itemsPerColumn, itemsPerColumn * 2);
-      const column3 = items.slice(itemsPerColumn * 2);
-      
-      return (
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3} mt={6} width="100%">
-          <VStack spacing={3} 
-            animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
-            transition="all 0.3s"
-          >
-            {column1.map((item, index) => renderThesisItem(item, index))}
-          </VStack>
-          
-          <VStack spacing={3} 
-            animation={hasAnimated ? `${scrollUp} 60s linear infinite alternate` : "none"}
-            transition="all 0.3s"
-          >
-            {column2.map((item, index) => renderThesisItem(item, index))}
-          </VStack>
-          
-          <VStack spacing={3} 
-            animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
-            transition="all 0.3s"
-          >
-            {column3.map((item, index) => renderThesisItem(item, index))}
-          </VStack>
-        </SimpleGrid>
-      );
-    } else {
-      return (
-        <Box 
-          position="absolute" 
-          top="0" 
-          left="0" 
-          right="0" 
-          bottom="0" 
-          overflow="hidden"
-          zIndex="0"
-        >
-          <SimpleGrid 
-            columns={5} 
-            spacing={3} 
-            width="120%" 
-            height="120%"
-            position="absolute"
-            top="-10%"
-            left="-10%"
-          >
-            {items.map((item, index) => {
-              const isEvenColumn = Math.floor(index / Math.ceil(items.length / 5)) % 2 === 0;
-              return (
-                <Box 
-                  key={index}
-                  animation={isEvenColumn ? `${scrollDown} 30s linear infinite` : `${scrollUp} 30s linear infinite`}
-                  transition="all 0.3s"
-                >
-                  {renderThesisItem(item, index)}
-                </Box>
-              );
-            })}
-          </SimpleGrid>
-        </Box>
-      );
-    }
-  };
-
-  const renderFullListModal = () => {
-    const items = thesisItemsList.split(" // ");
-    
-    return (
-      <Modal isOpen={isOpen} onClose={onClose} size="xl" scrollBehavior="inside">
-        <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(8px)" />
-        <ModalContent bg="gray.900" color="white" borderColor="blue.400" borderWidth="1px">
-          <ModalHeader fontSize="xl" fontWeight="bold">
-            <Flex align="center">
-              <ListPlus size={20} style={{ marginRight: "10px" }} />
-              full list of climate focus areas
-            </Flex>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3} mb={4}>
-              {items.map((item, index) => (
-                <HStack 
-                  key={index} 
-                  p={2}
-                  bg="rgba(0,0,0,0.3)"
-                  borderRadius="md"
-                  borderLeft="3px solid"
-                  borderColor="blue.400"
-                >
-                  {getIconForThesisItem(item)}
-                  <Text fontSize="sm" fontWeight="medium">
-                    {item}
-                  </Text>
-                </HStack>
-              ))}
-            </SimpleGrid>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    );
-  };
-
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
     
@@ -431,7 +143,7 @@ const Thesis = () => {
       overflowY={isMobile ? "auto" : "hidden"}
       position="relative"
     >
-      {!isMobile && renderThesisItems(thesisItemsList)}
+      {!isMobile && <ThesisItemsList isMobile={isMobile} hasAnimated={hasAnimated} isPulsingActive={isPulsingActive} />}
 
       <VStack 
         spacing={6} 
@@ -447,58 +159,27 @@ const Thesis = () => {
         {isMobile ? (
           <>
             <Box textAlign="center" mb={2}>
-              <Flex alignItems="center" justifyContent="center">
-                <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
-                <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-                  <Box 
-                    as="pre" 
-                    fontSize={{ base: "2xl", md: "4xl" }}
-                    fontWeight="bold" 
-                    whiteSpace="nowrap" 
-                    overflow="hidden" 
-                    borderRight={isHeaderTypingComplete ? "none" : "2px solid"}
-                    animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
-                    color="white"
-                    letterSpacing="tight"
-                  >
-                    {headerText}
-                  </Box>
-                </Link>
-              </Flex>
+              <ThesisHeader 
+                headerText={headerText} 
+                subheadingText={subheadingText} 
+                isHeaderTypingComplete={isHeaderTypingComplete} 
+                isBodyTypingComplete={isBodyTypingComplete}
+                fullHeaderText={fullHeaderText} 
+              />
             </Box>
 
             <VStack spacing={6} width="100%" maxW="1200px" px={{ base: 4, md: 6 }} textAlign="center">
               <Box>
-                <Badge 
-                  colorScheme="blue" 
-                  fontSize="md" 
-                  py={1} 
-                  px={3} 
-                  borderRadius="full"
-                  textTransform="lowercase"
-                  letterSpacing="wider"
-                  animation={isBodyTypingComplete ? "none" : `${blink} 0.75s step-end infinite`}
-                >
-                  {subheadingText}
-                </Badge>
+                <ThesisSubheading 
+                  subheadingText={subheadingText} 
+                  isBodyTypingComplete={isBodyTypingComplete} 
+                />
               </Box>
 
-              <Text 
-                fontSize={{ base: "sm", md: "md" }} 
-                mb={4} 
-                whiteSpace="pre-wrap" 
-                lineHeight="1.6"
-                maxW="800px"
-                fontWeight="medium"
-                letterSpacing="wide"
-              >
-                {bodyText}
-              </Text>
-
-              <Divider maxW="200px" borderColor="blue.400" opacity="0.3" />
+              <ThesisBody bodyText={bodyText} />
 
               <Box width="100%" overflow="hidden">
-                {isMobile && renderThesisItems("supply chain intelligence & fortification // resilient digital infrastructure // finance <> climate interface // public goods & stewardship incentivisation // inequality tech // distributed & optimised compute // carbon capture // intelligent energy distribution // human dialogue & political voice // accessible legaltech // nature protection // carbon analytics // anti-consumer // agritech // transport // electric vehicles // industrial decarbonisation // biodiversity & earth synergy // refi & web3 // conservation reward & monitoring // water provision & purity // pollution solutions // renewables at scale // renewables (domestic & modular) // desalination // intelligent solar // macrologistics // infrastructure // longevity // silver economy // health & human function // agetech & assistive tech // biotech // healthtech // data visualisation & connections // optimising human capital // neurodiversity tech // personalised education // waste management // intuitive reducing, reusing, recycling // rehabilitation // packaging & microplastic reduction // energy transition // sustainable development & financing // proptech, management // insulation // wind & hydro // intelligent land use // harnessing creativity // mobility solutions // habitation resilience // futurism & adaptability tech // biomimetics, robotics & automation // freshwater protection // human connection // soil health, regeneration, nutrition & food security // new fertilizers // biopesticides // sustainable refrigerants // plant-based sustenance // petrochemical reduction // green & circular consumer // localised vertical farming // ocean cleanup // green architecture // energy storage & sharing // mycelium usage // clean & cultivated meat // green hydrogen infrastructure & fuel // smart grid // algae // green data centers // carbon capture technologies // indoor air quality technologies // equality // empowerment & opportunity // alternative therapies // mental health // humanising digital experiences // data protection & privacy // optimising key services // circular economy")}
+                {isMobile && <ThesisItemsList isMobile={isMobile} hasAnimated={hasAnimated} isPulsingActive={isPulsingActive} />}
               </Box>
             </VStack>
           </>
@@ -522,50 +203,20 @@ const Thesis = () => {
               flexDirection="column"
               pointerEvents="auto"
             >
-              <Flex alignItems="center" justifyContent="center" mb={4}>
-                <Image src="/favicon.ico" alt="Favicon" boxSize="30px" mr={3} />
-                <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-                  <Box 
-                    as="pre" 
-                    fontSize="4xl"
-                    fontWeight="bold" 
-                    whiteSpace="nowrap" 
-                    overflow="hidden" 
-                    borderRight={isHeaderTypingComplete ? "none" : "2px solid"}
-                    animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
-                    color="white"
-                    letterSpacing="tight"
-                  >
-                    {headerText}
-                  </Box>
-                </Link>
-              </Flex>
+              <ThesisHeader 
+                headerText={headerText} 
+                subheadingText={subheadingText} 
+                isHeaderTypingComplete={isHeaderTypingComplete} 
+                isBodyTypingComplete={isBodyTypingComplete}
+                fullHeaderText={fullHeaderText} 
+              />
 
-              <Box mb={4}>
-                <Badge 
-                  colorScheme="blue" 
-                  fontSize="lg" 
-                  py={1} 
-                  px={4} 
-                  borderRadius="full"
-                  textTransform="lowercase"
-                  letterSpacing="wider"
-                  animation={isBodyTypingComplete ? "none" : `${blink} 0.75s step-end infinite`}
-                >
-                  {subheadingText}
-                </Badge>
-              </Box>
+              <ThesisSubheading 
+                subheadingText={subheadingText} 
+                isBodyTypingComplete={isBodyTypingComplete} 
+              />
 
-              <Text 
-                fontSize="md" 
-                mb={4} 
-                whiteSpace="pre-wrap" 
-                lineHeight="1.8"
-                fontWeight="medium"
-                letterSpacing="wide"
-              >
-                {bodyText}
-              </Text>
+              <ThesisBody bodyText={bodyText} />
               
               <Button 
                 variant="outline" 
@@ -580,79 +231,16 @@ const Thesis = () => {
               </Button>
               
               <Box mt="auto">
-                <Flex 
-                  wrap="wrap" 
-                  justify="center" 
-                  gap={3} 
-                  mt={4}
-                  borderTop="1px solid"
-                  borderColor="whiteAlpha.200"
-                  pt={4}
-                  width="100%"
-                >
-                  <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
-                  <Text color="whiteAlpha.600">//</Text>
-                  <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-                  <Text color="whiteAlpha.600">//</Text>
-                  <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-                </Flex>
-
-                <Box 
-                  py={4} 
-                  textAlign="center" 
-                  fontSize="xs" 
-                  color="whiteAlpha.600" 
-                  width="100%"
-                  mt={2}
-                >
-                  built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
-                </Box>
+                <ThesisFooter />
               </Box>
             </Box>
           </Center>
         )}
 
-        {isMobile && (
-          <>
-            <Flex 
-              wrap="wrap" 
-              justify="center" 
-              gap={3} 
-              mt={8}
-              borderTop="1px solid"
-              borderColor="whiteAlpha.200"
-              pt={4}
-              width="100%"
-              maxW="600px"
-            >
-              <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
-              <Text color="whiteAlpha.600">//</Text>
-              <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-              <Text color="whiteAlpha.600">//</Text>
-              <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-            </Flex>
-
-            <Box 
-              as="footer" 
-              py={4} 
-              textAlign="center" 
-              fontSize="xs" 
-              color="whiteAlpha.600" 
-              width="100%"
-            >
-              built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
-            </Box>
-          </>
-        )}
+        {isMobile && <ThesisFooter />}
       </VStack>
-
-      {!isMobile && (
-        <Box style={{ display: 'none' }}>
-          {/* Removed the footer from here since it's now in the central box */}
-        </Box>
-      )}
       
-      {renderFullListModal()}
+      <ThesisModal isOpen={isOpen} onClose={onClose} getIconForThesisItem={getIconForThesisItem} />
     </Container>
   );
 };
