@@ -11,26 +11,28 @@ import {
   useColorModeValue,
   keyframes,
   useMediaQuery,
-  HStack
+  HStack,
+  Badge
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { Brain, AlertTriangle, Building, PoundSterling } from "lucide-react";
+import { blink } from "../components/thesis/AnimationKeyframes";
 
 const typing = keyframes`
   from { width: 0 }
   to { width: 100% }
 `;
 
-const blink = keyframes`
-  50% { border-color: transparent }
-`;
-
 const Disclaimer = () => {
   const [headerText, setHeaderText] = useState("");
+  const [subheadingText, setSubheadingText] = useState("");
   const fullHeaderText = "collective.vc";
+  const fullSubheadingText = "legal information";
   const headerIndexRef = useRef(0);
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const subheadingIndexRef = useRef(0);
+  const [isHeaderTypingComplete, setIsHeaderTypingComplete] = useState(false);
+  const [isSubheadingTypingComplete, setIsSubheadingTypingComplete] = useState(false);
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const bgGradient = useColorModeValue(
     "linear(to-r, gray.900, gray.800, gray.900)",
@@ -42,7 +44,9 @@ const Disclaimer = () => {
 
     if (hasAnimationPlayed) {
       setHeaderText(fullHeaderText);
-      setIsTypingComplete(true);
+      setSubheadingText(fullSubheadingText);
+      setIsHeaderTypingComplete(true);
+      setIsSubheadingTypingComplete(true);
       return;
     }
 
@@ -51,13 +55,25 @@ const Disclaimer = () => {
       headerIndexRef.current++;
       if (headerIndexRef.current === fullHeaderText.length) {
         clearInterval(headerInterval);
-        setIsTypingComplete(true);
-        sessionStorage.setItem('animationPlayedDisclaimer', 'true');
+        setIsHeaderTypingComplete(true);
+        startSubheadingTyping();
       }
     }, 50);
 
     return () => clearInterval(headerInterval);
   }, []);
+
+  const startSubheadingTyping = () => {
+    const subheadingInterval = setInterval(() => {
+      setSubheadingText(fullSubheadingText.substring(0, subheadingIndexRef.current + 1));
+      subheadingIndexRef.current++;
+      if (subheadingIndexRef.current === fullSubheadingText.length) {
+        clearInterval(subheadingInterval);
+        setIsSubheadingTypingComplete(true);
+        sessionStorage.setItem('animationPlayedDisclaimer', 'true');
+      }
+    }, 50);
+  };
 
   return (
     <Container 
@@ -84,8 +100,8 @@ const Disclaimer = () => {
                 fontWeight="bold" 
                 whiteSpace="nowrap" 
                 overflow="hidden" 
-                borderRight={isTypingComplete ? "none" : "2px solid"}
-                animation={isTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
+                borderRight={isHeaderTypingComplete ? "none" : "2px solid"}
+                animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
                 color="white"
                 letterSpacing="tight"
               >
@@ -93,6 +109,21 @@ const Disclaimer = () => {
               </Box>
             </Link>
           </Flex>
+        </Box>
+
+        <Box mb={4}>
+          <Badge 
+            colorScheme="purple" 
+            fontSize={{ base: "md", md: "lg" }} 
+            py={1} 
+            px={{ base: 3, md: 4 }} 
+            borderRadius="full"
+            textTransform="lowercase"
+            letterSpacing="wider"
+            animation={isSubheadingTypingComplete ? "none" : `${blink} 0.75s step-end infinite`}
+          >
+            {subheadingText}
+          </Badge>
         </Box>
 
         <VStack spacing={6} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="left" alignItems="flex-start">
