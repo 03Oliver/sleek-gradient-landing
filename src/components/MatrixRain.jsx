@@ -24,9 +24,10 @@ const MatrixRain = () => {
     for (let i = 0; i < columns; i++) {
       drops[i] = {
         y: Math.random() * -500, // Start above the canvas at random heights
-        speed: 0.5 + Math.random() * 1.5, // Random fall speed
+        speed: 1 + Math.random() * 3, // Faster speed (was 0.5-2)
         length: 5 + Math.floor(Math.random() * 6), // Random length between 5-10 chars
-        opacity: 0.05 + Math.random() * 0.2, // Low opacity for subtlety
+        opacity: 0.05 + Math.random() * 0.25, // Slightly higher max opacity
+        type: Math.random() > 0.3 ? 'fade' : 'trail', // 70% fade, 30% trail
       };
     }
 
@@ -57,12 +58,19 @@ const MatrixRain = () => {
           
           if (y < 0 || y > canvas.height) continue;
           
-          // Calculate fade - characters at end of string are more faded
-          const fadeFactor = 1 - (j / drop.length);
-          const alpha = drop.opacity * fadeFactor;
+          // Calculate opacity based on type
+          let alpha;
+          if (drop.type === 'fade') {
+            // Characters at end of string are more faded
+            const fadeFactor = 1 - (j / drop.length);
+            alpha = drop.opacity * fadeFactor;
+          } else { // trail type
+            // Trail effect - head is bright, tail fades
+            alpha = drop.opacity * (1 - (j / drop.length) * 0.8);
+          }
           
-          // Set color with alpha for fading effect
-          ctx.fillStyle = `rgba(144, 238, 144, ${alpha})`; // Light green with variable opacity
+          // Set color with alpha for fading effect - WHITE color with variable opacity
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
           
           // Select random character
           const charIndex = Math.floor(Math.random() * matrixChars.length);
@@ -79,13 +87,15 @@ const MatrixRain = () => {
         if (drop.y > canvas.height + (drop.length * 20)) {
           drop.y = Math.random() * -200;
           drop.length = 5 + Math.floor(Math.random() * 6); // Random length between 5-10
-          drop.opacity = 0.05 + Math.random() * 0.2; // Randomize opacity
+          drop.opacity = 0.05 + Math.random() * 0.25; // Randomize opacity
+          drop.type = Math.random() > 0.3 ? 'fade' : 'trail'; // Randomize type again
+          drop.speed = 1 + Math.random() * 3; // Randomize speed again
         }
       }
     }
 
-    // Animation loop
-    const interval = setInterval(draw, 50);
+    // Animation loop - faster refresh rate (was 50ms)
+    const interval = setInterval(draw, 40);
 
     // Handle window resize
     const handleResize = () => {
