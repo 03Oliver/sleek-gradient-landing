@@ -12,7 +12,8 @@ import {
   Badge,
   Divider,
   useColorModeValue,
-  SimpleGrid
+  Grid,
+  GridItem
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -39,6 +40,16 @@ const pulse = keyframes`
   0% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
   50% { transform: scale(1.02); box-shadow: 0 0 10px rgba(14, 165, 233, 0.4); }
   100% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
+`;
+
+const scrollDown = keyframes`
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(30vh)); }
+`;
+
+const scrollUp = keyframes`
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(-30vh)); }
 `;
 
 const Thesis = () => {
@@ -149,55 +160,125 @@ const Thesis = () => {
     return (1.6 + Math.random() * 2.4).toFixed(2);
   };
 
-  const renderThesisItems = (text) => {
+  const splitItemsIntoColumns = (text) => {
     const items = text.split(" // ");
+    const itemCount = items.length;
+    const columnCount = 3;
+    const itemsPerColumn = Math.ceil(itemCount / columnCount);
+    
+    return [
+      items.slice(0, itemsPerColumn),
+      items.slice(itemsPerColumn, itemsPerColumn * 2),
+      items.slice(itemsPerColumn * 2)
+    ];
+  };
+
+  const renderScrollColumn = (items, direction, columnIndex) => {
+    const isScrollingDown = direction === 'down';
+    const scrollAnimation = isScrollingDown ? scrollDown : scrollUp;
+    const scrollDuration = '120s';
     
     return (
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={3} mt={6} width="100%">
-        {items.map((item, index) => {
-          const duration = getRandomDuration();
-          const delay = getRandomDelay();
-          const pulseDelay = getRandomPulseDelay();
-          const pulseDuration = getRandomPulseDuration();
-          
-          return (
-            <Box 
-              key={index} 
-              p={2}
-              bg={getRandomShade()}
-              borderRadius="md"
-              borderLeft="3px solid"
-              borderColor={borderColor}
-              boxShadow="lg"
-              transition="all 0.3s"
-              _hover={{
-                transform: "translateY(-3px) scale(1.05)",
-                boxShadow: `xl, ${glowColor}`,
-                borderColor: "blue.300",
-                zIndex: 1
-              }}
-              animation={
-                hasAnimated 
-                  ? `${unravel} ${duration}s ease-out forwards${isPulsingActive ? `, ${pulse} ${pulseDuration}s ease-in-out ${pulseDelay}s infinite` : ''}`
-                  : "none"
-              }
-              animationDelay={`${delay}s`}
-              opacity={hasAnimated ? "0" : "1"}
-              transformOrigin="top"
-              height="auto"
-              fontSize="xs"
-            >
-              <Text 
-                fontSize="sm" 
-                fontWeight="medium"
-                letterSpacing="wide"
-              >
-                {item}
-              </Text>
-            </Box>
-          );
-        })}
-      </SimpleGrid>
+      <Box 
+        height="50vh" 
+        overflow="hidden" 
+        position="relative"
+        className={`scroll-column-${columnIndex}`}
+        key={`column-${columnIndex}`}
+      >
+        <Box
+          position="absolute"
+          top="0"
+          left="0"
+          right="0"
+          height="40px"
+          bgGradient="linear(to-b, gray.900, transparent)"
+          zIndex="2"
+          pointerEvents="none"
+        />
+        
+        <Box
+          position="absolute"
+          bottom="0"
+          left="0"
+          right="0"
+          height="40px"
+          bgGradient="linear(to-t, gray.900, transparent)"
+          zIndex="2"
+          pointerEvents="none"
+        />
+        
+        <Box
+          position="relative"
+          animation={`${scrollAnimation} ${scrollDuration} linear infinite`}
+          sx={{
+            '&:hover': {
+              animationPlayState: 'paused'
+            }
+          }}
+          height="auto"
+          paddingY="40px"
+          cursor="default"
+        >
+          <VStack spacing={3} align="stretch">
+            {[...items, ...items].map((item, index) => {
+              const duration = getRandomDuration();
+              const delay = getRandomDelay();
+              const pulseDelay = getRandomPulseDelay();
+              const pulseDuration = getRandomPulseDuration();
+              
+              return (
+                <Box 
+                  key={`${index}-${item.substring(0, 10)}`} 
+                  p={2}
+                  bg={getRandomShade()}
+                  borderRadius="md"
+                  borderLeft="3px solid"
+                  borderColor={borderColor}
+                  boxShadow="lg"
+                  transition="all 0.3s"
+                  _hover={{
+                    transform: "translateY(-3px) scale(1.05)",
+                    boxShadow: `xl, ${glowColor}`,
+                    borderColor: "blue.300",
+                    zIndex: 3
+                  }}
+                  animation={
+                    hasAnimated 
+                      ? `${unravel} ${duration}s ease-out forwards${isPulsingActive ? `, ${pulse} ${pulseDuration}s ease-in-out ${pulseDelay}s infinite` : ''}`
+                      : "none"
+                  }
+                  animationDelay={`${delay}s`}
+                  opacity={hasAnimated ? "0" : "1"}
+                  transformOrigin="top"
+                  height="auto"
+                  fontSize="xs"
+                >
+                  <Text 
+                    fontSize="sm" 
+                    fontWeight="medium"
+                    letterSpacing="wide"
+                  >
+                    {item}
+                  </Text>
+                </Box>
+              );
+            })}
+          </VStack>
+        </Box>
+      </Box>
+    );
+  };
+
+  const renderThesisItems = (text) => {
+    const columns = splitItemsIntoColumns(text);
+    
+    return (
+      <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={3} mt={6} width="100%">
+        <GridItem>{renderScrollColumn(columns[0], 'down', 0)}</GridItem>
+        <GridItem>{renderScrollColumn(columns[1], 'up', 1)}</GridItem>
+        <GridItem>{renderScrollColumn(columns[2], 'down', 2)}</GridItem>
+      </Grid>
     );
   };
 
