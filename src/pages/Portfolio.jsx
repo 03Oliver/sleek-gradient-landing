@@ -11,7 +11,12 @@ import {
   VStack, 
   Divider,
   useMediaQuery,
-  useColorModeValue
+  useColorModeValue,
+  Grid,
+  GridItem,
+  Tag,
+  HStack,
+  Tooltip
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -24,6 +29,12 @@ const blink = keyframes`
   50% { border-color: transparent }
 `;
 
+const pulse = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+`;
+
 const Portfolio = () => {
   const [headerText, setHeaderText] = useState("");
   const fullHeaderText = "collective.vc";
@@ -34,6 +45,58 @@ const Portfolio = () => {
     "linear(to-r, gray.900, gray.800, gray.900)",
     "linear(to-r, gray.900, gray.800, gray.900)"
   );
+
+  const portfolioItems = [
+    { 
+      name: "element 2 hydrogen", 
+      url: "https://element-2.co.uk/", 
+      color: "#4440e8",
+      description: "Green hydrogen infrastructure",
+      type: "equity"
+    },
+    { 
+      name: "sustainable ventures sa7", 
+      url: "https://www.sustainableventures.co.uk/", 
+      color: "#d0041c",
+      description: "Accelerator batch",
+      type: "accelerator"
+    },
+    { 
+      name: "stratiphy", 
+      url: "https://stratiphy.io", 
+      color: "#fcc450",
+      description: "AI-powered financial tools",
+      type: "equity"
+    },
+    { 
+      name: "otis ai", 
+      url: "https://meetotis.com/", 
+      color: "#3c8cfc",
+      description: "Conversational AI",
+      type: "equity"
+    },
+    { 
+      name: "teamignite.ventures", 
+      url: "https://teamignite.ventures", 
+      color: "#ef5a2c",
+      description: "Fund I",
+      type: "fund"
+    },
+    { 
+      name: "soldera", 
+      url: "https://www.soldera.org/", 
+      color: "#e0fca4",
+      description: "Sustainable solutions",
+      type: "equity" 
+    },
+    { 
+      name: "mirico", 
+      url: "https://www.mirico.co.uk/", 
+      color: "#c8141c",
+      description: "Gas monitoring technology",
+      type: "equity"
+    }
+  ];
 
   useEffect(() => {
     // Check if animation has already played this session
@@ -97,20 +160,113 @@ const Portfolio = () => {
           </Flex>
         </Box>
         
-        <VStack spacing={6} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="center">
-          <Text fontSize="lg">oliver's personal investments & deals + sweat equity & carry share (assorted)</Text>
-          <Text fontSize="md">
-            <Link href="https://element-2.co.uk/" isExternal color="#4440e8">element 2 hydrogen</Link> // {" "}
-            <Link href="https://www.sustainableventures.co.uk/" isExternal color="#d0041c">sustainable ventures sa7 (accelerator batch)</Link> // {" "}
-            <Link href="https://stratiphy.io" isExternal color="#fcc450">stratiphy</Link> // {" "}
-            <Link href="https://meetotis.com/" isExternal color="#3c8cfc">otis ai</Link> // {" "}
-            <Link href="https://teamignite.ventures" isExternal color="#ef5a2c">teamignite.ventures (fund i)</Link> // {" "}
-            <Link href="https://www.soldera.org/" isExternal color="#e0fca4">soldera</Link> // {" "}
-            <Link href="https://www.mirico.co.uk/" isExternal color="#c8141c">mirico</Link>
-          </Text>
+        <VStack spacing={10} width="100%" maxW="900px" px={{ base: 4, md: 6 }} textAlign="left">
+          <Box>
+            <Text fontSize="xl" textAlign="center" mb={8} fontWeight="medium" color="blue.200">
+              oliver's personal investments & deals + sweat equity & carry share (assorted)
+            </Text>
+            
+            {!isMobile ? (
+              <Grid 
+                templateColumns="repeat(auto-fill, minmax(260px, 1fr))" 
+                gap={6}
+                width="100%"
+              >
+                {portfolioItems.map((item, index) => (
+                  <GridItem 
+                    key={index}
+                    borderRadius="md"
+                    overflow="hidden"
+                    bg="rgba(255,255,255,0.05)"
+                    backdropFilter="blur(10px)"
+                    border="1px solid"
+                    borderColor="whiteAlpha.200"
+                    p={4}
+                    transition="all 0.3s"
+                    _hover={{
+                      transform: "translateY(-5px)",
+                      boxShadow: `0 10px 20px -10px ${item.color}50`,
+                      borderColor: `${item.color}80`,
+                    }}
+                  >
+                    <Link 
+                      href={item.url} 
+                      isExternal 
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      <VStack spacing={2} align="flex-start">
+                        <Text 
+                          fontWeight="bold" 
+                          fontSize="lg" 
+                          color={item.color}
+                          mb={1}
+                        >
+                          {item.name}
+                        </Text>
+                        <Text fontSize="sm" color="whiteAlpha.800">
+                          {item.description}
+                        </Text>
+                        <Tag 
+                          size="sm" 
+                          mt={2} 
+                          variant="subtle" 
+                          colorScheme={
+                            item.type === "equity" ? "blue" : 
+                            item.type === "fund" ? "purple" : "green"
+                          }
+                        >
+                          {item.type}
+                        </Tag>
+                      </VStack>
+                    </Link>
+                  </GridItem>
+                ))}
+              </Grid>
+            ) : (
+              <Text fontSize="md">
+                <Link href="https://element-2.co.uk/" isExternal color="#4440e8">element 2 hydrogen</Link> // {" "}
+                <Link href="https://www.sustainableventures.co.uk/" isExternal color="#d0041c">sustainable ventures sa7 (accelerator batch)</Link> // {" "}
+                <Link href="https://stratiphy.io" isExternal color="#fcc450">stratiphy</Link> // {" "}
+                <Link href="https://meetotis.com/" isExternal color="#3c8cfc">otis ai</Link> // {" "}
+                <Link href="https://teamignite.ventures" isExternal color="#ef5a2c">teamignite.ventures (fund i)</Link> // {" "}
+                <Link href="https://www.soldera.org/" isExternal color="#e0fca4">soldera</Link> // {" "}
+                <Link href="https://www.mirico.co.uk/" isExternal color="#c8141c">mirico</Link>
+              </Text>
+            )}
+          </Box>
           
-          <Text fontSize="lg" mt={4}>syndicate deals</Text>
-          <Text fontSize="md">coming very soon</Text>
+          <Box width="100%" textAlign="center" mt={6}>
+            <Text fontSize="xl" fontWeight="medium" color="blue.300" mb={4}>syndicate deals</Text>
+            
+            <Box
+              p={6}
+              borderRadius="lg"
+              bg="whiteAlpha.100"
+              backdropFilter="blur(8px)"
+              border="1px dashed"
+              borderColor="blue.400"
+              position="relative"
+              overflow="hidden"
+              _after={{
+                content: '""',
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                right: '0',
+                bottom: '0',
+                background: 'radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 120%)',
+                pointerEvents: 'none',
+              }}
+            >
+              <Text 
+                fontSize="md" 
+                opacity={0.8}
+                animation={`${pulse} 4s infinite ease-in-out`}
+              >
+                coming very soon
+              </Text>
+            </Box>
+          </Box>
 
           <Divider maxW="200px" borderColor="blue.400" opacity="0.3" mt={6} mb={6} />
 
