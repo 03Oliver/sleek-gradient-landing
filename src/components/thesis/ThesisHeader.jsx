@@ -32,8 +32,14 @@ const ThesisHeader = ({
           animation={isHeaderTypingComplete ? `${typing} 2s steps(${fullHeaderText.length})` : `${typing} 2s steps(${fullHeaderText.length}), ${blink} 0.75s step-end infinite`}
           color="white"
           letterSpacing="tight"
+          display="flex"
         >
-          {headerText}
+          <Text as="span">{headerText}</Text>
+          {isHeaderTypingComplete && (
+            <Text as="span" color="blue.400" ml={2} fontWeight="normal">
+              : {subheadingText}
+            </Text>
+          )}
         </Box>
       </Link>
     </Flex>
