@@ -174,19 +174,6 @@ const Index = () => {
               </Text>
             </Box>
 
-            <Button 
-              leftIcon={<Calendar size={18} />}
-              onClick={openCalendly}
-              colorScheme="blue"
-              variant="outline"
-              size="md"
-              _hover={{ bg: "blue.800" }}
-              mt={4}
-              mb={6}
-            >
-              Book a Chat
-            </Button>
-
             <Flex 
               wrap="wrap" 
               justify="center" 
@@ -205,7 +192,7 @@ const Index = () => {
               <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
             </Flex>
 
-            <SimpleGrid columns={{ base: 2, md: 5 }} spacing={5} textAlign="center" mt={2}>
+            <SimpleGrid columns={{ base: 2, md: 6 }} spacing={5} textAlign="center" mt={2}>
               <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
                 <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
               </Link>
@@ -224,6 +211,10 @@ const Index = () => {
 
               <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
                 <Box as={FaWhatsapp} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+              </Link>
+              
+              <Link href="#" onClick={openCalendly} isExternal>
+                <Box as={Calendar} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
               </Link>
             </SimpleGrid>
           </VStack>
