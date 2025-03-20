@@ -95,7 +95,6 @@ const Index = () => {
         width="100%" 
         position="relative" 
         zIndex="10"
-        pointerEvents="none"
       >
         <Box 
           p={8} 
@@ -107,7 +106,6 @@ const Index = () => {
           boxShadow="dark-lg"
           display="flex"
           flexDirection="column"
-          pointerEvents="auto"
         >
           <VStack spacing={6} flex="1" width="100%" justifyContent="center">
             <Box textAlign="center" mb={4}>
@@ -177,8 +175,6 @@ const Index = () => {
               width="100%"
               maxW={{ base: "600px", md: "100%" }}
             >
-              <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>home</Link>
-              <Text color="whiteAlpha.600">//</Text>
               <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
               <Text color="whiteAlpha.600">//</Text>
               <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
