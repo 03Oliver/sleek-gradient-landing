@@ -39,16 +39,14 @@ const lyrics = [
 ];
 
 const NotFound = () => {
-  const randomLyrics = lyrics[Math.floor(Math.random() * lyrics.length)];
   const [headerText, setHeaderText] = useState("");
   const fullHeaderText = "collective.vc";
   const headerIndexRef = useRef(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const bgGradient = useColorModeValue(
-    "linear(to-r, gray.900, gray.800, gray.900)",
-    "linear(to-r, gray.900, gray.800, gray.900)"
-  );
-
+  
+  // Choose one random lyric set
+  const randomLyricSet = lyrics[Math.floor(Math.random() * lyrics.length)];
+  
   useEffect(() => {
     const headerInterval = setInterval(() => {
       setHeaderText(fullHeaderText.substring(0, headerIndexRef.current + 1));
@@ -108,7 +106,7 @@ const NotFound = () => {
           </Text>
           <Text fontSize="2xl">404</Text>
           <VStack spacing={0}>
-            {randomLyrics.map((line, index) => (
+            {randomLyricSet.map((line, index) => (
               <Text key={index} fontSize="md" fontStyle="italic" color="gray.400">
                 {line}
               </Text>
