@@ -14,6 +14,10 @@ const HomeSocialLinks = ({ openCalendly }) => {
           transition="transform 0.2s"
           margin="0 auto"
           display="block"
+          width="36px"
+          height="36px"
+          flexShrink={0}
+          flexGrow={0}
         />
       </Link>
 
@@ -25,6 +29,10 @@ const HomeSocialLinks = ({ openCalendly }) => {
           transition="transform 0.2s"
           margin="0 auto"
           display="block"
+          width="36px"
+          height="36px"
+          flexShrink={0}
+          flexGrow={0}
         />
       </Link>
 
@@ -38,6 +46,8 @@ const HomeSocialLinks = ({ openCalendly }) => {
           display="block"
           width="36px"
           height="36px"
+          flexShrink={0}
+          flexGrow={0}
         />
       </Link>
 
@@ -51,6 +61,8 @@ const HomeSocialLinks = ({ openCalendly }) => {
           display="block" 
           width="36px"
           height="36px"
+          flexShrink={0}
+          flexGrow={0}
         />
       </Link>
 
@@ -62,6 +74,10 @@ const HomeSocialLinks = ({ openCalendly }) => {
           transition="transform 0.2s"
           margin="0 auto"
           display="block"
+          width="36px"
+          height="36px"
+          flexShrink={0}
+          flexGrow={0}
         />
       </Link>
       
@@ -82,6 +98,8 @@ const HomeSocialLinks = ({ openCalendly }) => {
           display="block"
           width="36px"
           height="36px"
+          flexShrink={0}
+          flexGrow={0}
         />
       </Box>
     </SimpleGrid>
