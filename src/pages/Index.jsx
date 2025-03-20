@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center, Button } from "@chakra-ui/react";
 import { FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
@@ -194,7 +193,6 @@ const Index = () => {
               <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
             </Flex>
 
-            {/* Fixed-width container for social icons to prevent stretching during animation */}
             <Box width="100%" position="relative" height="36px" mt={2}>
               <Flex 
                 position="absolute" 
@@ -239,7 +237,7 @@ const Index = () => {
           </VStack>
           
           <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt={8}>
-            built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
+            built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.05g CO₂</b>)</Link> with minimalism in mind
           </Box>
         </Box>
       </Center>
