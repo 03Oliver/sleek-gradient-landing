@@ -109,10 +109,11 @@ const ThesisItemsList = ({ isMobile, hasAnimated, isPulsingActive }) => {
       const column3 = items.slice(itemsPerColumn * 2);
       
       return (
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3} mt={6} width="100%">
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3} mt={6} width="100%" px={3}>
           <VStack spacing={3} 
             animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
             transition="all 0.3s"
+            width="100%"
           >
             {column1.map((item, index) => renderThesisItem(item, index))}
           </VStack>
@@ -120,6 +121,7 @@ const ThesisItemsList = ({ isMobile, hasAnimated, isPulsingActive }) => {
           <VStack spacing={3} 
             animation={hasAnimated ? `${scrollUp} 60s linear infinite alternate` : "none"}
             transition="all 0.3s"
+            width="100%"
           >
             {column2.map((item, index) => renderThesisItem(item, index))}
           </VStack>
@@ -127,6 +129,7 @@ const ThesisItemsList = ({ isMobile, hasAnimated, isPulsingActive }) => {
           <VStack spacing={3} 
             animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
             transition="all 0.3s"
+            width="100%"
           >
             {column3.map((item, index) => renderThesisItem(item, index))}
           </VStack>

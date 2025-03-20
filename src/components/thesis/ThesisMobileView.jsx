@@ -57,7 +57,7 @@ const ThesisMobileView = ({
           see criteria
         </Button>
 
-        <Box width="100%" overflow="hidden">
+        <Box width="100%" overflow="hidden" px={2}>
           <ThesisItemsList isMobile={true} hasAnimated={hasAnimated} isPulsingActive={isPulsingActive} />
         </Box>
       </VStack>
