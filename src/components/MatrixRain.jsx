@@ -11,10 +11,21 @@ const MatrixRain = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     
-    // Set canvas size to match window
+    // Set canvas size to match window and handle resize
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Get device pixel ratio for sharper display
+      const dpr = window.devicePixelRatio || 1;
+      
+      // Set canvas size in actual pixels
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      
+      // Set canvas display size (CSS)
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      
+      // Scale context to match DPR
+      ctx.scale(dpr, dpr);
     };
     
     window.addEventListener('resize', resizeCanvas);
@@ -23,12 +34,12 @@ const MatrixRain = () => {
     // Create an array of drops (one per column)
     const drops = [];
     const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
+    const columns = Math.floor(canvas.width / fontSize / (window.devicePixelRatio || 1));
     
     // Initialize drops at random positions
     for (let i = 0; i < columns; i++) {
       // Random starting position for each column
-      drops[i] = Math.random() * -canvas.height;
+      drops[i] = Math.random() * -canvas.height / (window.devicePixelRatio || 1);
     }
     
     // Generate a random string of characters from our set
@@ -48,7 +59,7 @@ const MatrixRain = () => {
     const draw = () => {
       // Add semi-transparent black rectangle to create fade effect
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
 
       // Set text properties
       ctx.font = `${fontSize}px monospace`;
@@ -64,7 +75,7 @@ const MatrixRain = () => {
           const y = drops[i] + j * fontSize;
           
           // Skip if off screen
-          if (y < 0 || y > canvas.height) continue;
+          if (y < 0 || y > canvas.height / (window.devicePixelRatio || 1)) continue;
           
           // Calculate opacity based on position (head of trail is brighter)
           const opacity = j === 0 ? 0.9 : 0.9 - (j / text.length * 0.7);
@@ -81,7 +92,7 @@ const MatrixRain = () => {
         drops[i] += speed;
         
         // Reset drop and generate new string when it goes off screen
-        if (drops[i] > canvas.height + text.length * fontSize) {
+        if (drops[i] > canvas.height / (window.devicePixelRatio || 1) + text.length * fontSize) {
           drops[i] = Math.random() * -100;
           strings[i] = getRandomString();
         }
@@ -101,21 +112,25 @@ const MatrixRain = () => {
 
   return (
     <Box 
-      position="absolute" 
+      position="fixed" 
       top={0}
       left={0}
       right={0}
       bottom={0}
       pointerEvents="none"
       zIndex={1}
+      width="100vw"
+      height="100vh"
     >
       <canvas 
         ref={canvasRef} 
         style={{ 
           display: 'block',
-          position: 'absolute',
+          position: 'fixed',
           top: 0,
-          left: 0
+          left: 0,
+          width: '100%',
+          height: '100%'
         }} 
       />
     </Box>
