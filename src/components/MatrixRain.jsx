@@ -66,10 +66,23 @@ const MatrixRain = () => {
           // Skip if off screen
           if (y < 0 || y > canvas.height) continue;
           
-          // Calculate opacity based on position (head of trail is brighter)
-          const opacity = j === 0 ? 0.9 : 0.9 - (j / text.length * 0.7);
+          // Calculate vertical position ratio (0 at top, 1 at bottom)
+          const verticalRatio = y / canvas.height;
           
-          // Set color for this character (white with varying opacity)
+          // Calculate opacity based on position 
+          // - Head of trail is brighter
+          // - Characters fade out as they reach the bottom
+          const headOpacity = j === 0 ? 0.9 : 0.9 - (j / text.length * 0.7);
+          
+          // Apply fading effect as characters get closer to the bottom
+          // Linear fade from full opacity to 0 as they approach the bottom 80% of the screen
+          const fadeoutThreshold = 0.2; // Start fading at 20% of screen height from the bottom
+          const verticalFade = verticalRatio < fadeoutThreshold ? 1 : 1 - ((verticalRatio - fadeoutThreshold) / (1 - fadeoutThreshold));
+          
+          // Combine both opacity factors
+          const opacity = headOpacity * verticalFade;
+          
+          // Set color for this character
           ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
           
           // Draw the character
