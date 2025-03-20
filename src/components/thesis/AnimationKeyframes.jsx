@@ -26,7 +26,6 @@ export const pulse = keyframes`
   100% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0); }
 `;
 
-// Updated to define seamless transitions
 export const scrollDown = keyframes`
   0% { transform: translateY(0); }
   100% { transform: translateY(40px); }

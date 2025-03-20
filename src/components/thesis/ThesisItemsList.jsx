@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { 
   SimpleGrid, 
@@ -179,33 +180,24 @@ const ThesisItemsList = ({ isMobile, hasAnimated, isPulsingActive }) => {
       return (
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3} mt={6} width="100%">
           <VStack spacing={3} 
-            animation={hasAnimated ? `${scrollDown} 60s linear infinite` : "none"}
+            animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
             transition="all 0.3s"
           >
             {column1.map((item, index) => renderThesisItem(item, index))}
-            {hasAnimated && column1.slice(0, 3).map((item, index) => 
-              renderThesisItem(item, `dup1-${index}`)
-            )}
           </VStack>
           
           <VStack spacing={3} 
-            animation={hasAnimated ? `${scrollUp} 60s linear infinite` : "none"}
+            animation={hasAnimated ? `${scrollUp} 60s linear infinite alternate` : "none"}
             transition="all 0.3s"
           >
             {column2.map((item, index) => renderThesisItem(item, index))}
-            {hasAnimated && column2.slice(0, 3).map((item, index) => 
-              renderThesisItem(item, `dup2-${index}`)
-            )}
           </VStack>
           
           <VStack spacing={3} 
-            animation={hasAnimated ? `${scrollDown} 60s linear infinite` : "none"}
+            animation={hasAnimated ? `${scrollDown} 60s linear infinite alternate` : "none"}
             transition="all 0.3s"
           >
             {column3.map((item, index) => renderThesisItem(item, index))}
-            {hasAnimated && column3.slice(0, 3).map((item, index) => 
-              renderThesisItem(item, `dup3-${index}`)
-            )}
           </VStack>
         </SimpleGrid>
       );
@@ -230,29 +222,14 @@ const ThesisItemsList = ({ isMobile, hasAnimated, isPulsingActive }) => {
             left="-10%"
           >
             {items.map((item, index) => {
-              const columnIndex = Math.floor(index / Math.ceil(items.length / 5));
-              const isEvenColumn = columnIndex % 2 === 0;
-              
+              const isEvenColumn = Math.floor(index / Math.ceil(items.length / 5)) % 2 === 0;
               return (
                 <Box 
                   key={index}
-                  position="relative"
-                  height="auto"
                   animation={isEvenColumn ? `${scrollDown} 30s linear infinite` : `${scrollUp} 30s linear infinite`}
                   transition="all 0.3s"
                 >
                   {renderThesisItem(item, index)}
-                  
-                  {(index < 5 || index >= items.length - 5) && (
-                    <Box 
-                      position="absolute" 
-                      width="100%" 
-                      top={isEvenColumn ? "-100%" : "100%"}
-                      left="0"
-                    >
-                      {renderThesisItem(item, `dup-${index}`)}
-                    </Box>
-                  )}
                 </Box>
               );
             })}
