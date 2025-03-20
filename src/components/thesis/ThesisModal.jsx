@@ -46,7 +46,7 @@ const ThesisModal = ({ isOpen, onClose, getIconForThesisItem }) => {
       >
         <ModalHeader fontSize="xl" fontWeight="bold" pb={2}>
           <Flex align="center" justify="space-between">
-            <Text>Investment Criteria</Text>
+            <Text>investment criteria</Text>
             <ModalCloseButton position="static" />
           </Flex>
         </ModalHeader>
@@ -67,38 +67,11 @@ const ThesisModal = ({ isOpen, onClose, getIconForThesisItem }) => {
             }
           }}
         >
-          {/* Climate Focus Areas Section */}
-          <VStack align="flex-start" spacing={4} mb={6}>
-            <Flex align="center" mb={1}>
-              <ListPlus size={18} style={{ marginRight: "10px" }} />
-              <Heading as="h3" size="sm">Climate Focus Areas</Heading>
-            </Flex>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3} width="100%">
-              {items.map((item, index) => (
-                <HStack 
-                  key={index} 
-                  p={2}
-                  bg="rgba(0,0,0,0.3)"
-                  borderRadius="md"
-                  borderLeft="3px solid"
-                  borderColor="blue.400"
-                >
-                  {getIconForThesisItem(item)}
-                  <Text fontSize="sm" fontWeight="medium">
-                    {item}
-                  </Text>
-                </HStack>
-              ))}
-            </SimpleGrid>
-          </VStack>
-          
-          <Divider my={4} borderColor="gray.700" />
-          
           {/* Geographies Section */}
           <VStack align="flex-start" spacing={4} mb={6}>
             <Flex align="center" mb={1}>
               <Map size={18} style={{ marginRight: "10px" }} />
-              <Heading as="h3" size="sm">Geographies</Heading>
+              <Heading as="h3" size="sm">geographies</Heading>
             </Flex>
             <VStack align="flex-start" pl={2} spacing={2} width="100%">
               <HStack 
@@ -143,10 +116,10 @@ const ThesisModal = ({ isOpen, onClose, getIconForThesisItem }) => {
           <Divider my={4} borderColor="gray.700" />
           
           {/* Stage Section */}
-          <VStack align="flex-start" spacing={4} mb={2}>
+          <VStack align="flex-start" spacing={4} mb={6}>
             <Flex align="center" mb={1}>
               <DollarSign size={18} style={{ marginRight: "10px" }} />
-              <Heading as="h3" size="sm">Stage</Heading>
+              <Heading as="h3" size="sm">stage</Heading>
             </Flex>
             <VStack align="flex-start" pl={2} spacing={2} width="100%">
               <HStack 
@@ -182,10 +155,37 @@ const ThesisModal = ({ isOpen, onClose, getIconForThesisItem }) => {
                 width="100%"
               >
                 <Text fontSize="sm" fontWeight="medium">
-                  engaged and enthusiastic investors
+                  engaged and enthusiastic investors: we enjoy working with you closely
                 </Text>
               </HStack>
             </VStack>
+          </VStack>
+          
+          <Divider my={4} borderColor="gray.700" />
+          
+          {/* Climate Focus Areas Section */}
+          <VStack align="flex-start" spacing={4} mb={2}>
+            <Flex align="center" mb={1}>
+              <ListPlus size={18} style={{ marginRight: "10px" }} />
+              <Heading as="h3" size="sm">climate focus areas</Heading>
+            </Flex>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3} width="100%">
+              {items.map((item, index) => (
+                <HStack 
+                  key={index} 
+                  p={2}
+                  bg="rgba(0,0,0,0.3)"
+                  borderRadius="md"
+                  borderLeft="3px solid"
+                  borderColor="blue.400"
+                >
+                  {getIconForThesisItem(item)}
+                  <Text fontSize="sm" fontWeight="medium">
+                    {item}
+                  </Text>
+                </HStack>
+              ))}
+            </SimpleGrid>
           </VStack>
         </ModalBody>
       </ModalContent>
