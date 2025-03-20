@@ -5,7 +5,7 @@ import { Bookmark, Mail, Calendar } from "lucide-react";
 
 const HomeSocialLinks = ({ openCalendly }) => {
   return (
-    <SimpleGrid columns={{ base: 3, md: 6 }} spacing={{ base: 4, md: 5 }} textAlign="center" mt={4}>
+    <SimpleGrid columns={{ base: 3, md: 6 }} spacing={{ base: 2, md: 3 }} textAlign="center" mt={4}>
       <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
         <Box 
           as={FaLinkedin} 
