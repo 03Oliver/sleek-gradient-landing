@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center, Button } from "@chakra-ui/react";
 import { FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
@@ -193,38 +194,48 @@ const Index = () => {
               <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
             </Flex>
 
-            <SimpleGrid columns={{ base: 2, md: 6 }} spacing={5} textAlign="center" mt={2}>
-              <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
-                <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
-              </Link>
-
-              <Link href="https://www.youtube.com/@collectivevc" isExternal>
-                <Box as={FaYoutube} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
-              </Link>
-
-              <Link href="https://collectivevc.substack.com" isExternal>
-                <Box as={Bookmark} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
-              </Link>
-
-              <Link href="mailto:oliver@collective.vc" isExternal>
-                <Box as={Mail} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
-              </Link>
-
-              <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
-                <Box as={FaWhatsapp} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
-              </Link>
-              
-              <Box 
-                as={Link} 
-                href="#" 
-                onClick={openCalendly} 
-                _hover={{ transform: "scale(1.1)" }} 
-                transition="transform 0.2s"
-                cursor="pointer"
+            {/* Fixed-width container for social icons to prevent stretching during animation */}
+            <Box width="100%" position="relative" height="36px" mt={2}>
+              <Flex 
+                position="absolute" 
+                width="100%" 
+                justify="center" 
+                alignItems="center"
               >
-                <Box as={Calendar} size="36px" />
-              </Box>
-            </SimpleGrid>
+                <Box display="flex" justifyContent="space-between" width="280px">
+                  <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
+                    <Box as={FaLinkedin} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                  </Link>
+
+                  <Link href="https://www.youtube.com/@collectivevc" isExternal>
+                    <Box as={FaYoutube} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                  </Link>
+
+                  <Link href="https://collectivevc.substack.com" isExternal>
+                    <Box as={Bookmark} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                  </Link>
+
+                  <Link href="mailto:oliver@collective.vc" isExternal>
+                    <Box as={Mail} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                  </Link>
+
+                  <Link href="https://chat.whatsapp.com/CcIGrlvEwuG9pnvl7COITj" isExternal>
+                    <Box as={FaWhatsapp} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
+                  </Link>
+                  
+                  <Box 
+                    as={Link} 
+                    href="#" 
+                    onClick={openCalendly} 
+                    _hover={{ transform: "scale(1.1)" }} 
+                    transition="transform 0.2s"
+                    cursor="pointer"
+                  >
+                    <Box as={Calendar} size="36px" />
+                  </Box>
+                </Box>
+              </Flex>
+            </Box>
           </VStack>
           
           <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%" mt={8}>
