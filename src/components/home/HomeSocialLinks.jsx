@@ -13,6 +13,7 @@ const HomeSocialLinks = ({ openCalendly }) => {
           _hover={{ transform: "scale(1.1)" }} 
           transition="transform 0.2s"
           margin="0 auto"
+          display="block"
         />
       </Link>
 
@@ -23,6 +24,7 @@ const HomeSocialLinks = ({ openCalendly }) => {
           _hover={{ transform: "scale(1.1)" }} 
           transition="transform 0.2s"
           margin="0 auto"
+          display="block"
         />
       </Link>
 
@@ -33,6 +35,9 @@ const HomeSocialLinks = ({ openCalendly }) => {
           _hover={{ transform: "scale(1.1)" }} 
           transition="transform 0.2s"
           margin="0 auto"
+          display="block"
+          width="36px"
+          height="36px"
         />
       </Link>
 
@@ -43,6 +48,9 @@ const HomeSocialLinks = ({ openCalendly }) => {
           _hover={{ transform: "scale(1.1)" }} 
           transition="transform 0.2s"
           margin="0 auto"
+          display="block" 
+          width="36px"
+          height="36px"
         />
       </Link>
 
@@ -53,6 +61,7 @@ const HomeSocialLinks = ({ openCalendly }) => {
           _hover={{ transform: "scale(1.1)" }} 
           transition="transform 0.2s"
           margin="0 auto"
+          display="block"
         />
       </Link>
       
@@ -64,8 +73,16 @@ const HomeSocialLinks = ({ openCalendly }) => {
         transition="transform 0.2s"
         cursor="pointer"
         margin="0 auto"
+        display="block"
       >
-        <Box as={Calendar} size={36} margin="0 auto" />
+        <Box 
+          as={Calendar} 
+          size={36} 
+          margin="0 auto" 
+          display="block"
+          width="36px"
+          height="36px"
+        />
       </Box>
     </SimpleGrid>
   );
