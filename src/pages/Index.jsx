@@ -64,11 +64,12 @@ const Index = () => {
         zIndex="10"
       >
         <Box 
-          p={8} 
+          p={{ base: 6, md: 8 }}
           borderRadius="lg" 
           bg="rgba(0,0,0,0.7)" 
           backdropFilter="blur(8px)" 
-          maxW="600px" 
+          maxW={{ base: "90%", md: "600px" }}
+          width="100%" 
           textAlign="center"
           boxShadow="dark-lg"
           display="flex"
