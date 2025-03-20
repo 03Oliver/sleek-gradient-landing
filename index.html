@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Collective VC</title>
-    <!-- Calendly badge widget styles -->
+    <!-- Calendly widget styles -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   </head>
   <body>
@@ -13,23 +13,12 @@
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script src="/src/main.jsx" type="module"></script>
     
-    <!-- Calendly badge widget scripts -->
+    <!-- Calendly widget scripts -->
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <script type="text/javascript">
       window.onload = function() {
-        // Get the current path
-        const currentPath = window.location.pathname;
-        
-        // Only initialize Calendly if NOT on the disclaimer page
-        if (currentPath !== '/disclaimer') {
-          Calendly.initBadgeWidget({ 
-            url: 'https://calendly.com/oliverbonallack/30min', 
-            text: 'book a chat', 
-            color: '#ffffff', 
-            textColor: '#000000', 
-            branding: undefined 
-          });
-        }
+        // Center positioning is now managed in the React components
+        // The badge widget is removed as we'll use an inline button instead
       }
     </script>
   </body>

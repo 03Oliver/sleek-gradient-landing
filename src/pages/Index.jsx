@@ -1,10 +1,9 @@
-
 import { useEffect, useState, useRef } from "react";
-import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center } from "@chakra-ui/react";
+import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center, Button } from "@chakra-ui/react";
 import { FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import MatrixRain from "../components/MatrixRain";
-import { Bookmark, Mail } from "lucide-react";
+import { Bookmark, Mail, Calendar } from "lucide-react";
 
 const typing = keyframes`
   from { width: 0 }
@@ -73,6 +72,15 @@ const Index = () => {
         setIsTypingComplete(true);
       }
     }, 40);
+  };
+
+  const openCalendly = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/oliverbonallack/30min'
+      });
+      return false;
+    }
   };
 
   return (
@@ -165,6 +173,19 @@ const Index = () => {
                 {bodyText.substring(fullBodyText.length + oliverText.length)}
               </Text>
             </Box>
+
+            <Button 
+              leftIcon={<Calendar size={18} />}
+              onClick={openCalendly}
+              colorScheme="blue"
+              variant="outline"
+              size="md"
+              _hover={{ bg: "blue.800" }}
+              mt={4}
+              mb={6}
+            >
+              Book a Chat
+            </Button>
 
             <Flex 
               wrap="wrap" 
