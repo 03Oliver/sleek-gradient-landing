@@ -5,7 +5,7 @@ import { Bookmark, Mail, Calendar } from "lucide-react";
 
 const HomeSocialLinks = ({ openCalendly }) => {
   return (
-    <SimpleGrid columns={{ base: 3, md: 6 }} spacing={{ base: 2, md: 3 }} textAlign="center" mt={4}>
+    <SimpleGrid columns={{ base: 3, md: 6 }} spacing={0} textAlign="center" mt={4}>
       <Link href="https://www.linkedin.com/company/collectivevc" isExternal>
         <Box 
           as={FaLinkedin} 
@@ -18,6 +18,7 @@ const HomeSocialLinks = ({ openCalendly }) => {
           height="36px"
           flexShrink={0}
           flexGrow={0}
+          position="relative"
         />
       </Link>
 
@@ -33,6 +34,7 @@ const HomeSocialLinks = ({ openCalendly }) => {
           height="36px"
           flexShrink={0}
           flexGrow={0}
+          position="relative"
         />
       </Link>
 
@@ -48,6 +50,7 @@ const HomeSocialLinks = ({ openCalendly }) => {
           height="36px"
           flexShrink={0}
           flexGrow={0}
+          position="relative"
         />
       </Link>
 
@@ -63,6 +66,7 @@ const HomeSocialLinks = ({ openCalendly }) => {
           height="36px"
           flexShrink={0}
           flexGrow={0}
+          position="relative"
         />
       </Link>
 
@@ -78,6 +82,7 @@ const HomeSocialLinks = ({ openCalendly }) => {
           height="36px"
           flexShrink={0}
           flexGrow={0}
+          position="relative"
         />
       </Link>
       
@@ -100,6 +105,7 @@ const HomeSocialLinks = ({ openCalendly }) => {
           height="36px"
           flexShrink={0}
           flexGrow={0}
+          position="relative"
         />
       </Box>
     </SimpleGrid>
