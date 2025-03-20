@@ -175,11 +175,11 @@ const Index = () => {
               width="100%"
               maxW={{ base: "600px", md: "100%" }}
             >
+              <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+              <Text color="whiteAlpha.600">//</Text>
               <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
               <Text color="whiteAlpha.600">//</Text>
               <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-              <Text color="whiteAlpha.600">//</Text>
-              <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
             </Flex>
 
             <SimpleGrid columns={{ base: 2, md: 5 }} spacing={5} textAlign="center" mt={2}>

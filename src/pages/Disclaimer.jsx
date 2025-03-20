@@ -185,11 +185,11 @@ const Disclaimer = () => {
             maxW="600px"
             alignSelf="center"
           >
-            <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
-            <Text color="whiteAlpha.600">//</Text>
-            <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+            <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>home</Link>
             <Text color="whiteAlpha.600">//</Text>
             <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
           </Flex>
         </VStack>
       </VStack>
