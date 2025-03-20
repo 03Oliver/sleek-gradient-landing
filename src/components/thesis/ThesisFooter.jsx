@@ -16,7 +16,7 @@ const ThesisFooter = () => {
         width="100%"
         maxW={{ base: "600px", md: "100%" }}
       >
-        <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>home</Link>
+        <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>return home</Link>
         <Text color="whiteAlpha.600">//</Text>
         <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
         <Text color="whiteAlpha.600">//</Text>
