@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
@@ -227,7 +228,7 @@ const Thesis = () => {
                 onClick={onOpen}
                 alignSelf="center"
               >
-                view full list
+                see criteria
               </Button>
               
               <Box mt="auto">
