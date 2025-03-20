@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center } from "@chakra-ui/react";
 import { FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
@@ -106,6 +107,7 @@ const Index = () => {
           boxShadow="dark-lg"
           display="flex"
           flexDirection="column"
+          marginY="auto"
         >
           <VStack spacing={6} flex="1" width="100%" justifyContent="center">
             <Box textAlign="center" mb={4}>

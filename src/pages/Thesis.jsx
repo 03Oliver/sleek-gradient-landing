@@ -136,7 +136,7 @@ const Thesis = () => {
       bgGradient="linear(to-r, black, gray.800)"
       color="white" 
       fontFamily="Roboto, sans-serif" 
-      pt={8}
+      pt={0}
       px={0}
       overflowX="hidden"
       overflowY={isMobile ? "auto" : "hidden"}
@@ -201,6 +201,7 @@ const Thesis = () => {
               display="flex"
               flexDirection="column"
               pointerEvents="auto"
+              marginY="auto"
             >
               <ThesisHeader 
                 headerText={headerText} 
