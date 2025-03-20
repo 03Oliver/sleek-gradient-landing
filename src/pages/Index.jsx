@@ -74,7 +74,8 @@ const Index = () => {
     }, 40);
   };
 
-  const openCalendly = () => {
+  const openCalendly = (e) => {
+    e.preventDefault();
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
         url: 'https://calendly.com/oliverbonallack/30min'
@@ -213,9 +214,16 @@ const Index = () => {
                 <Box as={FaWhatsapp} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
               </Link>
               
-              <Link href="#" onClick={openCalendly} isExternal>
-                <Box as={Calendar} size="36px" _hover={{ transform: "scale(1.1)" }} transition="transform 0.2s" />
-              </Link>
+              <Box 
+                as={Link} 
+                href="#" 
+                onClick={openCalendly} 
+                _hover={{ transform: "scale(1.1)" }} 
+                transition="transform 0.2s"
+                cursor="pointer"
+              >
+                <Box as={Calendar} size="36px" />
+              </Box>
             </SimpleGrid>
           </VStack>
           
