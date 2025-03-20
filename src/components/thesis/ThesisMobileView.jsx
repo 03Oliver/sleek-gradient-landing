@@ -2,8 +2,10 @@
 import React from "react";
 import { 
   Box, 
-  VStack 
+  VStack,
+  Button
 } from "@chakra-ui/react";
+import { ListPlus } from "lucide-react";
 import ThesisHeader from "./ThesisHeader";
 import ThesisSubheading from "./ThesisSubheading";
 import ThesisBody from "./ThesisBody";
@@ -18,7 +20,8 @@ const ThesisMobileView = ({
   isBodyTypingComplete,
   fullHeaderText,
   hasAnimated,
-  isPulsingActive
+  isPulsingActive,
+  onOpen
 }) => {
   return (
     <>
@@ -41,6 +44,18 @@ const ThesisMobileView = ({
         </Box>
 
         <ThesisBody bodyText={bodyText} />
+        
+        <Button 
+          variant="outline" 
+          colorScheme="blue" 
+          size="sm" 
+          rightIcon={<ListPlus size={16} />}
+          mb={6}
+          onClick={onOpen}
+          alignSelf="center"
+        >
+          see criteria
+        </Button>
 
         <Box width="100%" overflow="hidden">
           <ThesisItemsList isMobile={true} hasAnimated={hasAnimated} isPulsingActive={isPulsingActive} />

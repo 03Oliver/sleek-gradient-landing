@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { 
   Container, 
@@ -117,6 +116,7 @@ const Thesis = () => {
             fullHeaderText={fullHeaderText}
             hasAnimated={hasAnimated}
             isPulsingActive={isPulsingActive}
+            onOpen={onOpen}
           />
         ) : (
           <ThesisDesktopView 
