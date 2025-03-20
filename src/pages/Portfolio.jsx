@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
@@ -12,9 +11,7 @@ import {
   useMediaQuery,
   useColorModeValue,
   Tag,
-  Badge,
-  Heading,
-  SimpleGrid
+  Badge
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { typing, blink, badgeBlink } from "../components/thesis/AnimationKeyframes";
@@ -34,7 +31,7 @@ const Portfolio = () => {
     "linear(to-r, gray.900, gray.800, gray.900)"
   );
 
-  const climateInvestments = [
+  const investments = [
     { 
       name: "element 2 hydrogen", 
       subheading: "", 
@@ -47,21 +44,6 @@ const Portfolio = () => {
       url: "https://www.sustainableventures.co.uk/", 
       color: "#d0041c" 
     },
-    { 
-      name: "soldera", 
-      subheading: "", 
-      url: "https://www.soldera.org/", 
-      color: "#e0fca4" 
-    },
-    { 
-      name: "mirico", 
-      subheading: "", 
-      url: "https://www.mirico.co.uk/", 
-      color: "#c8141c" 
-    }
-  ];
-
-  const generalistInvestments = [
     { 
       name: "stratiphy", 
       subheading: "", 
@@ -76,9 +58,21 @@ const Portfolio = () => {
     },
     { 
       name: "teamignite.ventures", 
-      subheading: "fund ii", 
+      subheading: "fund i", 
       url: "https://teamignite.ventures", 
       color: "#ef5a2c" 
+    },
+    { 
+      name: "soldera", 
+      subheading: "", 
+      url: "https://www.soldera.org/", 
+      color: "#e0fca4" 
+    },
+    { 
+      name: "mirico", 
+      subheading: "", 
+      url: "https://www.mirico.co.uk/", 
+      color: "#c8141c" 
     }
   ];
 
@@ -173,143 +167,59 @@ const Portfolio = () => {
         <VStack spacing={6} width="100%" maxW="800px" px={{ base: 4, md: 6 }} textAlign="center">
           <Text fontSize="lg">oliver's personal investments & deals + sweat equity & carry share (assorted)</Text>
           
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} width="100%" mt={4}>
-            {/* Climate Column */}
-            <VStack align="center" spacing={4}>
-              <Badge 
-                colorScheme="blue" 
-                fontSize="sm" 
-                py={1} 
-                px={3} 
-                borderRadius="full"
-                textTransform="lowercase"
-                letterSpacing="wider"
+          <Flex 
+            wrap="wrap" 
+            justify="center" 
+            gap={4}
+            width="100%"
+            mt={2}
+          >
+            {investments.map((investment, index) => (
+              <Link 
+                key={index}
+                href={investment.url} 
+                isExternal 
+                _hover={{ textDecoration: "none", transform: "scale(1.05)" }}
+                transition="transform 0.2s"
               >
-                climate
-              </Badge>
-              
-              <Flex 
-                wrap="wrap" 
-                justify="center" 
-                gap={4}
-                width="100%"
-              >
-                {climateInvestments.map((investment, index) => (
-                  <Link 
-                    key={index}
-                    href={investment.url} 
-                    isExternal 
-                    _hover={{ textDecoration: "none", transform: "scale(1.05)" }}
-                    transition="transform 0.2s"
-                  >
-                    <Box
-                      p={3}
-                      borderRadius="md"
-                      bg="rgba(30, 30, 30, 0.6)"
-                      borderLeft={`3px solid ${investment.color}`}
-                      backdropFilter="blur(10px)"
-                      boxShadow="lg"
-                      minWidth="180px"
-                      height="60px"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      textAlign="center"
-                      fontSize="sm"
-                      fontWeight="medium"
-                      color="white"
-                      transition="all 0.2s"
-                      _hover={{ 
-                        bg: "rgba(40, 40, 40, 0.7)",
-                        boxShadow: "xl"
-                      }}
-                    >
-                      <VStack spacing={0} w="100%">
-                        <Text>{investment.name}</Text>
-                        {investment.subheading && (
-                          <Text 
-                            fontSize="xs" 
-                            color="whiteAlpha.700" 
-                            mt="0 !important"
-                          >
-                            ({investment.subheading})
-                          </Text>
-                        )}
-                      </VStack>
-                    </Box>
-                  </Link>
-                ))}
-              </Flex>
-            </VStack>
-            
-            {/* Generalist Column */}
-            <VStack align="center" spacing={4}>
-              <Badge 
-                colorScheme="blue" 
-                fontSize="sm" 
-                py={1} 
-                px={3} 
-                borderRadius="full"
-                textTransform="lowercase"
-                letterSpacing="wider"
-              >
-                generalist
-              </Badge>
-              
-              <Flex 
-                wrap="wrap" 
-                justify="center" 
-                gap={4}
-                width="100%"
-              >
-                {generalistInvestments.map((investment, index) => (
-                  <Link 
-                    key={index}
-                    href={investment.url} 
-                    isExternal 
-                    _hover={{ textDecoration: "none", transform: "scale(1.05)" }}
-                    transition="transform 0.2s"
-                  >
-                    <Box
-                      p={3}
-                      borderRadius="md"
-                      bg="rgba(30, 30, 30, 0.6)"
-                      borderLeft={`3px solid ${investment.color}`}
-                      backdropFilter="blur(10px)"
-                      boxShadow="lg"
-                      minWidth="180px"
-                      height="60px"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      textAlign="center"
-                      fontSize="sm"
-                      fontWeight="medium"
-                      color="white"
-                      transition="all 0.2s"
-                      _hover={{ 
-                        bg: "rgba(40, 40, 40, 0.7)",
-                        boxShadow: "xl"
-                      }}
-                    >
-                      <VStack spacing={0} w="100%">
-                        <Text>{investment.name}</Text>
-                        {investment.subheading && (
-                          <Text 
-                            fontSize="xs" 
-                            color="whiteAlpha.700" 
-                            mt="0 !important"
-                          >
-                            ({investment.subheading})
-                          </Text>
-                        )}
-                      </VStack>
-                    </Box>
-                  </Link>
-                ))}
-              </Flex>
-            </VStack>
-          </SimpleGrid>
+                <Box
+                  p={3}
+                  borderRadius="md"
+                  bg="rgba(30, 30, 30, 0.6)"
+                  borderLeft={`3px solid ${investment.color}`}
+                  backdropFilter="blur(10px)"
+                  boxShadow="lg"
+                  minWidth="180px"
+                  height="60px"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  textAlign="center"
+                  fontSize="sm"
+                  fontWeight="medium"
+                  color="white"
+                  transition="all 0.2s"
+                  _hover={{ 
+                    bg: "rgba(40, 40, 40, 0.7)",
+                    boxShadow: "xl"
+                  }}
+                >
+                  <VStack spacing={0} w="100%">
+                    <Text>{investment.name}</Text>
+                    {investment.subheading && (
+                      <Text 
+                        fontSize="xs" 
+                        color="whiteAlpha.700" 
+                        mt="0 !important"
+                      >
+                        ({investment.subheading})
+                      </Text>
+                    )}
+                  </VStack>
+                </Box>
+              </Link>
+            ))}
+          </Flex>
           
           <Text fontSize="lg" mt={4}>syndicate deals</Text>
           <Text fontSize="md">coming very soon</Text>
