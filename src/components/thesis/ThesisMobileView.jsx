@@ -25,7 +25,7 @@ const ThesisMobileView = ({
 }) => {
   return (
     <>
-      <Box textAlign="center" mb={2}>
+      <Box textAlign="center" mb={2} pt={6}>
         <ThesisHeader 
           headerText={headerText} 
           subheadingText={subheadingText} 

@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { 
   Container, 
@@ -75,7 +76,7 @@ const Thesis = () => {
       bgGradient="linear(to-r, black, gray.800)"
       color="white" 
       fontFamily="Roboto, sans-serif" 
-      pt={0}
+      pt={isMobile ? 4 : 0}
       px={0}
       overflowX="hidden"
       overflowY={isMobile ? "auto" : "hidden"}
@@ -105,6 +106,7 @@ const Thesis = () => {
         zIndex={isMobile ? "auto" : 10}
         h={isMobile ? "auto" : "100vh"}
         justifyContent={isMobile ? "flex-start" : "center"}
+        pt={isMobile ? 2 : 0}
       >
         {isMobile ? (
           <ThesisMobileView 
