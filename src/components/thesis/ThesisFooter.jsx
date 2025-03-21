@@ -20,6 +20,8 @@ const ThesisFooter = () => {
         <Text color="whiteAlpha.600">//</Text>
         <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
         <Text color="whiteAlpha.600">//</Text>
+        <Link as={RouterLink} to="/projects" color="blue.300" _hover={{ color: "blue.100" }}>projects</Link>
+        <Text color="whiteAlpha.600">//</Text>
         <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
       </Flex>
 

@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
@@ -241,6 +240,8 @@ const Portfolio = () => {
             <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>home</Link>
             <Text color="whiteAlpha.600">//</Text>
             <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/projects" color="blue.300" _hover={{ color: "blue.100" }}>projects</Link>
             <Text color="whiteAlpha.600">//</Text>
             <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
           </Flex>
