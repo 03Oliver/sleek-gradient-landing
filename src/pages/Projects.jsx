@@ -13,10 +13,14 @@ import {
   Heading,
   useColorModeValue,
   Center,
-  ScaleFade
+  ScaleFade,
+  Badge,
+  HStack,
+  Tooltip
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { typing, blink } from "../components/thesis/AnimationKeyframes";
+import { Mic, MapPin, MessageSquare, Car, Video, Link2, User } from "lucide-react";
 
 const Projects = () => {
   const [headerText, setHeaderText] = useState("");
@@ -120,22 +124,83 @@ const Projects = () => {
         </Box>
         
         <Box mb={4}>
-          <Text 
-            fontSize={{ base: "xl", md: "2xl" }} 
-            fontWeight="bold"
+          <Badge 
+            colorScheme="blue" 
+            fontSize={{ base: "md", md: "lg" }} 
+            py={1} 
+            px={{ base: 3, md: 4 }} 
+            borderRadius="full"
             textTransform="lowercase"
             letterSpacing="wider"
-            textAlign="center"
-            opacity={isSubheadingTypingComplete ? 1 : 0.7}
             animation={isSubheadingTypingComplete ? "none" : `${blink} 0.75s step-end infinite`}
           >
             {subheadingText}
-          </Text>
+          </Badge>
         </Box>
         
         <Divider maxW="400px" borderColor="blue.400" opacity="0.3" mb={6} />
         
-        <Center py={6}>
+        <VStack spacing={4} width="100%" maxW="600px" align="start">
+          <HStack spacing={3}>
+            <Box as={Mic} size={20} color="blue.300" />
+            <Link href="https://www.youtube.com/@CollectiveVC" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              podcast
+            </Link>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={MapPin} size={20} color="blue.300" />
+            <Link href="https://www.linkedin.com/posts/bonallack_climatetech-exploration-estonia-activity-7274763668804845568-v2no?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              tartu, estonia
+            </Link>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={MessageSquare} size={20} color="blue.300" />
+            <Link href="https://www.youtube.com/watch?v=er81yRKCnCA" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              tedx
+            </Link>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={Car} size={20} color="blue.300" />
+            <Link href="https://www.linkedin.com/posts/bonallack_electricvehicles-fleetmanagement-saas-activity-7270779377150316545-Zq8V?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              rightcharge
+            </Link>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={Video} size={20} color="blue.300" />
+            <Link href="https://www.linkedin.com/posts/bonallack_we-are-excited-to-launch-the-climateimpact-activity-7285626865074012161-cKWN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              climateimpact video
+            </Link>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={Video} size={20} color="blue.300" />
+            <Link href="https://www.linkedin.com/posts/bonallack_climateimpact-startups-innovation-activity-7194259813835382784-P7D5?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              climateimpact video
+            </Link>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={Link2} size={20} color="blue.300" />
+            <Link href="https://www.linkedin.com/posts/bonallack_blockchain-governance-universityofbristol-activity-7192121121595379713-mm0C?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              bristol blockchain
+            </Link>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={User} size={20} color="blue.300" />
+            <Link href="https://www.linkedin.com/posts/bonallack_blockchain-governance-universityofbristol-activity-7192121121595379713-mm0C?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              dale vince
+            </Link>
+          </HStack>
+        </VStack>
+        
+        <Divider maxW="400px" borderColor="blue.400" opacity="0.3" my={6} />
+        
+        <Center py={2}>
           <Box 
             dangerouslySetInnerHTML={{
               __html: `<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="bonallack" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://uk.linkedin.com/in/bonallack?trk=profile-badge">Oliver Bonallack</a></div>`
