@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
@@ -58,7 +59,7 @@ const Portfolio = () => {
     },
     { 
       name: "teamignite.ventures", 
-      subheading: "fund i", 
+      subheading: "fund ii", 
       url: "https://teamignite.ventures", 
       color: "#ef5a2c" 
     },
