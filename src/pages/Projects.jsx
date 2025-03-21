@@ -142,10 +142,33 @@ const Projects = () => {
         
         {/* Center the list with max width and center alignment */}
         <VStack spacing={4} width="100%" maxW="600px" align="center" mx="auto">
+          {/* Coming soon items at the top */}
+          <HStack spacing={3}>
+            <Box as={Laptop} size={20} color="blue.300" />
+            <Text color="blue.300">
+              climateimpact summit hackathon host <Badge colorScheme="green" ml={1} fontSize="xs">coming soon</Badge>
+            </Text>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={TreeDeciduous} size={20} color="blue.300" />
+            <Text color="blue.300">
+              fireside chat with jamie burrows <Badge colorScheme="green" ml={1} fontSize="xs">coming soon</Badge>
+            </Text>
+          </HStack>
+          
+          {/* Updated podcast links */}
           <HStack spacing={3}>
             <Box as={Mic} size={20} color="blue.300" />
             <Link href="https://www.youtube.com/@CollectiveVC" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
-              podcast
+              collective vc podcast (15+ episodes)
+            </Link>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={Mic} size={20} color="blue.300" />
+            <Link href="https://linktr.ee/solderahq" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              soldera markets podcast
             </Link>
           </HStack>
           
@@ -189,20 +212,6 @@ const Projects = () => {
             <Link href="https://www.linkedin.com/posts/bonallack_blockchain-governance-universityofbristol-activity-7192121121595379713-mm0C?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
               bristol blockchain
             </Link>
-          </HStack>
-          
-          <HStack spacing={3}>
-            <Box as={Laptop} size={20} color="blue.300" />
-            <Text color="blue.300">
-              climateimpact summit hackathon host <Badge colorScheme="green" ml={1} fontSize="xs">coming soon</Badge>
-            </Text>
-          </HStack>
-          
-          <HStack spacing={3}>
-            <Box as={TreeDeciduous} size={20} color="blue.300" />
-            <Text color="blue.300">
-              fireside chat with jamie burrows <Badge colorScheme="green" ml={1} fontSize="xs">coming soon</Badge>
-            </Text>
           </HStack>
         </VStack>
         
