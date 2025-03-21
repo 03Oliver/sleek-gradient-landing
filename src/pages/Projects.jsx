@@ -189,23 +189,22 @@ const Projects = () => {
               bristol blockchain
             </Link>
           </HStack>
-          
-          <HStack spacing={3}>
-            <Box as={User} size={20} color="blue.300" />
-            <Link href="https://www.linkedin.com/posts/bonallack_blockchain-governance-universityofbristol-activity-7192121121595379713-mm0C?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
-              dale vince
-            </Link>
-          </HStack>
         </VStack>
         
         <Divider maxW="400px" borderColor="blue.400" opacity="0.3" my={6} />
         
         <Center py={2}>
-          <Box 
-            dangerouslySetInnerHTML={{
-              __html: `<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="bonallack" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://uk.linkedin.com/in/bonallack?trk=profile-badge">Oliver Bonallack</a></div>`
-            }}
-          />
+          <div 
+            className="badge-base LI-profile-badge" 
+            data-locale="en_US" 
+            data-size="large" 
+            data-theme="dark" 
+            data-type="HORIZONTAL" 
+            data-vanity="bonallack" 
+            data-version="v1"
+          >
+            <a className="badge-base__link LI-simple-link" href="https://uk.linkedin.com/in/bonallack?trk=profile-badge"></a>
+          </div>
         </Center>
         
         <Flex 
