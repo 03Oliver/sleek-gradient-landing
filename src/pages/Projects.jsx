@@ -11,18 +11,20 @@ import {
   useColorModeValue,
   useMediaQuery,
   HStack,
-  Badge
+  Badge,
+  useEffect,
+  useRef,
+  useState
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
-import { Brain, AlertTriangle, Building, PoundSterling } from "lucide-react";
-import { typing, blink, badgeBlink } from "../components/thesis/AnimationKeyframes";
+import { Mic, MapPin, Speaker, Car, Video, Link as LinkIcon, User } from "lucide-react";
+import { typing, blink } from "../components/thesis/AnimationKeyframes";
 
-const Disclaimer = () => {
+const Projects = () => {
   const [headerText, setHeaderText] = useState("");
   const [subheadingText, setSubheadingText] = useState("");
   const fullHeaderText = "collective.vc";
-  const fullSubheadingText = "legal information";
+  const fullSubheadingText = "projects (non-exhaustive)";
   const headerIndexRef = useRef(0);
   const subheadingIndexRef = useRef(0);
   const [isHeaderTypingComplete, setIsHeaderTypingComplete] = useState(false);
@@ -34,7 +36,20 @@ const Disclaimer = () => {
   );
 
   useEffect(() => {
-    const hasAnimationPlayed = sessionStorage.getItem('animationPlayedDisclaimer');
+    // Load LinkedIn badge script
+    const script = document.createElement('script');
+    script.src = 'https://platform.linkedin.com/badges/js/profile.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  useEffect(() => {
+    const hasAnimationPlayed = sessionStorage.getItem('animationPlayedProjects');
 
     if (hasAnimationPlayed) {
       setHeaderText(fullHeaderText);
@@ -64,10 +79,53 @@ const Disclaimer = () => {
       if (subheadingIndexRef.current === fullSubheadingText.length) {
         clearInterval(subheadingInterval);
         setIsSubheadingTypingComplete(true);
-        sessionStorage.setItem('animationPlayedDisclaimer', 'true');
+        sessionStorage.setItem('animationPlayedProjects', 'true');
       }
     }, 50);
   };
+
+  const projects = [
+    { 
+      icon: <Mic size={20} color="#3182CE" style={{ marginTop: '4px', flexShrink: 0 }} />,
+      name: "podcast",
+      url: "https://www.youtube.com/@CollectiveVC"
+    },
+    { 
+      icon: <MapPin size={20} color="#E53E3E" style={{ marginTop: '4px', flexShrink: 0 }} />,
+      name: "tartu, estonia",
+      url: "https://www.linkedin.com/posts/bonallack_climatetech-exploration-estonia-activity-7274763668804845568-v2no?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs"
+    },
+    { 
+      icon: <Speaker size={20} color="#38A169" style={{ marginTop: '4px', flexShrink: 0 }} />,
+      name: "tedx",
+      url: "https://www.youtube.com/watch?v=er81yRKCnCA"
+    },
+    { 
+      icon: <Car size={20} color="#DD6B20" style={{ marginTop: '4px', flexShrink: 0 }} />,
+      name: "rightcharge",
+      url: "https://www.linkedin.com/posts/bonallack_electricvehicles-fleetmanagement-saas-activity-7270779377150316545-Zq8V?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs"
+    },
+    { 
+      icon: <Video size={20} color="#805AD5" style={{ marginTop: '4px', flexShrink: 0 }} />,
+      name: "climateimpact video",
+      url: "https://www.linkedin.com/posts/bonallack_we-are-excited-to-launch-the-climateimpact-activity-7285626865074012161-cKWN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs"
+    },
+    { 
+      icon: <Video size={20} color="#805AD5" style={{ marginTop: '4px', flexShrink: 0 }} />,
+      name: "climateimpact video",
+      url: "https://www.linkedin.com/posts/bonallack_climateimpact-startups-innovation-activity-7194259813835382784-P7D5?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs"
+    },
+    { 
+      icon: <LinkIcon size={20} color="#4FD1C5" style={{ marginTop: '4px', flexShrink: 0 }} />,
+      name: "bristol blockchain",
+      url: "https://www.linkedin.com/posts/bonallack_blockchain-governance-universityofbristol-activity-7192121121595379713-mm0C?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs"
+    },
+    { 
+      icon: <User size={20} color="#F6AD55" style={{ marginTop: '4px', flexShrink: 0 }} />,
+      name: "dale vince",
+      url: "https://www.linkedin.com/posts/bonallack_blockchain-governance-universityofbristol-activity-7192121121595379713-mm0C?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs"
+    }
+  ];
 
   return (
     <Container 
@@ -107,7 +165,7 @@ const Disclaimer = () => {
 
         <Box mb={4}>
           <Badge 
-            colorScheme="purple" 
+            colorScheme="green" 
             fontSize={{ base: "md", md: "lg" }} 
             py={1} 
             px={{ base: 3, md: 4 }} 
@@ -137,42 +195,30 @@ const Disclaimer = () => {
               zIndex: '1'
             }}
           >
-            <HStack align="flex-start" spacing={4}>
-              <Brain size={20} color="#3182CE" style={{ marginTop: '4px', flexShrink: 0 }} />
-              <Text>
-                this website is for informational purposes only and should not be seen as an invitation to invest or a financial promotion. you should not rely on any information provided here. the content is not intended to offer, nor should it be interpreted as, any form of advice.
-              </Text>
-            </HStack>
-            
-            <Box h={6} />
-            
-            <HStack align="flex-start" spacing={4}>
-              <AlertTriangle size={20} color="#E53E3E" style={{ marginTop: '4px', flexShrink: 0 }} />
-              <Text>
-                please note that startup, special-purpose vehicle (spv) and syndicate investments carry significant risks and are only suitable for experienced investors who fully understand them. any independent investment platform used will carry out required checks and verification in line with legal obligations. always seek independent financial advice before making any investment decisions.
-              </Text>
-            </HStack>
-            
-            <Box h={6} />
-            
-            <HStack align="flex-start" spacing={4}>
-              <Building size={20} color="#718096" style={{ marginTop: '4px', flexShrink: 0 }} />
-              <Text>
-                collective vc ltd – 14226589 – sic 64303
-              </Text>
-            </HStack>
-            
-            <Box h={6} />
-            
-            <HStack align="flex-start" spacing={4}>
-              <PoundSterling size={20} color="#781c44" style={{ marginTop: '4px', flexShrink: 0 }} />
-              <Text>
-                not fca regulated – private, networked, relationship-based
-              </Text>
-            </HStack>
+            {projects.map((project, index) => (
+              <Box key={index} mb={6}>
+                <HStack align="flex-start" spacing={4}>
+                  {project.icon}
+                  <Link href={project.url} isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+                    {project.name}
+                  </Link>
+                </HStack>
+              </Box>
+            ))}
           </Box>
 
-          <Divider maxW="200px" borderColor="blue.400" opacity="0.3" mt={6} mb={6} alignSelf="center" />
+          <Divider maxW="200px" borderColor="green.400" opacity="0.3" mt={6} mb={6} alignSelf="center" />
+          
+          <Box 
+            width="100%" 
+            display="flex" 
+            justifyContent="center" 
+            pt={4}
+          >
+            <Box className="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="bonallack" data-version="v1">
+              <Link href="https://uk.linkedin.com/in/bonallack?trk=profile-badge" isExternal>Oliver Bonallack</Link>
+            </Box>
+          </Box>
 
           <Flex 
             wrap="wrap" 
@@ -192,7 +238,7 @@ const Disclaimer = () => {
             <Text color="whiteAlpha.600">//</Text>
             <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
             <Text color="whiteAlpha.600">//</Text>
-            <Link as={RouterLink} to="/projects" color="blue.300" _hover={{ color: "blue.100" }}>projects</Link>
+            <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
           </Flex>
         </VStack>
       </VStack>
@@ -204,4 +250,4 @@ const Disclaimer = () => {
   );
 };
 
-export default Disclaimer;
+export default Projects;
