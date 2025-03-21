@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { typing, blink } from "../components/thesis/AnimationKeyframes";
-import { Mic, MapPin, MessageSquare, Car, Video, Link2, User } from "lucide-react";
+import { Mic, MapPin, MessageSquare, Car, Video, Link2, Laptop, TreeDeciduous } from "lucide-react";
 
 const Projects = () => {
   const [headerText, setHeaderText] = useState("");
@@ -140,7 +140,8 @@ const Projects = () => {
         
         <Divider maxW="400px" borderColor="blue.400" opacity="0.3" mb={6} />
         
-        <VStack spacing={4} width="100%" maxW="600px" align="start">
+        {/* Center the list with max width and center alignment */}
+        <VStack spacing={4} width="100%" maxW="600px" align="center" mx="auto">
           <HStack spacing={3}>
             <Box as={Mic} size={20} color="blue.300" />
             <Link href="https://www.youtube.com/@CollectiveVC" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
@@ -151,7 +152,7 @@ const Projects = () => {
           <HStack spacing={3}>
             <Box as={MapPin} size={20} color="blue.300" />
             <Link href="https://www.linkedin.com/posts/bonallack_climatetech-exploration-estonia-activity-7274763668804845568-v2no?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
-              tartu, estonia
+              trip to tartu, estonia
             </Link>
           </HStack>
           
@@ -165,7 +166,7 @@ const Projects = () => {
           <HStack spacing={3}>
             <Box as={Car} size={20} color="blue.300" />
             <Link href="https://www.linkedin.com/posts/bonallack_electricvehicles-fleetmanagement-saas-activity-7270779377150316545-Zq8V?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
-              rightcharge
+              rightcharge investment
             </Link>
           </HStack>
           
@@ -188,6 +189,20 @@ const Projects = () => {
             <Link href="https://www.linkedin.com/posts/bonallack_blockchain-governance-universityofbristol-activity-7192121121595379713-mm0C?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
               bristol blockchain
             </Link>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={Laptop} size={20} color="blue.300" />
+            <Text color="blue.300">
+              climateimpact summit hackathon host <Badge colorScheme="green" ml={1} fontSize="xs">coming soon</Badge>
+            </Text>
+          </HStack>
+          
+          <HStack spacing={3}>
+            <Box as={TreeDeciduous} size={20} color="blue.300" />
+            <Text color="blue.300">
+              fireside chat with jamie burrows <Badge colorScheme="green" ml={1} fontSize="xs">coming soon</Badge>
+            </Text>
           </HStack>
         </VStack>
         
