@@ -138,7 +138,7 @@ const Projects = () => {
         
         <Divider maxW="400px" borderColor="blue.400" opacity="0.3" mb={6} />
         
-        <VStack spacing={4} width="100%" maxW="600px" align="flex-start" alignSelf="center">
+        <VStack spacing={4} width="100%" maxW="600px" align="flex-start" alignSelf="center" pl={[0, 0, 12, 12]}>
           <HStack spacing={3}>
             <Box as={Laptop} size={20} color="blue.300" />
             <Text color="blue.300">
@@ -155,7 +155,7 @@ const Projects = () => {
           
           <HStack spacing={3}>
             <Box as={Mic} size={20} color="blue.300" />
-            <Link href="https://www.youtube.com/@CollectiveVC" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+            <Link href="https://podcast.collective.vc" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
               collective vc podcast (15+ episodes)
             </Link>
           </HStack>
