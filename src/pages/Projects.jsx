@@ -138,7 +138,7 @@ const Projects = () => {
         
         <Divider maxW="400px" borderColor="blue.400" opacity="0.3" mb={6} />
         
-        <VStack spacing={4} width="100%" maxW="600px" align="center" mx="auto">
+        <VStack spacing={4} width="100%" maxW="600px" align="flex-start" alignSelf="center">
           <HStack spacing={3}>
             <Box as={Laptop} size={20} color="blue.300" />
             <Text color="blue.300">
