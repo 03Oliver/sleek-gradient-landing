@@ -87,20 +87,19 @@ const Projects = () => {
 
   return (
     <Container 
-      centerContent 
       maxW="100vw" 
       minH="100vh" 
       display="flex" 
       flexDirection="column" 
-      alignItems="center" 
+      alignItems="flex-start" 
       bgGradient="linear(to-r, black, gray.800)"
       color="white" 
       fontFamily="Roboto, sans-serif" 
       pt={8}
-      px={0}
+      px={{ base: 4, md: 8 }}
     >
-      <VStack spacing={6} width="100%" flex="1" maxW="1200px" px={4}>
-        <Box textAlign="center" mb={2}>
+      <VStack spacing={6} width="100%" maxW="1200px" alignItems="flex-start">
+        <Box textAlign="left" mb={2} width="100%">
           <Flex alignItems="center" justifyContent="center">
             <Image src="/favicon.ico" alt="Favicon" boxSize="24px" mr={2} />
             <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
@@ -138,7 +137,7 @@ const Projects = () => {
         
         <Divider maxW="400px" borderColor="blue.400" opacity="0.3" mb={6} />
         
-        <VStack spacing={4} width="100%" maxW="600px" align="center" mx="auto">
+        <VStack spacing={4} width="100%" maxW="800px" align="flex-start">
           <HStack spacing={3}>
             <Box as={Laptop} size={20} color="blue.300" />
             <Text color="blue.300">
@@ -212,7 +211,7 @@ const Projects = () => {
         
         <Divider maxW="400px" borderColor="blue.400" opacity="0.3" my={6} />
         
-        <Center py={2}>
+        <Center py={2} width="100%">
           <div 
             className="badge-base LI-profile-badge" 
             data-locale="en_US" 
@@ -228,7 +227,7 @@ const Projects = () => {
         
         <Flex 
           wrap="wrap" 
-          justify="center" 
+          justify="flex-start" 
           gap={3} 
           mt={{ base: 8, md: "auto" }}
           borderTop="1px solid"
