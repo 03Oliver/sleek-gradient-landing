@@ -73,7 +73,6 @@ const Projects = () => {
     }, 50);
   };
 
-  // Effect to load LinkedIn badge script
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://platform.linkedin.com/badges/js/profile.js';
@@ -139,9 +138,7 @@ const Projects = () => {
         
         <Divider maxW="400px" borderColor="blue.400" opacity="0.3" mb={6} />
         
-        {/* Center the list with max width and center alignment */}
         <VStack spacing={4} width="100%" maxW="600px" align="center" mx="auto">
-          {/* Coming soon items at the top */}
           <HStack spacing={3}>
             <Box as={Laptop} size={20} color="blue.300" />
             <Text color="blue.300">
@@ -156,7 +153,6 @@ const Projects = () => {
             </Text>
           </HStack>
           
-          {/* Updated podcast links */}
           <HStack spacing={3}>
             <Box as={Mic} size={20} color="blue.300" />
             <Link href="https://www.youtube.com/@CollectiveVC" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
@@ -246,6 +242,8 @@ const Projects = () => {
           <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
           <Text color="whiteAlpha.600">//</Text>
           <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+          <Text color="whiteAlpha.600">//</Text>
+          <Link href="https://podcast.collective.vc" isExternal color="blue.300" _hover={{ color: "blue.100" }}>podcast</Link>
           <Text color="whiteAlpha.600">//</Text>
           <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
         </Flex>
