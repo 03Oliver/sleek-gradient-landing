@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
@@ -148,9 +149,9 @@ const Projects = () => {
           
           <HStack spacing={3}>
             <Box as={TreeDeciduous} size={20} color="blue.300" />
-            <Text color="blue.300">
-              fireside chat with jamie burrows <Badge colorScheme="green" ml={1} fontSize="xs">coming soon</Badge>
-            </Text>
+            <Link href="https://www.youtube.com/watch?v=J-rOoGp_YFU" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              fireside chat with jamie burrows
+            </Link>
           </HStack>
           
           <HStack spacing={3}>
@@ -257,3 +258,4 @@ const Projects = () => {
 };
 
 export default Projects;
+
