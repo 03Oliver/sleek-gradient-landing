@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import { 
   Container, 
@@ -139,7 +138,7 @@ const Projects = () => {
         
         <Divider maxW="400px" borderColor="blue.400" opacity="0.3" mb={6} />
         
-        <VStack spacing={4} width="100%" maxW="600px" align="flex-start" alignSelf="center" pl={[0, 0, 12, 12]}>
+        <VStack spacing={4} width="100%" maxW="600px" align="flex-start" alignSelf="center" pl={[2, 2, 12, 12]}>
           <HStack spacing={3}>
             <Box as={Laptop} size={20} color="blue.300" />
             <Text color="blue.300">
@@ -150,7 +149,7 @@ const Projects = () => {
           <HStack spacing={3}>
             <Box as={TreeDeciduous} size={20} color="blue.300" />
             <Link href="https://www.youtube.com/watch?v=J-rOoGp_YFU" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
-              fireside chat with jamie burrows
+              fireside chat with jamie burrows, founder of vertical future
             </Link>
           </HStack>
           
@@ -258,4 +257,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
