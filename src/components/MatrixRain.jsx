@@ -1,11 +1,15 @@
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box } from "@chakra-ui/react";
 
 const characters = "ﾕނֈﾎࠁｿߠٯցޏｸؿձߵޅ֊߷ﾊשﾏލ߹ｶގքﾐހքﾂރߴգߨﾘش߸ｴֆވՁߺըތޅֆզպ՝ⵠբރ՚ބմނ߶جｳߦձﾘﾋފحقߢ՝ވｱՇﻧߦէ֍ޏջࠃչߩﾋߡնｺﺝ߶ކսႠػՕݩފﾚڤࠂكއիｵސﾅފ֍ߣމﾖ֊ށߥމպ؍ߧթލﾑդｹߞքހｺއտބֈߡղސթｸޏبձؾⵠｺհｻցփ֊ސߣ߳ｷႠࠅղԷލր﷼ｵղքކք﮼ｿލեշތｸލࠄեփգހއդ߻።ރյﾍշވｷ߷՚ｶנތԷشߠպ߾ｷ՝ނݩշⵠؼյշｷחֈހլߴײցｴ՝շՒժނߤՁܐ։ֆﾐﾚ؍بﾖﾘكՐﾍ؛ﮯՂﾇﾀ֊ｹէքصﭺﾓﾁخｳﾈخػԱﾂﾐՀﾊؼ﷼ﾋզﾕﻭտﾌէﾕօگﾏقﾀﾒټذﾑصﾅﾇتցｶՁٯըﾇյࢪﾆւﾌيء֍հؿｾﷺﾏｵխشؼփوﾐﾁچպﾓغտշؼｿսⵠքمմﾘشگ֊عքｴկكﯼﾃէﻧ՗ﾏﾅդهﾂץλֈصձչسﾚՓկﾆԷｺբﻡԷﾋՍսیﾗՠﾔﷲﾎمդｸնւռٱժｶտզﾖز﮼ｳزٮ֊ﾃՈﾄًցﾑثսｸﷲﾘյՊﾎՙيｻւՆﾆ֍լؔﾊﮕｿｱրｱﾘցՈٯｵղձ֊ｶݩբقթﾗﯾｹկ֍şըשﾒըجｹｴԶշﮮնｵｴｱز֍";
 
 const MatrixRain = () => {
   const canvasRef = useRef(null);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -15,21 +19,36 @@ const MatrixRain = () => {
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
     };
     
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    // Create an array of drops (one per column)
-    const drops = [];
+    // Initialize matrix rain
     const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
+    let drops = [];
+    let strings = [];
     
-    // Initialize drops at random positions
-    for (let i = 0; i < columns; i++) {
-      // Random starting position for each column
-      drops[i] = Math.random() * -canvas.height;
-    }
+    // Function to initialize drops and strings
+    const initializeMatrix = () => {
+      // Use Math.ceil to ensure we have enough columns to cover the entire width
+      const columns = Math.ceil(canvas.width / fontSize) + 1; // Add one extra column to ensure coverage
+      
+      // Reset arrays with new size
+      drops = [];
+      strings = [];
+      
+      // Initialize drops at random positions
+      for (let i = 0; i < columns; i++) {
+        // Random starting position for each column
+        drops[i] = Math.random() * -canvas.height;
+        strings[i] = getRandomString();
+      }
+    };
     
     // Generate a random string of characters from our set
     const getRandomString = () => {
@@ -41,8 +60,8 @@ const MatrixRain = () => {
       return result;
     };
     
-    // Store strings for each column
-    const strings = Array(columns).fill('').map(() => getRandomString());
+    // Initialize the matrix
+    initializeMatrix();
     
     // Animation loop
     const draw = () => {
@@ -106,9 +125,18 @@ const MatrixRain = () => {
     // Start animation
     draw();
     
+    // Reinitialize on window resize
+    const handleResize = () => {
+      resizeCanvas();
+      initializeMatrix();
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
     // Cleanup
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
