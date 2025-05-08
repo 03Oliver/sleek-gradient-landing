@@ -190,6 +190,8 @@ const Disclaimer = () => {
             <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
             <Text color="whiteAlpha.600">//</Text>
             <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/privacy" color="blue.300" _hover={{ color: "blue.100" }}>privacy</Link>
           </Flex>
         </VStack>
       </VStack>
