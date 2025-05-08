@@ -126,10 +126,26 @@ const Disclaimer = () => {
           </Badge>
         </Box>
 
-        <Tabs variant="soft-rounded" colorScheme="blue" width="100%" maxW="800px">
+        <Tabs variant="unstyled" colorScheme="blue" width="100%" maxW="800px">
           <TabList justifyContent="center" mb={6}>
-            <Tab _selected={{ color: "white", bg: "blue.700" }}>Disclaimer</Tab>
-            <Tab _selected={{ color: "white", bg: "blue.700" }}>Privacy</Tab>
+            <Tab 
+              color="whiteAlpha.700" 
+              _selected={{ color: "white", fontWeight: "bold" }}
+              mx={2}
+              py={2}
+              px={4}
+            >
+              Disclaimer
+            </Tab>
+            <Tab 
+              color="whiteAlpha.700" 
+              _selected={{ color: "white", fontWeight: "bold" }}
+              mx={2}
+              py={2}
+              px={4}
+            >
+              Privacy
+            </Tab>
           </TabList>
           
           <TabPanels>
