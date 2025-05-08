@@ -25,8 +25,6 @@ const ThesisFooter = () => {
         <Link href="https://podcast.collective.vc" isExternal color="blue.300" _hover={{ color: "blue.100" }}>podcast</Link>
         <Text color="whiteAlpha.600">//</Text>
         <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
-        <Text color="whiteAlpha.600">//</Text>
-        <Link as={RouterLink} to="/privacy" color="blue.300" _hover={{ color: "blue.100" }}>privacy</Link>
       </Flex>
 
       <Box 
