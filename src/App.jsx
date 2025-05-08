@@ -5,6 +5,7 @@ import Portfolio from "./pages/Portfolio.jsx";
 import Disclaimer from "./pages/Disclaimer.jsx";
 import Thesis from "./pages/Thesis.jsx";
 import Projects from "./pages/Projects.jsx";
+import Privacy from "./pages/Privacy.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/disclaimer" element={<Disclaimer />} />
         <Route path="/thesis" element={<Thesis />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
