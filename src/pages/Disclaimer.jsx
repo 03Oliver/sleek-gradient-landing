@@ -1,3 +1,4 @@
+
 import { 
   Box, 
   Container, 
@@ -311,6 +312,8 @@ const Disclaimer = () => {
           <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
           <Text color="whiteAlpha.600">//</Text>
           <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+          <Text color="whiteAlpha.600">//</Text>
+          <Link as={RouterLink} to="/projects" color="blue.300" _hover={{ color: "blue.100" }}>projects</Link>
         </Flex>
       </VStack>
       
