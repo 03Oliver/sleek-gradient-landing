@@ -1,4 +1,3 @@
-
 import { 
   Box, 
   Container, 
@@ -207,87 +206,86 @@ const Disclaimer = () => {
             <TabPanel>
               <VStack spacing={6} align="start" width="100%">
                 <Box textAlign="center" width="100%" mb={2}>
-                  <Heading as="h1" size="lg">Privacy Policy for Collective VC</Heading>
-                  <Text mt={2} fontSize="sm" color="whiteAlpha.800">Data Compliant Since Incorporation</Text>
-                  <Text fontSize="sm" color="whiteAlpha.800">Policy Published Online: 8 May 2025</Text>
+                  <Text mt={2} fontSize="sm" color="whiteAlpha.800">data compliant since incorporation</Text>
+                  <Text fontSize="sm" color="whiteAlpha.800">policy published online: 8 may 2025</Text>
                 </Box>
 
                 <Text>
-                  At Collective VC, your privacy is important to us. This Privacy Policy outlines how we collect, use, and store personal data in compliance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.
+                  at collective vc, your privacy is important to us. this privacy policy outlines how we collect, use, and store personal data in compliance with the uk general data protection regulation (uk gdpr) and the data protection act 2018.
                 </Text>
 
                 <Box width="100%">
-                  <Heading as="h2" size="md" mb={2}>1. Data Controller</Heading>
-                  <Text>Collective VC</Text>
-                  <Text>Email: <Link href="mailto:oliver@collective.vc" color="blue.300">oliver@collective.vc</Link></Text>
-                  <Text>Website: <Link href="https://collective.vc" color="blue.300">https://collective.vc</Link></Text>
+                  <Heading as="h2" size="md" mb={2}>1. data controller</Heading>
+                  <Text>collective vc</Text>
+                  <Text>email: <Link href="mailto:oliver@collective.vc" color="blue.300">oliver@collective.vc</Link></Text>
+                  <Text>website: <Link href="https://collective.vc" color="blue.300">https://collective.vc</Link></Text>
                 </Box>
 
                 <Box width="100%">
-                  <Heading as="h2" size="md" mb={2}>2. Scope of Data Collection</Heading>
-                  <Text mb={2}>We do not collect or control personal data in any way beyond the following two specific and limited cases:</Text>
+                  <Heading as="h2" size="md" mb={2}>2. scope of data collection</Heading>
+                  <Text mb={2}>we do not collect or control personal data in any way beyond the following two specific and limited cases:</Text>
                   
                   <Box pl={4} mb={3}>
-                    <Heading as="h3" size="sm" mb={2}>a) Business & Networking Contact Storage</Heading>
-                    <Text mb={2}>We securely store personal contact details voluntarily shared with us through:</Text>
+                    <Heading as="h3" size="sm" mb={2}>a) business & networking contact storage</Heading>
+                    <Text mb={2}>we securely store personal contact details voluntarily shared with us through:</Text>
                     <Box pl={4}>
-                      <Text>• Events</Text>
-                      <Text>• Online messaging platforms (e.g., LinkedIn, email)</Text>
-                      <Text mb={2}>• Occasionally, LinkedIn data exports containing connection information</Text>
+                      <Text>• events</Text>
+                      <Text>• online messaging platforms (e.g., linkedin, email)</Text>
+                      <Text mb={2}>• occasionally, linkedin data exports containing connection information</Text>
                     </Box>
-                    <Text>These are stored solely for business or personal networking purposes and are not used for any automated processing, profiling, or unrelated communications.</Text>
+                    <Text>these are stored solely for business or personal networking purposes and are not used for any automated processing, profiling, or unrelated communications.</Text>
                   </Box>
                   
                   <Box pl={4}>
-                    <Heading as="h3" size="sm" mb={2}>b) Substack Mailing List (podcast.collective.vc)</Heading>
-                    <Text mb={2}>Email addresses voluntarily subscribed to our podcast newsletter are stored and processed exclusively via Substack Inc., under their privacy policy.</Text>
-                    <Text>We do not export Substack mailing list data or use it for any purpose beyond podcast updates.</Text>
+                    <Heading as="h3" size="sm" mb={2}>b) substack mailing list (podcast.collective.vc)</Heading>
+                    <Text mb={2}>email addresses voluntarily subscribed to our podcast newsletter are stored and processed exclusively via substack inc., under their privacy policy.</Text>
+                    <Text>we do not export substack mailing list data or use it for any purpose beyond podcast updates.</Text>
                   </Box>
                 </Box>
 
                 <Box width="100%">
-                  <Heading as="h2" size="md" mb={2}>3. Lawful Basis for Processing</Heading>
-                  <Text>• <strong>Legitimate Interests:</strong> For storing voluntarily shared contact data for direct correspondence or professional networking.</Text>
-                  <Text>• <strong>Consent:</strong> For sending emails via our podcast Substack list. You can withdraw consent at any time via the unsubscribe link in any email.</Text>
+                  <Heading as="h2" size="md" mb={2}>3. lawful basis for processing</Heading>
+                  <Text>• <strong>legitimate interests:</strong> for storing voluntarily shared contact data for direct correspondence or professional networking.</Text>
+                  <Text>• <strong>consent:</strong> for sending emails via our podcast substack list. you can withdraw consent at any time via the unsubscribe link in any email.</Text>
                 </Box>
 
                 <Box width="100%">
-                  <Heading as="h2" size="md" mb={2}>4. How Your Data Is Stored</Heading>
-                  <Text>Contact data is stored securely using Google Suite, protected by passwords and restricted access in line with industry best practices.</Text>
-                  <Text>Only the data controller has access.</Text>
-                  <Text>Substack handles all mailing list data using their own technical safeguards.</Text>
+                  <Heading as="h2" size="md" mb={2}>4. how your data is stored</Heading>
+                  <Text>contact data is stored securely using google suite, protected by passwords and restricted access in line with industry best practices.</Text>
+                  <Text>only the data controller has access.</Text>
+                  <Text>substack handles all mailing list data using their own technical safeguards.</Text>
                 </Box>
 
                 <Box width="100%">
-                  <Heading as="h2" size="md" mb={2}>5. Data Sharing & Transfers</Heading>
-                  <Text>• We do not share, sell, or transfer any personal data to third parties unless legally required.</Text>
-                  <Text>• Substack acts as a separate data processor under its own policies.</Text>
-                  <Text>• No data is exported from Substack for external use, nor do we import data into Substack for marketing purposes without consent.</Text>
+                  <Heading as="h2" size="md" mb={2}>5. data sharing & transfers</Heading>
+                  <Text>• we do not share, sell, or transfer any personal data to third parties unless legally required.</Text>
+                  <Text>• substack acts as a separate data processor under its own policies.</Text>
+                  <Text>• no data is exported from substack for external use, nor do we import data into substack for marketing purposes without consent.</Text>
                 </Box>
 
                 <Box width="100%">
-                  <Heading as="h2" size="md" mb={2}>6. Your Rights</Heading>
-                  <Text mb={2}>You have the right to:</Text>
+                  <Heading as="h2" size="md" mb={2}>6. your rights</Heading>
+                  <Text mb={2}>you have the right to:</Text>
                   <Box pl={4}>
-                    <Text>• Access the data we hold about you</Text>
-                    <Text>• Correct inaccuracies</Text>
-                    <Text>• Request deletion</Text>
-                    <Text>• Object to or restrict processing</Text>
-                    <Text>• Withdraw consent (for Substack emails)</Text>
-                    <Text mb={2}>• Complain to the ICO: <Link href="https://ico.org.uk" isExternal color="blue.300">https://ico.org.uk</Link></Text>
+                    <Text>• access the data we hold about you</Text>
+                    <Text>• correct inaccuracies</Text>
+                    <Text>• request deletion</Text>
+                    <Text>• object to or restrict processing</Text>
+                    <Text>• withdraw consent (for substack emails)</Text>
+                    <Text mb={2}>• complain to the ico: <Link href="https://ico.org.uk" isExternal color="blue.300">https://ico.org.uk</Link></Text>
                   </Box>
-                  <Text>To exercise any of these rights, contact <Link href="mailto:oliver@collective.vc" color="blue.300">oliver@collective.vc</Link>.</Text>
+                  <Text>to exercise any of these rights, contact <Link href="mailto:oliver@collective.vc" color="blue.300">oliver@collective.vc</Link>.</Text>
                 </Box>
 
                 <Box width="100%">
-                  <Heading as="h2" size="md" mb={2}>7. Data Retention</Heading>
-                  <Text>• We retain contact details only while they are relevant for ongoing contact or networking.</Text>
-                  <Text>• Substack manages retention of its mailing list data independently.</Text>
+                  <Heading as="h2" size="md" mb={2}>7. data retention</Heading>
+                  <Text>• we retain contact details only while they are relevant for ongoing contact or networking.</Text>
+                  <Text>• substack manages retention of its mailing list data independently.</Text>
                 </Box>
 
                 <Box width="100%">
-                  <Heading as="h2" size="md" mb={2}>8. Updates to This Policy</Heading>
-                  <Text>Any changes will be posted on our website and reflected by a change in the effective date at the top of this page.</Text>
+                  <Heading as="h2" size="md" mb={2}>8. updates to this policy</Heading>
+                  <Text>any changes will be posted on our website and reflected by a change in the effective date at the top of this page.</Text>
                 </Box>
               </VStack>
             </TabPanel>
