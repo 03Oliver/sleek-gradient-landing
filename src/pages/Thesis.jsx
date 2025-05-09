@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { 
   Container, 
@@ -137,10 +136,6 @@ const Thesis = () => {
       </VStack>
       
       <ThesisModal isOpen={isOpen} onClose={onClose} getIconForThesisItem={getIconForThesisItem} />
-      
-      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
-        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
-      </Box>
     </Container>
   );
 };
