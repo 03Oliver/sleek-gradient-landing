@@ -28,25 +28,32 @@ const MatrixRain = () => {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    // Initialize matrix rain
-    const fontSize = 14;
-    let drops = [];
-    let strings = [];
+    // Initialize matrix rain with depth properties
+    const drops = [];
+    const strings = [];
+    const depthLevels = [];     // Add depth levels (z-index simulation)
+    const fontSizes = [];       // Variable font sizes based on depth
+    const speedFactors = [];    // Variable speeds based on depth
     
     // Function to initialize drops and strings
     const initializeMatrix = () => {
       // Use Math.ceil to ensure we have enough columns to cover the entire width
-      const columns = Math.ceil(canvas.width / fontSize) + 1; // Add one extra column to ensure coverage
+      const columns = Math.ceil(canvas.width / 14) + 1; // Base size is 14px
       
       // Reset arrays with new size
-      drops = [];
-      strings = [];
-      
-      // Initialize drops at random positions
       for (let i = 0; i < columns; i++) {
         // Random starting position for each column
         drops[i] = Math.random() * -canvas.height;
         strings[i] = getRandomString();
+        
+        // Assign a depth level (z-index) from 0 (farthest) to 9 (closest)
+        depthLevels[i] = Math.floor(Math.random() * 10);
+        
+        // Font size varies based on depth (10px to 20px)
+        fontSizes[i] = 10 + (depthLevels[i] * 1);
+        
+        // Speed varies based on depth (faster if closer)
+        speedFactors[i] = 0.3 + (depthLevels[i] * 0.15);
       }
     };
     
@@ -69,13 +76,18 @@ const MatrixRain = () => {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Set text properties
-      ctx.font = `${fontSize}px monospace`;
-      
       // Loop through each drop
       for (let i = 0; i < drops.length; i++) {
-        // Get the current string for this column
+        // Get the current string and depth properties for this column
         const text = strings[i];
+        const depthLevel = depthLevels[i];
+        const fontSize = fontSizes[i];
+        
+        // Set font size based on depth
+        ctx.font = `${fontSize}px monospace`;
+        
+        // Base opacity by depth (closer = more opaque)
+        const baseOpacity = 0.3 + (depthLevel * 0.07);
         
         // Draw each character of the string with varying opacity
         for (let j = 0; j < text.length; j++) {
@@ -88,34 +100,41 @@ const MatrixRain = () => {
           // Calculate vertical position ratio (0 at top, 1 at bottom)
           const verticalRatio = y / canvas.height;
           
-          // Calculate opacity based on position 
+          // Calculate opacity based on position and depth
           // - Head of trail is brighter
           // - Characters fade out as they reach the bottom
-          const headOpacity = j === 0 ? 0.9 : 0.9 - (j / text.length * 0.7);
+          const headOpacity = j === 0 ? 1 : 1 - (j / text.length * 0.7);
           
           // Apply fading effect as characters get closer to the bottom
-          // Linear fade from full opacity to 0 as they approach the bottom 80% of the screen
           const fadeoutThreshold = 0.2; // Start fading at 20% of screen height from the bottom
           const verticalFade = verticalRatio < fadeoutThreshold ? 1 : 1 - ((verticalRatio - fadeoutThreshold) / (1 - fadeoutThreshold));
           
-          // Combine both opacity factors
-          const opacity = headOpacity * verticalFade;
+          // Combine both opacity factors with depth-based opacity
+          const opacity = headOpacity * verticalFade * baseOpacity;
           
-          // Set color for this character
-          ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+          // Set color for this character - slightly blue tint for closer layers
+          const blueTint = Math.min(255, 155 + (depthLevel * 10));
+          ctx.fillStyle = `rgba(220, ${blueTint}, 255, ${opacity})`;
           
-          // Draw the character
-          ctx.fillText(char, i * fontSize, y);
+          // Draw the character - columns offset slightly based on depth to create parallax effect
+          const xOffset = i * fontSize + (Math.sin(depthLevel) * 2);
+          ctx.fillText(char, xOffset, y);
         }
         
-        // Move drop down
-        const speed = 0.5 + Math.random() * 1.5; // Varied speed
+        // Move drop down at variable speed based on depth
+        const speed = speedFactors[i];
         drops[i] += speed;
         
         // Reset drop and generate new string when it goes off screen
         if (drops[i] > canvas.height + text.length * fontSize) {
           drops[i] = Math.random() * -100;
           strings[i] = getRandomString();
+          // Optionally randomize depth again for more variety
+          if (Math.random() > 0.7) {
+            depthLevels[i] = Math.floor(Math.random() * 10);
+            fontSizes[i] = 10 + (depthLevels[i] * 1);
+            speedFactors[i] = 0.3 + (depthLevels[i] * 0.15);
+          }
         }
       }
       
