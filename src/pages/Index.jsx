@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { Container, Box, Text, keyframes, Flex, Image, VStack, Link, SimpleGrid, Center, Button } from "@chakra-ui/react";
 import { FaLinkedin, FaNewspaper, FaWhatsapp, FaYoutube } from "react-icons/fa";
@@ -187,6 +188,8 @@ const Index = () => {
               maxW={{ base: "600px", md: "100%" }}
             >
               <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>home</Link>
+              <Text color="whiteAlpha.600">//</Text>
+              <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
               <Text color="whiteAlpha.600">//</Text>
               <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
               <Text color="whiteAlpha.600">//</Text>

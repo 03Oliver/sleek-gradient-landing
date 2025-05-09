@@ -112,9 +112,8 @@ const MatrixRain = () => {
           // Combine both opacity factors with depth-based opacity
           const opacity = headOpacity * verticalFade * baseOpacity;
           
-          // Set color for this character - slightly blue tint for closer layers
-          const blueTint = Math.min(255, 155 + (depthLevel * 10));
-          ctx.fillStyle = `rgba(220, ${blueTint}, 255, ${opacity})`;
+          // Set color for this character - white with varying opacity (removed blue tint)
+          ctx.fillStyle = `rgba(220, 220, 220, ${opacity})`;
           
           // Draw the character - columns offset slightly based on depth to create parallax effect
           const xOffset = i * fontSize + (Math.sin(depthLevel) * 2);

@@ -1,8 +1,11 @@
 
 import { Box, Flex, Text, Link } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
 const ThesisFooter = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <>
       <Flex 
@@ -16,15 +19,42 @@ const ThesisFooter = () => {
         width="100%"
         maxW={{ base: "600px", md: "100%" }}
       >
-        <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>home</Link>
-        <Text color="whiteAlpha.600">//</Text>
-        <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-        <Text color="whiteAlpha.600">//</Text>
-        <Link as={RouterLink} to="/projects" color="blue.300" _hover={{ color: "blue.100" }}>projects</Link>
-        <Text color="whiteAlpha.600">//</Text>
+        {currentPath !== "/" && (
+          <>
+            <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>home</Link>
+            <Text color="whiteAlpha.600">//</Text>
+          </>
+        )}
+        
+        {currentPath !== "/thesis" && (
+          <>
+            <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+            <Text color="whiteAlpha.600">//</Text>
+          </>
+        )}
+        
+        {currentPath !== "/portfolio" && (
+          <>
+            <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+            <Text color="whiteAlpha.600">//</Text>
+          </>
+        )}
+        
+        {currentPath !== "/projects" && (
+          <>
+            <Link as={RouterLink} to="/projects" color="blue.300" _hover={{ color: "blue.100" }}>projects</Link>
+            <Text color="whiteAlpha.600">//</Text>
+          </>
+        )}
+        
         <Link href="https://podcast.collective.vc" isExternal color="blue.300" _hover={{ color: "blue.100" }}>podcast</Link>
-        <Text color="whiteAlpha.600">//</Text>
-        <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
+        
+        {currentPath !== "/disclaimer" && (
+          <>
+            <Text color="whiteAlpha.600">//</Text>
+            <Link as={RouterLink} to="/disclaimer" color="blue.300" _hover={{ color: "blue.100" }}>disclaimer</Link>
+          </>
+        )}
       </Flex>
 
       <Box 

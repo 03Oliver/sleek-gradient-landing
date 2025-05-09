@@ -5,7 +5,9 @@ import {
   Box, 
   VStack, 
   useColorModeValue,
-  useDisclosure
+  useDisclosure,
+  Text,
+  Link
 } from "@chakra-ui/react";
 import ThesisItemsList from "../components/thesis/ThesisItemsList";
 import ThesisModal from "../components/thesis/ThesisModal";
@@ -13,6 +15,7 @@ import { getIconForThesisItem } from "../components/thesis/IconUtils";
 import ThesisAnimations from "../components/thesis/ThesisAnimations";
 import ThesisDesktopView from "../components/thesis/ThesisDesktopView";
 import ThesisMobileView from "../components/thesis/ThesisMobileView";
+import ThesisFooter from "../components/thesis/ThesisFooter";
 
 const Thesis = () => {
   const [headerText, setHeaderText] = useState("");
@@ -134,6 +137,10 @@ const Thesis = () => {
       </VStack>
       
       <ThesisModal isOpen={isOpen} onClose={onClose} getIconForThesisItem={getIconForThesisItem} />
+      
+      <Box as="footer" py={4} textAlign="center" fontSize="xs" color="whiteAlpha.600" width="100%">
+        built lightweight <Link href="https://www.websitecarbon.com/website/collective-vc/" isExternal color="whiteAlpha.600">(<b>0.04g CO₂</b>)</Link> with minimalism in mind
+      </Box>
     </Container>
   );
 };

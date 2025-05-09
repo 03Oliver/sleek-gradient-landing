@@ -1,4 +1,3 @@
-
 import { 
   Box, 
   Container, 
@@ -23,6 +22,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { Brain, AlertTriangle, Building, PoundSterling, Lock } from "lucide-react";
 import { typing, blink, badgeBlink } from "../components/thesis/AnimationKeyframes";
+import { useLocation } from "react-router-dom";
 
 const Disclaimer = () => {
   const [headerText, setHeaderText] = useState("");
@@ -38,6 +38,8 @@ const Disclaimer = () => {
     "linear(to-r, gray.900, gray.800, gray.900)",
     "linear(to-r, gray.900, gray.800, gray.900)"
   );
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   useEffect(() => {
     const hasAnimationPlayed = sessionStorage.getItem('animationPlayedDisclaimer');
@@ -307,13 +309,33 @@ const Disclaimer = () => {
           maxW="600px"
           alignSelf="center"
         >
-          <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>home</Link>
-          <Text color="whiteAlpha.600">//</Text>
-          <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
-          <Text color="whiteAlpha.600">//</Text>
-          <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
-          <Text color="whiteAlpha.600">//</Text>
-          <Link as={RouterLink} to="/projects" color="blue.300" _hover={{ color: "blue.100" }}>projects</Link>
+          {currentPath !== "/" && (
+            <>
+              <Link as={RouterLink} to="/" color="blue.300" _hover={{ color: "blue.100" }}>home</Link>
+              <Text color="whiteAlpha.600">//</Text>
+            </>
+          )}
+          
+          {currentPath !== "/thesis" && (
+            <>
+              <Link as={RouterLink} to="/thesis" color="blue.300" _hover={{ color: "blue.100" }}>thesis</Link>
+              <Text color="whiteAlpha.600">//</Text>
+            </>
+          )}
+          
+          {currentPath !== "/portfolio" && (
+            <>
+              <Link as={RouterLink} to="/portfolio" color="blue.300" _hover={{ color: "blue.100" }}>portfolio</Link>
+              <Text color="whiteAlpha.600">//</Text>
+            </>
+          )}
+          
+          {currentPath !== "/projects" && (
+            <>
+              <Link as={RouterLink} to="/projects" color="blue.300" _hover={{ color: "blue.100" }}>projects</Link>
+              {currentPath !== "/disclaimer" && <Text color="whiteAlpha.600">//</Text>}
+            </>
+          )}
         </Flex>
       </VStack>
       
