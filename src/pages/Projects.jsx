@@ -141,9 +141,9 @@ const Projects = () => {
         <VStack spacing={4} width="100%" maxW="600px" align="flex-start" alignSelf="center" pl={[2, 2, 12, 12]}>
           <HStack spacing={3}>
             <Box as={Laptop} size={20} color="blue.300" />
-            <Text color="blue.300">
-              climateimpact summit hackathon host <Badge colorScheme="green" ml={1} fontSize="xs">coming soon</Badge>
-            </Text>
+            <Link href="https://www.linkedin.com/posts/bonallack_climatetech-hackathon-climateimpact-activity-7332658012995665920-hB8k?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADbNXUABBBu1fZSxkX3tRBbZU_5JAvG1lJs" isExternal color="blue.300" _hover={{ color: "blue.100" }}>
+              climateimpact summit hackathon host
+            </Link>
           </HStack>
           
           <HStack spacing={3}>
